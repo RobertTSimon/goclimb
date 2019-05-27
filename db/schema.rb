@@ -54,6 +54,18 @@ ActiveRecord::Schema.define(version: 2019_05_27_195300) do
     t.index ["user_id"], name: "index_reviewables_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "reviewable_id"
+    t.bigint "user_id"
+    t.string "title"
+    t.text "description"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reviewable_id"], name: "index_reviews_on_reviewable_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "route_trips", force: :cascade do |t|
     t.bigint "route_id"
     t.bigint "trip_id"
@@ -123,6 +135,8 @@ ActiveRecord::Schema.define(version: 2019_05_27_195300) do
   add_foreign_key "favourite_routes", "routes"
   add_foreign_key "favourite_routes", "users"
   add_foreign_key "reviewables", "users"
+  add_foreign_key "reviews", "reviewables"
+  add_foreign_key "reviews", "users"
   add_foreign_key "route_trips", "routes"
   add_foreign_key "route_trips", "trips"
   add_foreign_key "routes", "walls"
