@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'walls/show'
   get 'sites/show'
   get 'trips/new'
