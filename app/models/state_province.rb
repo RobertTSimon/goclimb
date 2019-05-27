@@ -1,0 +1,2 @@
+class StateProvince < ApplicationRecord
+end
