@@ -54,18 +54,6 @@ ActiveRecord::Schema.define(version: 2019_05_27_195300) do
     t.index ["user_id"], name: "index_reviewables_on_user_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.bigint "reviewable_id"
-    t.bigint "user_id"
-    t.string "title"
-    t.text "description"
-    t.integer "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["reviewable_id"], name: "index_reviews_on_reviewable_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
   create_table "route_trips", force: :cascade do |t|
     t.bigint "route_id"
     t.bigint "trip_id"
@@ -77,7 +65,6 @@ ActiveRecord::Schema.define(version: 2019_05_27_195300) do
 
   create_table "routes", force: :cascade do |t|
     t.string "name"
-    t.bigint "wall_id"
     t.float "longitude"
     t.float "latitude"
     t.text "description"
@@ -87,7 +74,6 @@ ActiveRecord::Schema.define(version: 2019_05_27_195300) do
     t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["wall_id"], name: "index_routes_on_wall_id"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -124,22 +110,10 @@ ActiveRecord::Schema.define(version: 2019_05_27_195300) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "walls", force: :cascade do |t|
-    t.bigint "site_id"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["site_id"], name: "index_walls_on_site_id"
-  end
-
   add_foreign_key "favourite_routes", "routes"
   add_foreign_key "favourite_routes", "users"
   add_foreign_key "reviewables", "users"
-  add_foreign_key "reviews", "reviewables"
-  add_foreign_key "reviews", "users"
   add_foreign_key "route_trips", "routes"
   add_foreign_key "route_trips", "trips"
-  add_foreign_key "routes", "walls"
   add_foreign_key "sites", "cities"
-  add_foreign_key "walls", "sites"
 end
