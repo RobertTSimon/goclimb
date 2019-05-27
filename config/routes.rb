@@ -27,6 +27,15 @@ Rails.application.routes.draw do
   get 'route/destroy'
   get 'route/edit'
   get 'route/update'
+
+resources :routes
+
+resources :reviews
+
+resources :trips
+
+resources :sites :only[:show]
+
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
