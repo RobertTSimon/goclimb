@@ -18,9 +18,11 @@ User.create!(username: "SImon", email: "simon@email.com", password: "123456")
 User.create!(username: "Javier",email: "javier@email.com", password: "123456", route_setter: true)
 User.create!(username: "DIego", email: "diego@email.com", password: "123456")
 
+
 state_province = StateProvince.create!(name: "Quebec")
 city = City.create!(name: "Montreal", state_province: state_province)
 Site.create!(name: "Mont-Trenchant", city: city)
+
 
 puts "creating routes..."
 

@@ -14,5 +14,4 @@ class Route < ApplicationRecord
   # validates :style, presence: true
   # validates :level, presence: true
   # validates :rating, presence: true
-
 end
