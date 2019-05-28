@@ -30,7 +30,6 @@ class RoutesController < ApplicationController
   end
 
 
-
   def show
     set_route
     unless (@route.latitude.nil? || @route.longitude.nil?)
@@ -62,7 +61,6 @@ class RoutesController < ApplicationController
     route.permit(:route).require(:name, :longitude, :latitude, :description, :type, :style, :level, :rating)
   end
 end
-
 
 # class EquipmentController < ApplicationController
 #   before_action :set_equipment, only: [:show, :edit, :destroy, :update]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_190217) do
+ActiveRecord::Schema.define(version: 2019_05_28_201644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 2019_05_28_190217) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "type_of"
+    t.integer "site_id"
     t.index ["user_id"], name: "index_routes_on_user_id"
   end
 
@@ -122,6 +124,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_190217) do
   add_foreign_key "reviewables", "users"
   add_foreign_key "route_trips", "routes"
   add_foreign_key "route_trips", "trips"
+  add_foreign_key "routes", "sites"
   add_foreign_key "routes", "users"
   add_foreign_key "sites", "cities"
   add_foreign_key "trips", "users"
