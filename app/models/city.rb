@@ -1,4 +1,4 @@
 class City < ApplicationRecord
-  belongs_to :state_provinces
+	belongs_to :state_province
   validates :name, presence: true
 end
