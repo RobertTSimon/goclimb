@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_220330) do
+ActiveRecord::Schema.define(version: 2019_05_28_230205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_220330) do
     t.index ["imageable_type", "imageable_id"], name: "index_photos_on_imageable_type_and_imageable_id"
   end
 
-  create_table "reviewables", force: :cascade do |t|
+  create_table "reviews", force: :cascade do |t|
     t.bigint "user_id"
     t.string "reviewable_type"
     t.bigint "reviewable_id"
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 2019_05_28_220330) do
     t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["reviewable_type", "reviewable_id"], name: "index_reviewables_on_reviewable_type_and_reviewable_id"
-    t.index ["user_id"], name: "index_reviewables_on_user_id"
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "route_trips", force: :cascade do |t|
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_220330) do
 
   add_foreign_key "favourite_routes", "routes"
   add_foreign_key "favourite_routes", "users"
-  add_foreign_key "reviewables", "users"
+  add_foreign_key "reviews", "users"
   add_foreign_key "route_trips", "routes"
   add_foreign_key "route_trips", "trips"
   add_foreign_key "routes", "sites"
