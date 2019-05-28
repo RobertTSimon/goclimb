@@ -21,7 +21,7 @@ Site.create(name: "Mont-Trenchant")
 City.create(name: "Montreal")
 StateProvince.create(name: "Quebec")
 
-puts
+puts "creating routes..."
 
 response = RestClient.get "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=43.8053486&lon=-71.8125811&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=500&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0"
 routes = JSON.parse(response)
@@ -48,3 +48,4 @@ routes["routes"].each do |route|
 
   new_route.save!
 end
+ puts "seeds done!"
