@@ -1,4 +1,4 @@
-class UserPolicy < ApplicationPolicy
+class SitePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -9,4 +9,3 @@ class UserPolicy < ApplicationPolicy
     return true
   end
 end
-
