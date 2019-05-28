@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_201644) do
+ActiveRecord::Schema.define(version: 2019_05_28_220330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,13 +32,13 @@ ActiveRecord::Schema.define(version: 2019_05_28_201644) do
     t.index ["user_id"], name: "index_favourite_routes_on_user_id"
   end
 
-  create_table "imageables", force: :cascade do |t|
+  create_table "photos", force: :cascade do |t|
     t.string "imageable_type"
     t.bigint "imageable_id"
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["imageable_type", "imageable_id"], name: "index_imageables_on_imageable_type_and_imageable_id"
+    t.index ["imageable_type", "imageable_id"], name: "index_photos_on_imageable_type_and_imageable_id"
   end
 
   create_table "reviewables", force: :cascade do |t|

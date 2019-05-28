@@ -4,6 +4,7 @@ class Route < ApplicationRecord
   # after_validation :geocode, if: :will_save_change_to_address?
   belongs_to :site
   has_one :city, through: :site
+  has_many :photos, as: :imageable
 
   # validates :name, presence: true, uniqueness: true
   # validates :latitude, presence: true

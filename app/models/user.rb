@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   # validates :avatar_photo, presence: true
   has_many :routes
+    has_many :photos, as: :imageable
+
 end
