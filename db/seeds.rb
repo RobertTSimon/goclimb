@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+User.create(email: "robert@email.com", password: "123456", route_setter: true)
+User.create(email: "simon@email.com", password: "123456")
+Route.create(name: "Falling Rock")
+Route.create(name: "Flying Jamaican")
+Route.create(name: "Swimming Jamaican")
+Site.create(name: "Mont-Trenchant")
+City.create(name: "Montreal")
+State_provinces.create(name: "Quebec")
+
+
