@@ -15,7 +15,7 @@ Route.create(name: "Flying Jamaican")
 Route.create(name: "Swimming Jamaican")
 Site.create(name: "Mont-Trenchant")
 City.create(name: "Montreal")
-State_provinces.create(name: "Quebec")
+StateProvince.create(name: "Quebec")
 
 
 

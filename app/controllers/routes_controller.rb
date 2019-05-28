@@ -2,10 +2,6 @@ class RoutesController < ApplicationController
   before_action :set_route, only: [:show, :edit, :destroy, :update]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
-  def index
-    @routes = policy_scope(Route).order(created_at: :desc)
-  end
-
   def new
     @route = Route.new
     authorize @route
@@ -21,7 +17,28 @@ class RoutesController < ApplicationController
     end
   end
 
+  def index
+    @routes = policy_scope(Route).order(created_at: :desc)
+    @routes_marked = Route.where.not(latitude: nil, longitude: nil)
+
+    @markers = @routes_marked.map do |route_marked|
+      {
+        lat: route_marked.latitude,
+        lng: route_marked.longitude
+      }
+    end
+  end
+
+
   def show
+    set_route
+    unless (@route.latitude.nil? || @route.longitude.nil?)
+       @markers = [{lat: @route.latitude, lng: @route.longitude}]
+    end
+    authorize @route
+  end
+
+  def destroy
     set_route
     authorize @route
   end
@@ -31,7 +48,7 @@ class RoutesController < ApplicationController
   end
 
   def update
-    authoize @route
+    authorize @route
   end
 
   private
