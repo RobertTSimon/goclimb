@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :email, uniqueness: true
   validates :username, uniqueness: true
-  validates :avatar_photo, presence: true
+  # validates :avatar_photo, presence: true
+  has_many :routes
 end
