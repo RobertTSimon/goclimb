@@ -13,7 +13,10 @@ User.create(email: "simon@email.com", password: "123456")
 Route.create(name: "Falling Rock")
 Route.create(name: "Flying Jamaican")
 Route.create(name: "Swimming Jamaican")
-Site.create(name: "Adirondacks")
+Site.create(name: "Mont-Trenchant")
+City.create(name: "Montreal")
+State_provinces.create(name: "Quebec")
+
 
 
 

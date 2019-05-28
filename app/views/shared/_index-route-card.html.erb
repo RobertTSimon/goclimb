@@ -1,0 +1,24 @@
+<div class="cards" id="route-cards-index">
+  <% @routes.each do |route|%>
+    <%= link_to routes_path(route) do %>
+      <div class="card-route">
+
+        <%= cl_image_tag equipment.equipment_attachments.first&.photo %>
+        <div class="card-equipment-info">
+
+          <div>
+            <h2><%= equipment.name %></h2>
+            
+            <div class="avatar_photo_card">
+              <%= cl_image_tag equipment.user.avatar_photo, width: 20, height: 20, crop: :fill, radius: "max"%>
+              <p><%= equipment.user.username %></p>
+            </div>
+          </div>
+          <h2>$<%= equipment.price %></h2>
+
+        </div>
+
+      </div>
+    <% end %>
+  <% end %>
+</div>
