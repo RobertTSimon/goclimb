@@ -20,10 +20,23 @@ class RoutesController < ApplicationController
 
   def index
     @routes = Route.all
+    @routes_marked = Route.where.not(latitude: nil, longitude: nil)
+
+    @markers = @routes_marked.map do |route_marked|
+      {
+        lat: route_marked.latitude,
+        lng: route_marked.longitude
+      }
+    end
   end
+
+  
 
   def show
     authorize @route
+    unless (@route.latitude.nil? || @route.longitude.nil?)
+       @markers = [{lat: @route.latitude, lng: @route.longitude}]
+    end
   end
 
   def destroy
