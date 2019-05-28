@@ -21,7 +21,6 @@ class RoutesController < ApplicationController
     end
   end
 
-
   def show
     set_route
     authorize @route
@@ -45,7 +44,6 @@ class RoutesController < ApplicationController
     route.permit(:route).require(:name, :longitude, :latitude, :description, :type, :style, :level, :rating)
   end
 end
-
 
 # class EquipmentController < ApplicationController
 #   before_action :set_equipment, only: [:show, :edit, :destroy, :update]
