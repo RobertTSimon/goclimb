@@ -13,7 +13,7 @@
         <%if user_signed_in? %>
           <div class="nav-div">
             <a class="nav-link" href="#">Welcome, <%= current_user.username %>!</a>
-            <a class="nav-link" href="/equipment/new">Add your equipment</a>
+            <p>Level: <%= current_user.current_level %></p>
           </div>
         <% else %>
           <a class="nav-link" href="#">Welcome to GoClimb</a>
@@ -30,8 +30,8 @@
         <% end %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <% if user_signed_in? %>
-            <%= link_to profile_path, class: "dropdown-item" do %>
-              <i class=“fa fa-sign-out”></i>See your profile
+            <%= link_to user_path(:id), class: "dropdown-item" do %>
+              <i class=“fa fa-sign-out”></i>Level: <%= current_user.current_level %>
             <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
               <i class=“fa fa-sign-out”></i>Log out
