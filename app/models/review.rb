@@ -1,6 +1,6 @@
-class Reviewable < ApplicationRecord
+class Review < ApplicationRecord
   belongs_to :user
-  belongs_to :reviewable, polymorphic: true
+  belongs_to :route
 
   validates :title, presence: true
   validates :description, presence: true
