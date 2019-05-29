@@ -7,6 +7,21 @@ class Route < ApplicationRecord
   has_many :photos, as: :imageable
   has_many :reviews
 
+  include AlgoliaSearch
+
+  algoliasearch do
+    attribute :name, :level, :type, :description, :style
+    attribute :site_name
+    attribute :city_name
+  end
+
+  def site_name
+    site.name
+  end
+
+  def city_name
+    city.name
+  end
   # validates :name, presence: true, uniqueness: true
   # validates :latitude, presence: true
   # validates :longitude, presence: true

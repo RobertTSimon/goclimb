@@ -1,23 +1,28 @@
-<h1>This is the routes page</h1>
-<p>We will view all the routes associated to a search query!!</p>
+<div class="container">
+  <div class="index-container">
+    <div>
+      <h1>Sugestions</h1>
+      <% @routes.each do |route|%>
+        <%= link_to route_path(route) do %>
+          <div class="card-route-index">
+            <%= image_tag route.photos.first.photo %>
+            <div class="card-route-index-info">
+              <h2><%= route.name %></h2>
+              <p><%= route.city.name %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
 
-#mapbox
-<div
-  id="map"
-  style="width: 100%;
-  height: 600px;"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
-
-google map -- too complicated ..!
-<p>
-<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&key=AIzaSyBm1b0gavzzFN7Ijfi5XOtvPBPg3dKUCuo", alt: "Map" %>
-</p>
-
-<!-- center=#{100},#{100}& -->
-
-<!-- #google map
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm1b0gavzzFN7Ijfi5XOtvPBPg3dKUCuo&callback=initMap"
-  type="text/javascript"></script>
- -->
+    <div>
+      <div class='map-card'
+        id="map"
+        style="width: 100%;
+        height: 600px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+      ></div>
+    </div>
+  </div>
+</div>
