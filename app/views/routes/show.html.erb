@@ -6,16 +6,16 @@
     <div id="reviews">
       <% unless @route.user == current_user %>
         <% if @route.reviews.blank? %>
-          <% if policy(@review).create? %>
             Be the first to leave a review for <%= @route.name %>
-          <% end %>
         <% else %>
           <% @route.reviews.each do |review| %>
             <%= render 'reviews/show', review: review %>
           <% end %>
+          <%= render 'reviews/form', route: @route, review: @review %>
         <% end %>
 
       <% else %>
+
         <% if @route.reviews.blank? %>
           No rewiew on your <%= @route.name %> yet
         <% else %>
@@ -26,9 +26,6 @@
         <% end %>
       <% end %>
     </div>
-    <% if policy(@review).create? %>
-      <%= render 'reviews/form', route: @route, review: @review %>
-    <% end %>
   </div>
 
 
