@@ -1,8 +1,10 @@
 <h1>This is the routes page</h1>
 <p>We will view all the routes associated to a search query!!</p>
 
+
+
 #mapbox
-<div
+<div class='map-card'
   id="map"
   style="width: 100%;
   height: 600px;"
@@ -10,14 +12,4 @@
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
 ></div>
 
-google map -- too complicated ..!
-<p>
-<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&key=AIzaSyBm1b0gavzzFN7Ijfi5XOtvPBPg3dKUCuo", alt: "Map" %>
-</p>
 
-<!-- center=#{100},#{100}& -->
-
-<!-- #google map
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBm1b0gavzzFN7Ijfi5XOtvPBPg3dKUCuo&callback=initMap"
-  type="text/javascript"></script>
- -->
