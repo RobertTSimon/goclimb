@@ -1,7 +1,7 @@
 <div class="container">
+  <h1>Sugestions</h1>
   <div class="index-container">
     <div>
-      <h1>Sugestions</h1>
       <% @routes.each do |route|%>
         <%= link_to route_path(route) do %>
           <div class="card-route-index">
@@ -19,7 +19,7 @@
       <div class='map-card'
         id="map"
         style="width: 100%;
-        height: 600px;"
+        height: 100vh;"
         data-markers="<%= @markers.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
       ></div>
