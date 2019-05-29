@@ -56,6 +56,7 @@ class RoutesController < ApplicationController
       @markers = [{ lat: @route.latitude, lng: @route.longitude }]
     end
     authorize @route
+    @review = Review.new
   end
 
   def destroy
