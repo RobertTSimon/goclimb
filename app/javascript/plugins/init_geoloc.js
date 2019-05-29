@@ -1,11 +1,10 @@
 
-const geoElement = document.getElementById('geo');
-
+const geoElement = document.getElementById('map');
 
 const initGeoloc = () => {
   if (geoElement) {
     navigator.geolocation.getCurrentPosition((data) => {
-      console.log(data);
+      console.log(data.coords);
     });
   }
 };
