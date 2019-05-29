@@ -9,7 +9,7 @@ class RoutesController < ApplicationController
     @next_page = "/routes?page=#{params[:page].to_i + 1}"
     @current_page = params[:page].to_i + 1
     if params[:page]
-      @list_routes = @routes[(params[:page].to_i - 1) * 5, 5]
+      @list_routes = @routes[params[:page].to_i * 5, 5]
     else
       @list_routes = @routes[0, 5]
     end
