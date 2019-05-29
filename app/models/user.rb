@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :username, uniqueness: true
   # validates :avatar_photo, presence: true
+  has_many :reviews
   has_many :routes
     has_many :photos, as: :imageable
 

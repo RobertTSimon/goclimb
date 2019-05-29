@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :user
-  belongs_to :imageable, polymorphic: true
+  belongs_to :route
 
   validates :title, presence: true
   validates :description, presence: true
