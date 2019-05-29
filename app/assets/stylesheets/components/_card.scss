@@ -39,3 +39,21 @@
   align-items: flex-end;
   position: relative;
 }
+.card-route-index{
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  img{
+    height: 100%;
+    width: 120px;
+    object-fit: cover;
+  }
+}
+
+
+
+
+

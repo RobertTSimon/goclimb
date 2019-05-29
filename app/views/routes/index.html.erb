@@ -1,5 +1,34 @@
-<h1>This is the routes page</h1>
-<p>We will view all the routes associated to a search query!!</p>
+<div class="container">
+  <div class="index-container">
+    <div>
+      <h1>Sugestions</h1>
+      <% @routes.each do |route|%>
+        <%= link_to route_path(route) do %>
+          <div class="card-route-index">
+            <%= image_tag route.photos.first.photo %>
+            <div class="card-route-index-info">
+              <h2><%= route.name %></h2>
+              <p><%= route.city.name %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <p>Put here the map</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 
 #mapbox
 <div

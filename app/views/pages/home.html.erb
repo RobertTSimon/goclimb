@@ -1,9 +1,12 @@
 <%= render partial: "shared/landing_page_banner", object: @route %>
 
 
-<%= render partial: "shared/index-route-card" %>
-
-
 <%= render "shared/navBar-landing-page" %>
+<%= render partial: "shared/index-route-card" %>
+<br>
+<div class="container">
+  <%= link_to "Explore more",routes_path, class: "btn btn-primary" %>
+</div>
+
 <%= render "shared/footer" %>
 
