@@ -1,26 +1,58 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:new, :create, :edit, :destroy, :update]
+  before_action :set_route, only: [:create]
+  skip_before_action :authenticate_user!, only: [:index]
+
+  def index
+    @review = policy_scope(Review).order(created_at: :desc)
+    @reviews = Review.all
+  end
+
+  def show
+    authorize @review
+  end
+
 
   def new
     @review = Review.new
+    authorize @review
   end
 
   def create
+    @review = Review.new(params_review)
+    @user = current_user
+    @review.user = @user
+    @review.route = @route
 
-  end
+    authorize @review
 
-  def edit
-  end
-
-  def update
+    if @review.save
+      respond_to do |format|
+        format.html { redirect_to route_path(@route) }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+    else
+      respond_to do |format|
+        format.html { render 'route/show' }
+        format.js  # <-- idem
+      end
+    end
   end
 
   def destroy
+    @review = Review.find(params[:id])
+
+    @review.destroy
+    redirect_to route_path(@review.route)
+    authorize @review
   end
 
   private
 
-  def set_review
-    @review = Review.find(params[:id])
+  def set_route
+    @route = Route.find(params[:route_id])
+  end
+
+  def params_review
+    params.require(:review).permit(:route_id, :user_id, :title, :description)
   end
 end
