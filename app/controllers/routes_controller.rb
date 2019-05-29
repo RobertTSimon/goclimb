@@ -8,12 +8,6 @@ class RoutesController < ApplicationController
     @previous_page = "/routes?page=#{params[:page].to_i - 1}"
     @next_page = "/routes?page=#{params[:page].to_i + 1}"
     @current_page = params[:page].to_i + 1
-    if params[:page]
-      @list_routes = @routes[params[:page].to_i * 5, 5]
-    else
-      @list_routes = @routes[0, 5]
-    end
-
     if params[:query].present?
       @routes = Route.search(params[:query])
       # Navigate through pages with query. Diego
@@ -22,6 +16,13 @@ class RoutesController < ApplicationController
     else
       @routes = Route.all
     end
+
+    if params[:page]
+      @list_routes = @routes[params[:page].to_i * 5, 5]
+    else
+      @list_routes = @routes[0, 5]
+    end
+
 
     @routes_marked = Route.where.not(latitude: nil, longitude: nil)
 
