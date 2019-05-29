@@ -16,10 +16,17 @@
       <% end %>
       <br>
       <div>
-        <% if @current_page == 1 %>
+        <!-- logic to display the pages tab -->
+        <% if @current_page == 1 && @list_routes.count < 5%>
+          <a href="#"><%= @current_page %></a>
+        <% elsif @current_page == 1 %>
           <a href="#"><%= @current_page %></a>
           <a href="<%= @next_page %>"><%= @current_page + 1 %></a>
           <a href="<%= @next_page %>"> > </a>
+        <% elsif @list_routes.count % 5 == 0 %>
+          <a href="<%= @previous_page  %>"> < </a>
+          <a href="<%= @previous_page  %>"><%= @current_page - 1 %></a>
+          <a href="#"><%= @current_page %></a>
         <% else %>
           <a href="<%= @previous_page  %>"> < </a>
           <a href="<%= @previous_page  %>"><%= @current_page - 1 %></a>
