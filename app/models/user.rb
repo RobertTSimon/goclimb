@@ -8,6 +8,6 @@ class User < ApplicationRecord
   # validates :avatar_photo, presence: true
   has_many :reviews
   has_many :routes
-    has_many :photos, as: :imageable
-
+  has_many :photos, as: :imageable
+  has_many :trips
 end
