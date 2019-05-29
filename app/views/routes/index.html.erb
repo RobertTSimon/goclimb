@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Sugestions</h1>
+  <h1>Suggestions</h1>
   <div class="index-container">
     <div>
       <% @list_routes.each do |route|%>
@@ -13,7 +13,12 @@
           </div>
         <% end %>
       <% end %>
-      <a href="<%= @previous_link  %>"></a>
+      <br>
+      <a href="<%= @previous_page  %>"> < </a>
+      <a href="<%= @previous_page  %>"><%= @current_page - 1 %></a>
+      <a href="#"><%= @current_page %></a>
+      <a href="<%= @next_page %>"><%= @current_page + 1 %></a>
+      <a href="<%= @next_page %>"> > </a>
     </div>
 
     <div>

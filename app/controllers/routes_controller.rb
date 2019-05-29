@@ -4,18 +4,24 @@ class RoutesController < ApplicationController
 
   def index
     @routes = policy_scope(Route).order(created_at: :desc)
-    if params[:query].present?
-      @routes = Route.search(params[:query])
-    else
-      @routes = Route.all
-    end
-    # Added to have the logic of the pages in the show
+    # Logic to navigate through pages. Diego
+    @previous_page = "/routes?page=#{params[:page].to_i - 1}"
+    @next_page = "/routes?page=#{params[:page].to_i + 1}"
+    @current_page = params[:page].to_i + 1
     if params[:page]
       @list_routes = @routes[(params[:page].to_i - 1) * 5, 5]
     else
       @list_routes = @routes[0, 5]
     end
-    @previous_link = "/routes?"
+
+    if params[:query].present?
+      @routes = Route.search(params[:query])
+      # Navigate through pages with query. Diego
+      @previous_page += "&query=#{params[:query]}"
+      @next_page += "&query=#{params[:query]}"
+    else
+      @routes = Route.all
+    end
 
     @routes_marked = Route.where.not(latitude: nil, longitude: nil)
 
