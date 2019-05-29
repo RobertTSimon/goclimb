@@ -4,11 +4,25 @@ class RoutesController < ApplicationController
 
   def index
     @routes = policy_scope(Route).order(created_at: :desc)
+    # Logic to navigate through pages. Diego
+    @previous_page = "/routes?page=#{params[:page].to_i - 1}"
+    @next_page = "/routes?page=#{params[:page].to_i + 1}"
+    @current_page = params[:page].to_i + 1
+    if params[:page]
+      @list_routes = @routes[params[:page].to_i * 5, 5]
+    else
+      @list_routes = @routes[0, 5]
+    end
+
     if params[:query].present?
       @routes = Route.search(params[:query])
+      # Navigate through pages with query. Diego
+      @previous_page += "&query=#{params[:query]}"
+      @next_page += "&query=#{params[:query]}"
     else
       @routes = Route.all
     end
+
     @routes_marked = Route.where.not(latitude: nil, longitude: nil)
 
     @markers = @routes_marked.map do |route_marked|
@@ -62,7 +76,7 @@ class RoutesController < ApplicationController
   end
 
   def route_params
-    route.permit(:route).require(:name, :longitude, :latitude, :description, :type, :style, :level, :rating)
+    route.permit(:route).require(:name, :longitude, :latitude, :description, :type, :style, :level, :rating, :page)
   end
 end
 
