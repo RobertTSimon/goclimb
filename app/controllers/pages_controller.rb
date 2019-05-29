@@ -1,7 +1,19 @@
 class PagesController < ApplicationController
- skip_before_action :authenticate_user!, only: [:home]
+  skip_before_action :authenticate_user!, only: [:home]
 
   def home
-  	@routes = Route.all
+    @routes = Route.all
+  end
+
+  def profile
+    # binding.pry
+
+
+    # respond_to do |format|
+    #   format.html { render :template => "pages/profile" }
+    # end
+    # @user = current_user
+    # @equipment = policy_scope(Equipment).order(created_at: :desc)
+    # @routes = Route.where(:user_id => current_user.id)
   end
 end

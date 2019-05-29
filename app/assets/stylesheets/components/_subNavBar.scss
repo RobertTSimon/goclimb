@@ -1,0 +1,90 @@
+.subNavbar {
+  display:flex;
+  justify-content:space-between;
+  overflow-x:scroll;
+  position:relative;
+  background-color: #F8F8F8;
+}
+.subNavbar {
+  overflow-x:visible;
+  padding-top:8px;
+  }
+.subNavbar-wrapper {
+  position:relative;
+  z-index:2
+}
+.subNavbar-links {
+  display:flex;
+  margin-right: 60px;
+  margin-left: 60px;
+}
+.subNavbar-activeLine {
+  background-color:#fff;
+  border:0;
+  bottom:0;
+  height:3px;
+  margin:0;
+  position: absolute;
+  transition:all .3s ease;
+  width:10%
+}
+.subNavbarLinkBadge {
+  background-color:#df4a32;
+  border-radius:10px;
+  color:#fff;
+  display:flex;
+  font-size:11px;
+  height:18px;
+  margin-left:5px;
+  position:relative;
+  width:18px
+}
+.subNavbarLinkBadge {
+  font-size:13px;
+  height:19px;
+  width:19px
+}
+.subNavbarLinkBadge--2 {
+  width:22px
+}
+.subNavbarLinkBadge--2 {
+  width:23px
+}
+.subNavbarLinkBadge--3 {
+  width:27px
+}
+
+.subNavbarLinkBadge--3 {
+  width:30px
+}
+.subNavbarLinkBadge-count {
+  align-items:center;
+  display:flex;
+  font-weight:700;
+  height:100%;
+  justify-content:center;
+  line-height:18px;
+  position:absolute;
+  width:100%
+}
+.subNavbarLinkBadge-count {
+  line-height:19px
+}
+.subNavbarLink {
+  color: rgba(0, 0, 0, 0.5);
+  display:flex;
+  font-size:1rem;
+  font-weight:700;
+  padding:10px 20px;
+  text-transform:uppercase;
+  transition:all .3s ease;
+  white-space:nowrap
+}
+a.active,.subNavbarLink:hover {
+  color: #c7c7c7;
+  text-decoration:none;
+}
+
+a.active {
+  border-bottom: 3px solid #59d389;
+}
