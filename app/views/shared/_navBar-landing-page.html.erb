@@ -1,19 +1,19 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon-2">
   <%= link_to routes_path, class: "navbar-brand" do %>
-    <%= image_tag "https://res.cloudinary.com/dts9y3u9o/image/upload/v1559081820/climb_zkkafe.svg", class: "avatar" %>
+    <%= image_tag "https://res.cloudinary.com/dts9y3u9o/image/upload/v1559143682/GoClimb_-_final_logo_t4ny38.jpg", class: "avatar" %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <%if user_signed_in? %>
           <div class="nav-div">
             <a class="nav-link" href="#">Welcome, <%= current_user.username %>!</a>
-            <a class="nav-link" href="/equipment/new">Add your equipment</a>
+            <p>Level: <%= current_user.current_level %></p>
           </div>
         <% else %>
           <a class="nav-link" href="#">Welcome to GoClimb</a>
@@ -30,8 +30,8 @@
         <% end %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <% if user_signed_in? %>
-            <%= link_to profile_path, class: "dropdown-item" do %>
-              <i class=“fa fa-sign-out”></i>See your profile
+            <%= link_to user_path(:id), class: "dropdown-item" do %>
+              <i class=“fa fa-sign-out”></i>Level: <%= current_user.current_level %>
             <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
               <i class=“fa fa-sign-out”></i>Log out

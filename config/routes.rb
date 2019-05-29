@@ -1,18 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
 
-resources :routes do
-  resources :reviews
-end
-resources :trips
+	resources :routes do
+	  resources :reviews, only: [:new, :index, :create, :show]
+	end
+	resources :trips
+	resources :reviews, only: [:destroy]
 
 
-resources :sites, only: [:show] do
-  resources :reviews
-end
-resources :users, only: [:show]
+	resources :sites, only: [:show] do
+	  resources :reviews
+	end
+	resources :users, only: [:show]
 
-root to: 'pages#home'
+	root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 

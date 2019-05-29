@@ -1,10 +1,15 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to routes_path, class: "navbar-brand" do %>
-    <%= image_tag "https://res.cloudinary.com/jmadridvaquero/image/upload/v1558535217/man-in-canoe_ya8ifp.png", class: "avatar" %>
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= image_tag "https://res.cloudinary.com/dts9y3u9o/image/upload/v1559143682/GoClimb_-_final_logo_t4ny38.jpg", class: "avatar" %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <div class="search-form-navbar">
+    <%= form_tag(routes_path, method: :get) do %>
+        <%= text_field_tag :query, params[:query], :placeholder => "Find Routes!", class: "form-control" %>
+    <% end %>
+  </div>
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -16,7 +21,7 @@
             <a class="nav-link" href="/equipment/new">Add your equipment</a>
           </div>
         <% else %>
-          <a class="nav-link" href="#">Welcome to rentOutdoors!</a>
+          <a class="nav-link" href="#">Welcome to GoClimb!</a>
         <% end %>
       </li>
       <li class="nav-item dropdown">
