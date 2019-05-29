@@ -16,11 +16,17 @@
       <% end %>
       <br>
       <div>
-        <a href="<%= @previous_page  %>"> < </a>
-        <a href="<%= @previous_page  %>"><%= @current_page - 1 %></a>
-        <a href="#"><%= @current_page %></a>
-        <a href="<%= @next_page %>"><%= @current_page + 1 %></a>
-        <a href="<%= @next_page %>"> > </a>
+        <% if @current_page == 1 %>
+          <a href="#"><%= @current_page %></a>
+          <a href="<%= @next_page %>"><%= @current_page + 1 %></a>
+          <a href="<%= @next_page %>"> > </a>
+        <% else %>
+          <a href="<%= @previous_page  %>"> < </a>
+          <a href="<%= @previous_page  %>"><%= @current_page - 1 %></a>
+          <a href="#"><%= @current_page %></a>
+          <a href="<%= @next_page %>"><%= @current_page + 1 %></a>
+          <a href="<%= @next_page %>"> > </a>
+        <% end %>
       </div>
     </div>
 
