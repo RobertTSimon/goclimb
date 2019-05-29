@@ -23,8 +23,9 @@ class RoutesController < ApplicationController
       @list_routes = @routes[0, 5]
     end
 
-
-    @routes_marked = Route.where.not(latitude: nil, longitude: nil)
+    @routes_marked = @routes.reject do |route|
+      route.latitude.nil? || route.longitude.nil?
+    end
 
     @markers = @routes_marked.map do |route_marked|
       {
