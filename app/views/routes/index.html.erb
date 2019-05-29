@@ -2,7 +2,7 @@
   <h1>Sugestions</h1>
   <div class="index-container">
     <div>
-      <% @routes.each do |route|%>
+      <% @list_routes.each do |route|%>
         <%= link_to route_path(route) do %>
           <div class="card-route-index">
             <%= image_tag route.photos.first.photo %>
@@ -13,6 +13,7 @@
           </div>
         <% end %>
       <% end %>
+      <a href="<%= @previous_link  %>"></a>
     </div>
 
     <div>

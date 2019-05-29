@@ -9,6 +9,14 @@ class RoutesController < ApplicationController
     else
       @routes = Route.all
     end
+    # Added to have the logic of the pages in the show
+    if params[:page]
+      @list_routes = @routes[(params[:page].to_i - 1) * 5, 5]
+    else
+      @list_routes = @routes[0, 5]
+    end
+    @previous_link = "/routes?"
+
     @routes_marked = Route.where.not(latitude: nil, longitude: nil)
 
     @markers = @routes_marked.map do |route_marked|
@@ -62,7 +70,7 @@ class RoutesController < ApplicationController
   end
 
   def route_params
-    route.permit(:route).require(:name, :longitude, :latitude, :description, :type, :style, :level, :rating)
+    route.permit(:route).require(:name, :longitude, :latitude, :description, :type, :style, :level, :rating, :page)
   end
 end
 
