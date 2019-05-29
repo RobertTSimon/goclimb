@@ -9,8 +9,6 @@ class Route < ApplicationRecord
 
   include AlgoliaSearch
 
-  after_save { routes.each(&:touch) }
-
   algoliasearch do
     attribute :name, :level, :type, :description, :style
     attribute :site_name
