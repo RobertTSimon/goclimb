@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   end
 
   def profile
+    @user = current_user
     @routes = current_user.routes
     # binding.pry
 

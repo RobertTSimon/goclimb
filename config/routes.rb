@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 	resources :sites, only: [:show] do
 	  resources :reviews
 	end
-	resources :users, only: [:show]
+	resources :users, only: [:show, :update, :edit]
 
 	root to: 'pages#home'
   get 'profile', to: 'pages#profile'

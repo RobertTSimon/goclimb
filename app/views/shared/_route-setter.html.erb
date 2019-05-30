@@ -1,13 +1,13 @@
-<div class="cards" id="sport-cards-index">
+<div class="cards-route" id="sport-cards-index">
   <% @routes.each do |route|%>
     <%= link_to route_path(route) do %>
-      <div class="card-equipment">
+      <div class="card-route">
         <%= image_tag route.photos.first.photo %>
-        <div class="card-equipment-info">
+        <div class="card-route-info">
           <div>
             <h2><%= route.name %></h2>
             <div class="avatar_photo_card">
-              <%= cl_image_tag route.user.avatar_photo, width: 20, height: 20, crop: :fill, radius: "max"%>
+              <%= cl_image_tag route.user.avatar_photo, width: 20, height: 20, crop: :fill, radius: "max" %>
               <p><%= route.user.username %></p>
             </div>
           </div>
@@ -16,4 +16,3 @@
     <% end %>
   <% end %>
 </div>
-
