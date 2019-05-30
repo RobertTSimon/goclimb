@@ -14,11 +14,14 @@ Rails.application.routes.draw do
 	  resources :reviews, only: [:new, :index, :create, :show]
 	end
 	resources :trips
+  get "/trips/update/:id", to: "trips#update", as: :trip_update
 	resources :reviews, only: [:destroy]
 
 	resources :sites, only: [:show] do
 	  resources :reviews
 	end
+
+	resources :users, only: [:show, :update, :edit]
 
 	root to: 'pages#home'
   get 'profile/:id', to: 'pages#profile', as: :profile

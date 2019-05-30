@@ -81,11 +81,20 @@
     height: 606px;
   }
 }
-
+.avatar_photo_card{
+  display: flex;
+  margin-top: 8px;
+  p {
+  margin-left: 8px;
+  }
+}
 .map-card{
   border-radius: 5px;
 }
 
+.card-route-index-info{
+    padding: 15px;
+}
 
 
 

@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   def profile
     @users = User.where.not(id: current_user.id)
     @user = set_user
-    @routes = @user.routes  
+    @routes = @user.routes
   end
 
   def follow
