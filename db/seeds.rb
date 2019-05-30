@@ -184,9 +184,6 @@ Route.all.each do |route|
   route.save
 end
 
-<<<<<<< HEAD
-Route.reindex!
-=======
 puts "You have #{Route.count} routes"
 
 puts "creating random trips for everyone.."
@@ -201,8 +198,7 @@ User.all.each do |user|
   end
 end
 
-
->>>>>>> 1c413cc318859600ab890c1460c55c92079c39e8
+Route.reindex!
 
  puts "seeds done!"
  puts "you have #{User.count} users with an average of #{Trip.count/User.count} each and #{Route.count} routes ! Enjoy !!"
