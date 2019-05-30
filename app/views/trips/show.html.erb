@@ -1,102 +1,67 @@
-<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <% @equipment.equipment_attachments.each_with_index do |equipment, i| %>
-      <% if i.zero? %>
-        <div class="carousel-item active" data-interval="10000">
-          <%= cl_image_tag equipment.photo, class: "banner-images d-block w-100" %>
+<%= render partial: "shared/navBar" %>
+<div class="container">
+  <h1>Your trip</h1>
+  <div class="index-container">
+
+
+
+    <div class="tab-content">
+
+
+      <% count = 1 %>
+      <% @routes.each_slice(5).to_a.each do |slice|%>
+        <div id="page-<%= count %>" role="tabpanel"  class="tab-pane fade <%= 'show active' if count == 1 %>">
+          <% slice.each do |route| %>
+            <%= link_to route_path(route) do %>
+              <div class="card-route-index">
+                <%= image_tag route.photos.first.photo %>
+                <div class="card-route-index-info">
+                  <h2><%= route.name %></h2>
+                  <p><%= route.city.name %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+
+          <%= link_to routes_path do %>
+          <%  route = Route.all.sample(1).first %>
+              <div class="card-route-index">
+                <%= image_tag route.photos.first.photo %>
+                <div class="card-route-index-info">
+                  <h2> Add a new route ! </h2>
+                </div>
+              </div>
+            <% end %>
+
+
         </div>
-      <% else %>
-        <div class="carousel-item" data-interval="10000">
-          <%= cl_image_tag equipment.photo, class: "banner-images d-block w-100" %>
-        </div>
+        <% count += 1 %>
       <% end %>
-    <% end %>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 
-<div class="container show-container">
-  <div class="equipment-info">
-    <h1><%= @equipment.name %></h1>
-    <p><%= @equipment.description %></p>
-    <p><%= @equipment.sport %></p>
+      <br>
 
-    <% unless policy(@equipment).edit? %>
-      <p>from <%= @equipment.user.username %>
-        <%= cl_image_tag @equipment.user.avatar_photo, width: 40, height: 40, crop: :fill, radius: "max", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <%= link_to "(Check his profile)", user_path(@equipment.user), class: "btn"%>
-      </p>
-    <% end %>
-    <% if policy(@equipment).edit? %>
-      <%= link_to "Edit", edit_equipment_path, class: "btn btn-primary" %>
-    <% end %>
-    <% if policy(@equipment).destroy? %>
-      <%= link_to "Destroy", equipment_path, method: "delete", data: { confirm: "Do you want to delete?"}, class: "btn btn-primary" %>
-    <% end %>
-  </div>
-
-  <div class="booking-card">
-    <div class="container equipment-price">
-      <h5>$<%= @equipment.price %></h5><p>per day</p></span>
 
     </div>
-    <div class="booking_form">
-      <%= simple_form_for [@equipment, @booking] do |f| %>
-      <%= f.input :start_date, { html5: true} %>
-      <%= f.input :end_date, { html5: true} %>
-      <% end %>
-      <button id="booking-confirmation" class="btn btn-outline-success btn-block">Book</button>
+
+<div id="weather"
+class="container"
+  data-markers="<%= @markers.to_json %>"
+></div>
+
+    <div>
+      <div class='map-card'
+        id="map"
+        style="width: 100%;
+        height: 100vh;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+      ></div>
     </div>
-  </div>
 
 
-  <div class="container review-card">
-    <div id="reviews">
-      <% unless @equipment.user == current_user %>
-        <% if @equipment.reviews.blank? %>
-          <% if policy(@review).create? %>
-            Be the first to leave a review for <%= @equipment.name %>
-          <% end %>
-        <% else %>
-          <% @equipment.reviews.each do |review| %>
-            <%= render 'reviews/show', review: review %>
-          <% end %>
-        <% end %>
 
-      <% else %>
-        <% if @equipment.reviews.blank? %>
-          No rewiew on your <%= @equipment.name %> yet
-        <% else %>
-          Here are all the reviews for your <%= @equipment.name %>
-          <% @equipment.reviews.each do |review| %>
-            <%= render 'reviews/show', review: review %>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-    <% if policy(@review).create? %>
-      <%= render 'reviews/form', equipment: @equipment, review: @review %>
-    <% end %>
-  </div>
-
-  <div class="map-card">
-    <div
-      id="map"
-      style="width: 100%;
-      height: 400px;"
-      data-marker="<%= @marker.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-    ></div>
   </div>
 </div>
-<%= render 'shared/navbar' %>
+<%= render "shared/footer" %>
 
-<h1>Trips#show</h1>
-<p>Find me in app/views/trips/show.html.erb</p>
+
