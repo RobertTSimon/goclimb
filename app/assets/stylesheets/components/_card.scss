@@ -47,7 +47,7 @@
   background: white;
   display: flex;
   align-items: center;
-  transition: 0.5s;
+  transition: 0.7s;
   img{
     height: 100%;
     width: 120px;
@@ -72,13 +72,15 @@
   transform: scale(1.05);
 }
 
-.card-review {
+.card-route-show{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 8px;
+  img {
+    width: 478px;
+    height: 606px;
+  }
 
-}
-
-.review-card {
-
-}
 
 
 .map-card{
