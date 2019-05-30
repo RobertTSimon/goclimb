@@ -1,51 +1,77 @@
-<h1>Routes#show</h1>
-<p>Find me in app/views/routes/show.html.erb</p>
+<%= render partial: "shared/navBar" %>
+<div class="container">
+  <br>
+  <div class="card-route-show">
 
+    <%= image_tag @route.photos.first.photo %>
 
-<div class="container review-card">
-    <div id="reviews">
-      <% unless @route.user == current_user %>
-        <% if @route.reviews.blank? %>
-            Be the first to leave a review for <%= @route.name %>
-        <% else %>
-          <% @route.reviews.each do |review| %>
-            <%= render 'reviews/show', review: review %>
-          <% end %>
-          <%= render 'reviews/form', route: @route, review: @review %>
-        <% end %>
+    <div class="route-info">
 
-      <% else %>
+      <h1><%= @route.name %></h1>
+      <h3><%= @route.city.name %></h3>
 
-        <% if @route.reviews.blank? %>
-          No rewiew on your <%= @route.name %> yet
-        <% else %>
-          Here are all the reviews for your <%= @route.name %>
-          <% @route.reviews.each do |review| %>
-            <%= render 'reviews/show', review: review %>
-          <% end %>
-        <% end %>
-      <% end %>
+      <div class="container">
+        <div class="subNavbar">
+          <div class="subNavbar-links subnavbar-show">
+            <ul class="nav subNavbar-links subnavbar-show" id="myTab" role="tablist">
+              <li>
+                <a class="subNavbarLink active" data-toggle="tab" href="#description" role="tab">Description</a>
+              </li>
+              <li>
+                <a class="subNavbarLink" data-toggle="tab" href="#technical-details" role="tab">Technical Details</a>
+              </li>
+              <li>
+                <a class="subNavbarLink" data-toggle="tab" href="#reviews" role="tab" >Reviews</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="full-height-profile">
+          <div class="tab-content" id="myTabContent">
+            <div id="description" class="tab-pane fade show active" role="tabpanel">
+              <p><%= @route.description %></p>
+            </div>
+            <div id="technical-details" class="tab-pane fade show" role="tabpanel">
+              <p>LEVEL: <%= @route.level %></p>
+              <p>STYLE: <%= @route.style %></p>
+              <p>TYPE: <%= @route.type_of %></p>
+            </div>
+            <div id="reviews" class="tab-pane fade show" role="tabpanel">
+              <% if @route.reviews.blank? %>
+                  Be the first to leave a review for <%= @route.name %>
+              <% else %>
+                <% @route.reviews.each do |review| %>
+                  <%= render 'reviews/show', review: review %>
+                <% end %>
+              <% end %>
+              <%= render 'reviews/form', route: @route, review: @review %>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+
   </div>
+  <%= link_to "ADD TO YOUR NEXT TRIP", new_trip_path, class: "btn btn-success" %>
+  <br>
 
+  <div class="map-card"
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  ></div>
 
-
-<div id="weather"
-class="container"
-  data-markers="<%= @markers.to_json %>"
-></div>
-
-<div id="geo">
+  <div id="weather"
+    class="container"
+    data-markers="<%= @markers.to_json %>"
+  ></div>
 
 </div>
 
 
-#map
-<div class="map-card"
-  id="map"
-  style="width: 100%;
-  height: 600px;"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
+
 
