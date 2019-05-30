@@ -197,7 +197,7 @@ descriptions = [
 "Well lets face it, you don't come to this site to climb cracks. This route affirms that statement with its ironic name. This climb follows a crack where water drains which leaves the route dirty. I think I used more offwidth technique than hand jamming. I even heard Ben Crawford backed down off this climb...",
 "Climb up easy 5.9 section to a very large hold below the white colored rock. A heel hook on this hold can score you a no-hands. Move left several feet and then up, up, up. Crux it out from here to the anchors.",
 "Another good route on the Mileski Wall. This one is located just left of the two 11d's and just right of Permanent Vacation and Mano De Dios.",
-"Steep crack climbing and technical face climbing mulitpitch, following a natural line on the left side of the Mileski wall. This and Devotion are the only routes that goes to the top of this wall. 70m rope mandatory. Can link 3+4, and 13+14.", 
+"Steep crack climbing and technical face climbing mulitpitch, following a natural line on the left side of the Mileski wall. This and Devotion are the only routes that goes to the top of this wall. 70m rope mandatory. Can link 3+4, and 13+14.",
 "Please try it, and leave feedback here! This is a new route, and use a trad mentality to test holds, have awareness of loose rock especially at the top, and be careful for those below. Have fun. P1 5.11. Start on the ledge left of Permanent Vacation. Work left through lower-angle grey face to reach an obvious crack. Steep locks and stemming to the top. 32m, 9 bolts. P2 5.12\+ Continue the pumpy crack for 5m to a rest, then 20m of continuous techy face climbing on excellent edges and pockets. 27m, 12 bolts.",
 "Starts up dark slab then trends up and right. The first pitch is the easiest pitch at the Mileski Wall (the second easiest pitch in this area is the first pitch of Chutes and Ladders, which is 5.10d.",
 "4 routes on the right of Bonsaï. The names of the routes and the grades are written on the stone. Can't miss it.",
@@ -223,6 +223,6 @@ Route.all.each do |route|
   route.save
 end
 
-
+Route.reindex!
 
  puts "seeds done!"
