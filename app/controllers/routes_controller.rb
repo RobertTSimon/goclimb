@@ -4,23 +4,10 @@ class RoutesController < ApplicationController
 
   def index
     @routes = policy_scope(Route).order(created_at: :desc)
-    # Logic to navigate through pages. Diego
-    @previous_page = "/routes?page=#{params[:page].to_i - 1}"
-    @next_page = "/routes?page=#{params[:page].to_i + 1}"
-    @current_page = params[:page].to_i + 1
     if params[:query].present?
       @routes = Route.search(params[:query])
-      # Navigate through pages with query. Diego
-      @previous_page += "&query=#{params[:query]}"
-      @next_page += "&query=#{params[:query]}"
     else
       @routes = Route.all
-    end
-
-    if params[:page]
-      @list_routes = @routes[params[:page].to_i * 5, 5]
-    else
-      @list_routes = @routes[0, 5]
     end
 
     @routes_marked = @routes.reject do |route|
@@ -56,6 +43,7 @@ class RoutesController < ApplicationController
       @markers = [{ lat: @route.latitude, lng: @route.longitude }]
     end
     authorize @route
+    @review = Review.new
   end
 
   def destroy

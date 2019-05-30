@@ -1,2 +1,47 @@
-<h1>Trips#show</h1>
-<p>Find me in app/views/trips/show.html.erb</p>
+<div class="container review-card">
+    <div id="reviews">
+      <% unless @route.user == current_user %>
+        <% if @route.reviews.blank? %>
+          <% if policy(@review).create? %>
+            Be the first to leave a review for <%= @route.name %>
+          <% end %>
+        <% else %>
+          <% @route.reviews.each do |review| %>
+            <%= render 'reviews/show', review: review %>
+          <% end %>
+        <% end %>
+
+      <% else %>
+        <% if @route.reviews.blank? %>
+          No rewiew on your <%= @route.name %> yet
+        <% else %>
+          Here are all the reviews for your <%= @route.name %>
+          <% @route.reviews.each do |review| %>
+            <%= render 'reviews/show', review: review %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <% if policy(@review).create? %>
+      <%= render 'reviews/form', route: @route, review: @review %>
+    <% end %>
+  </div>
+
+
+
+<div id="weather"
+class="container"
+  data-markers="<%= @markers.to_json %>"
+></div>
+
+
+
+#map
+<div class="map-card"
+  id="map"
+  style="width: 100%;
+  height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+></div>
+
