@@ -6,8 +6,8 @@ class PagesController < ApplicationController
   end
 
   def profile
+    @routes = current_user.routes
     # binding.pry
-
 
     # respond_to do |format|
     #   format.html { render :template => "pages/profile" }
