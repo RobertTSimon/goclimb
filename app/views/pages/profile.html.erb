@@ -1,0 +1,44 @@
+
+<div class="subNavbar">
+  <div class="subNavbar-links">
+    <ul class="nav subNavbar-links" id="myTab" role="tablist">
+      <li>
+        <a class="subNavbarLink active" id="profile-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
+      </li>
+      <li>
+        <a class="subNavbarLink" id="settings-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
+      </li>
+      <li>
+        <a class="subNavbarLink" id="route-setter-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="route-setter" aria-selected="false">Route Setter</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="full-height-profile">
+    <div class="tab-content" id="myTabContent">
+
+      <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home1-tab">
+        <%= render partial: "shared/booking_status_card", object: @booking%>
+      </div>
+
+
+      <div class="tab-pane fade show" id="home2" role="tabpanel" aria-labelledby="home2-tab">
+        <%= render partial: "shared/outcoming_booking_status_card", object: @booking%>
+      </div>
+
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <h2 class="tab-headers">Your Items</h2>
+        <%= render partial: "shared/profile-page-cards", object: @equipment%>
+      </div>
+
+      <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="contact-tab">
+        <%= render partial: "shared/profile-settings", object: @user %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
