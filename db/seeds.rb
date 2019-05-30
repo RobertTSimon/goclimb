@@ -123,7 +123,6 @@ sites.each do |site|
   routes = JSON.parse(response)
   puts "#{site} parsed"
   routes["routes"].each do |route|
-   # binding.pry
     state = StateProvince.find_by(name: route["location"][0])
     	if state.nil?
     		state = StateProvince.create!(name: route["location"][0])
@@ -143,7 +142,7 @@ sites.each do |site|
 
     new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: route["stars"].to_i, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
     Photo.create!(imageable: new_route, photo: route["imgMedium"])
-    puts "--- #{new_route.name} created"
+    # puts "--- #{new_route.name} created"
 
     new_route.save!
   end
@@ -190,15 +189,16 @@ puts "creating random trips for everyone.."
 
 t = Time.now
 User.all.each do |user|
-  rand(3).times do
+  rand(1..2).times do
     trip = Trip.create!(user: user, start_date: t, end_date: t)
-    Route.all.sample(rand(5)).each do |route|
+    Route.all.sample(rand(1..5)).each do |route|
       RouteTrip.create!(route: route, trip: trip)
     end
   end
 end
 
+Route.reindex!
 
 
- puts "seeds done!"
- puts "you have #{User.count} users with an average of #{Trip.count/User.count} each and #{Route.count} routes ! Enjoy !!"
+puts "seeds done!"
+puts "you have #{User.count} users with an average of #{Trip.count/User.count} each and #{Route.count} routes ! Enjoy !!"
