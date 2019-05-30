@@ -6,16 +6,16 @@
     <div id="reviews">
       <% unless @route.user == current_user %>
         <% if @route.reviews.blank? %>
-          <% if policy(@review).create? %>
             Be the first to leave a review for <%= @route.name %>
-          <% end %>
         <% else %>
           <% @route.reviews.each do |review| %>
             <%= render 'reviews/show', review: review %>
           <% end %>
+          <%= render 'reviews/form', route: @route, review: @review %>
         <% end %>
 
       <% else %>
+
         <% if @route.reviews.blank? %>
           No rewiew on your <%= @route.name %> yet
         <% else %>
@@ -26,9 +26,6 @@
         <% end %>
       <% end %>
     </div>
-    <% if policy(@review).create? %>
-      <%= render 'reviews/form', route: @route, review: @review %>
-    <% end %>
   </div>
 
 
@@ -37,7 +34,6 @@
 class="container"
   data-markers="<%= @markers.to_json %>"
 ></div>
-<%= Km = Math.acos(Math.sin(lat1)*Mat.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon2-lon1))*6371 %>
 
 <div id="geo">
 
