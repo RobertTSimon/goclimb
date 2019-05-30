@@ -201,4 +201,4 @@ Route.reindex!
 
 
 puts "seeds done!"
-puts "you have #{User.count} users with an average of #{Trip.count/User.count} each and #{Route.count} routes ! Enjoy !!"
+puts "you have #{User.count} users with an average of #{Trip.count/User.count + 1} trip(s) each and #{Route.count} routes ! Enjoy !!"
