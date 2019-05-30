@@ -9,4 +9,3 @@ class UserPolicy < ApplicationPolicy
     return true
   end
 end
-

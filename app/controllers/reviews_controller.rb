@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_route, only: [:create]
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @review = policy_scope(Review).order(created_at: :desc)
@@ -10,7 +10,6 @@ class ReviewsController < ApplicationController
   def show
     authorize @review
   end
-
 
   def new
     @review = Review.new
@@ -32,7 +31,7 @@ class ReviewsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render 'route/show' }
+        format.html { render 'routes/show' }
         format.js  # <-- idem
       end
     end
@@ -53,6 +52,6 @@ class ReviewsController < ApplicationController
   end
 
   def params_review
-    params.require(:review).permit(:route_id, :user_id, :title, :description)
+    params.require(:review).permit(:route_id, :user_id, :title, :description, :rating)
   end
 end

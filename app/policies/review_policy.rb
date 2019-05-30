@@ -10,7 +10,7 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def create?
-    new?
+    return true
   end
 
   def show?
