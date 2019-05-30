@@ -6,6 +6,7 @@ class Route < ApplicationRecord
   has_one :city, through: :site
   has_many :photos, as: :imageable
   has_many :reviews
+  has_many :trips, through: :route_trip
 
   include AlgoliaSearch
 

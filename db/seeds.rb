@@ -88,7 +88,7 @@ puts "creating sites, cities and states/provinces..."
 sites = ["Rumney", "Montreal", "Kamouraska"]
 
 sites_url = { "Rumney" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=43.8053486&lon=-71.8125811&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Montreal" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=45.50884&lon=-73.58781&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=250&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Montreal" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=45.50884&lon=-73.58781&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
  "Kamouraska" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=47.5661&lon=-69.866&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0"
 }
 
