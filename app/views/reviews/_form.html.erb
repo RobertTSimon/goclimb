@@ -1,6 +1,6 @@
 <%= simple_form_for([ @route, @review ]) do |form| %>
-    <%= form.input :title, as: :string %>
-    <%= form.input :description, as: :text %>
-    <%= form.input :rating, as: :integer %>
-    <%= form.button :submit %>
-  <% end %>
+  <%= form.input :title, as: :string %>
+  <%= form.input :description, as: :text %>
+  <%= form.input :rating, as: :integer %>
+  <%= form.button :submit, class: "btn btn-success" %>
+<% end %>
