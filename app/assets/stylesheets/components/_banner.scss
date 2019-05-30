@@ -2,47 +2,49 @@
   background-size: cover;
   background-position: center;
   padding: 100px 0;
-  height: 100vh;
+  height: 130vh;
   margin-bottom: 10px;
   position: relative;
   margin-top: 0;
   width: 100vw;
-}
-.banner h1 {
-  margin: 0;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 40px;
-  font-weight: bold;
-}
-.banner h2 {
-  margin: 0;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.banner h3 {
-  margin: 0;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 24px;
-  font-weight: bold;
-}
-
-
-.banner p {
-  font-size: 20px;
-  color: white;
-  opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  position: relative;
+  h1 {
+    margin: 0;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    font-size: 144px;
+    font-weight: bold;
+  }
+  h2 {
+    margin: 0;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    font-size: 40px;
+    font-weight: bold;
+  }
+  h3 {
+    margin: 0;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    font-size: 40px;
+    font-weight: bold;
+  }
+  p {
+    font-size: 20px;
+    color: white;
+    opacity: .7;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
 }
 .banner-images{
   height: 80vh;
 }
 #landing-page-search-form {
-  border-radius: 20px;
-  background: transparent;
-  color: white;
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  width: 450px;
+  bottom: 30%;
+  left: 35%;
 }
