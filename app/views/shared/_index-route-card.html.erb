@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id= "home-container">
   <h1>Around you</h1>
   <div class="cards">
     <% @routes.take(9).each do |route|%>
@@ -8,11 +8,16 @@
           <div class="card-route-info">
             <div>
               <h2><%= route.name %></h2>
+              <p><%= route.site.name %></p>
               <p><%= route.city.name %></p>
+              <p><%= route.city.state_province.name %></p>
             </div>
           </div>
         </div>
       <% end %>
     <% end %>
+  </div>
+  <div id="home-button">
+    <%= link_to "EXPLORE MORE",routes_path, class: "button-green" %>
   </div>
 </div>

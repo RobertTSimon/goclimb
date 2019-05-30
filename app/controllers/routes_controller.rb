@@ -4,11 +4,30 @@ class RoutesController < ApplicationController
 
   def index
     @routes = policy_scope(Route).order(created_at: :desc)
+    @previous_page = "/routes?page=#{params[:page].to_i - 1}"
+    @next_page = "/routes?page=#{params[:page].to_i + 1}"
+    @current_page_link = "/routes?page=#{params[:page].to_i}"
+    @current_page = params[:page].to_i
+
     if params[:query].present?
-      @routes = Route.search(params[:query])
+      @routes = Route.order(id: :asc).search(params[:query])
+      # Navigate through pages with query. Diego
+      @previous_page += "&query=#{params[:query]}"
+      @next_page += "&query=#{params[:query]}"
+      @current_page_link = "&query=#{params[:query]}"
     else
       @routes = Route.all
     end
+
+    @the_end = false
+
+    if params[:page]
+      @list_routes = @routes[(params[:page].to_i  ) * 5, 5] # to optimize, should be in the sql query rather then a subset of .all
+      @the_end = @routes[(params[:page].to_i + 1) * 5, 5].empty?
+    else
+      @list_routes = @routes[0, 5]
+    end
+
     @routes_marked = @routes.reject do |route|
       route.latitude.nil? || route.longitude.nil?
     end
@@ -18,6 +37,12 @@ class RoutesController < ApplicationController
         lat: route_marked.latitude,
         lng: route_marked.longitude
       }
+    end
+
+
+    respond_to do |format|
+      format.html
+      format.js  # <-- idem
     end
   end
 

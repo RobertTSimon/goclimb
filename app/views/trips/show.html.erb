@@ -1,2 +1,55 @@
-<h1>Trips#show</h1>
-<p>Find me in app/views/trips/show.html.erb</p>
+<%= render partial: "shared/navBar" %>
+<div class="container">
+  <h1>Your trip</h1>
+  <div class="index-container">
+
+
+
+    <div class="tab-content">
+
+
+      <% count = 1 %>
+      <% @routes.each_slice(5).to_a.each do |slice|%>
+        <div id="page-<%= count %>" role="tabpanel"  class="tab-pane fade <%= 'show active' if count == 1 %>">
+          <% slice.each do |route| %>
+            <%= link_to route_path(route) do %>
+              <div class="card-route-index">
+                <%= image_tag route.photos.first.photo %>
+                <div class="card-route-index-info">
+                  <h2><%= route.name %></h2>
+                  <p><%= route.city.name %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <% count += 1 %>
+      <% end %>
+
+      <br>
+
+
+    </div>
+
+<div id="weather"
+class="container"
+  data-markers="<%= @markers.to_json %>"
+></div>
+
+    <div>
+      <div class='map-card'
+        id="map"
+        style="width: 100%;
+        height: 100vh;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+      ></div>
+    </div>
+
+
+
+  </div>
+</div>
+<%= render "shared/footer" %>
+
+

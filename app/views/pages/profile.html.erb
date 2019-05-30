@@ -4,14 +4,14 @@
 <div class="subNavbar">
   <div class="subNavbar-links">
     <ul class="nav subNavbar-links" id="myTab" role="tablist">
-      <li>
+      <li>z
         <a class="subNavbarLink active" id="home1-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="home1" aria-selected="true">Profile</a>
       </li>
       <li>
-        <a class="subNavbarLink" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="false">Settings</a>
+        <a class="subNavbarLink" id="settings-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
       </li>
       <li>
-        <a class="subNavbarLink" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Route Setter</a>
+        <a class="subNavbarLink" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home2" aria-selected="false">Route Setter</a>
       </li>
     </ul>
   </div>
@@ -26,10 +26,8 @@
         <%= render partial: "shared/profile-page", object: @routes %>
       </div>
 
-
       <div class="tab-pane fade show" id="home2" role="tabpanel" aria-labelledby="home2-tab">
         <%= render partial: "shared/profile-settings", object: @user %>
-
       </div>
 
       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -39,3 +37,27 @@
     </div>
   </div>
 </div>
+
+<% if @user.id != current_user.id %>
+  <%= link_to "Follow", add_follower_path(@user) %>
+<% end %>
+
+<h3>Following:</h1>
+<% if @user.following.present? %>
+  <ul>
+    <% @user.following.each do |follower| %>
+      <li> <%= follower.username %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h3>Followers:</h1>
+<% if @user.followed_by.present? %>
+  <ul>
+    <% @user.followed_by.each do |user| %>
+      <li> <%= User.find(user).username %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
