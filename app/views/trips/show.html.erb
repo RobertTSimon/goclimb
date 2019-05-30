@@ -18,6 +18,8 @@
                 <div class="card-route-index-info">
                   <h2><%= route.name %></h2>
                   <p><%= route.city.name %></p>
+                  <%= link_to "DELETE THIS ROUTE", trip_delete_path(route), class: "btn btn-danger" %>
+
                 </div>
               </div>
             <% end %>
@@ -47,6 +49,10 @@
 class="container"
   data-markers="<%= @markers.to_json %>"
 ></div>
+
+<div id="distance">
+
+</div>
 
     <div>
       <div class='map-card'
