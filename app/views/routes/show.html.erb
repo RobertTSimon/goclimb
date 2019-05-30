@@ -10,45 +10,45 @@
       <h1><%= @route.name %></h1>
       <h3><%= @route.city.name %></h3>
 
-      <div class="subNavbar">
-        <div class="subNavbar-links subnavbar-show">
-          <ul class="nav subNavbar-links subnavbar-show" id="myTab" role="tablist">
-            <li>
-              <a class="subNavbarLink active" id="home1-tab" data-toggle="tab" href="description" role="tab">Description</a>
-            </li>
-            <li>
-              <a class="subNavbarLink" id="home2-tab" data-toggle="tab" href="technical-details" role="tab">Technical Details</a>
-            </li>
-            <li>
-              <a class="subNavbarLink" id="profile-tab" data-toggle="tab" href="reviews" role="tab" >Reviews</a>
-            </li>
-          </ul>
+      <div class="container">
+
+        <div class="subNavbar">
+          <div class="subNavbar-links subnavbar-show">
+            <ul class="nav subNavbar-links subnavbar-show" id="myTab" role="tablist">
+              <li>
+                <a class="subNavbarLink active" data-toggle="tab" href="#description" role="tab">Description</a>
+              </li>
+              <li>
+                <a class="subNavbarLink" data-toggle="tab" href="#technical-details" role="tab">Technical Details</a>
+              </li>
+              <li>
+                <a class="subNavbarLink" data-toggle="tab" href="#reviews" role="tab" >Reviews</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="full-height-profile">
-        <div class="tab-content" id="myTabContent">
-
-          <div id="description" class="tab-pane fade show active" role="tabpanel">
-            <p>Hey</p>
-          </div>
-
-          <div id="technical-details" class="tab-pane fade show" role="tabpanel">
-            <p>Hola</p>
-          </div>
-
-          <div id="reviews" class="tab-pane fade show" role="tabpanel">
-            <% if @route.reviews.blank? %>
-                Be the first to leave a review for <%= @route.name %>
-            <% else %>
-              <% @route.reviews.each do |review| %>
-                <%= render 'reviews/show', review: review %>
+        <div class="full-height-profile">
+          <div class="tab-content" id="myTabContent">
+            <div id="description" class="tab-pane fade show active" role="tabpanel">
+              <p><%= @route.description %></p>
+            </div>
+            <div id="technical-details" class="tab-pane fade show" role="tabpanel">
+              <p>Hola</p>
+            </div>
+            <div id="reviews" class="tab-pane fade show" role="tabpanel">
+              <% if @route.reviews.blank? %>
+                  Be the first to leave a review for <%= @route.name %>
+              <% else %>
+                <% @route.reviews.each do |review| %>
+                  <%= render 'reviews/show', review: review %>
+                <% end %>
               <% end %>
-            <% end %>
-            <%= render 'reviews/form', route: @route, review: @review %>
+              <%= render 'reviews/form', route: @route, review: @review %>
+            </div>
           </div>
-
         </div>
+
       </div>
 
     </div>
