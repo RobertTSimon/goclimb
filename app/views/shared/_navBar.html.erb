@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "https://res.cloudinary.com/dts9y3u9o/image/upload/v1559143682/GoClimb_-_final_logo_t4ny38.jpg", class: "avatar" %>
+    <%= image_tag "https://res.cloudinary.com/dts9y3u9o/image/upload/v1559227401/GoClimb---final-logo_copy_copy_copy_rqlibd.png", class: "avatar" %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -18,7 +18,7 @@
         <%if user_signed_in? %>
           <div class="nav-div">
             <a class="nav-link" href="#">Welcome, <%= current_user.username %>!</a>
-            <a class="nav-link" href="/equipment/new">Add your equipment</a>
+            <a class="nav-link" href="/route/new">Add your route</a>
           </div>
         <% else %>
           <a class="nav-link" href="#">Welcome to GoClimb!</a>
@@ -26,7 +26,7 @@
       </li>
       <li class="nav-item dropdown">
         <%if user_signed_in? %>
-          <%= cl_image_tag current_user.avatar_photo, width: 40, height: 40, crop: :fill, radius: "max", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= cl_image_tag current_user.avatar_photo, width: 60, height: 60, crop: :fill, radius: "max", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% else %>
            <div class="nav-div">
               <%= link_to "Login", new_user_session_path, class: "nav-link" %>

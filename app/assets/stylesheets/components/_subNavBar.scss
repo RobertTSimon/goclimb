@@ -3,7 +3,6 @@
   justify-content:space-between;
   overflow-x:scroll;
   position:relative;
-  background-color: #F8F8F8;
 }
 .subNavbar {
   overflow-x:visible;
@@ -87,4 +86,10 @@ a.active,.subNavbarLink:hover {
 
 a.active {
   border-bottom: 3px solid #59d389;
+}
+
+.subnavbar-show {
+  margin-left: 0;
+  margin-right: 0;
+  justify-content: space-around;
 }

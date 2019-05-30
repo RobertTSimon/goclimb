@@ -1,16 +1,17 @@
 <%= render partial: "shared/navBar" %>
 
+
 <div class="subNavbar">
   <div class="subNavbar-links">
     <ul class="nav subNavbar-links" id="myTab" role="tablist">
       <li>
-        <a class="subNavbarLink active" id="home1-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="home1" aria-selected="true">My Routes</a>
+        <a class="subNavbarLink active" id="profile-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
       </li>
       <li>
-        <a class="subNavbarLink" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="false">Settings</a>
+        <a class="subNavbarLink" id="settings-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
       </li>
       <li>
-        <a class="subNavbarLink" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Route Setter</a>
+        <a class="subNavbarLink" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home2" aria-selected="false">Route Setter</a>
       </li>
     </ul>
   </div>
@@ -21,15 +22,19 @@
   <div class="full-height-profile">
     <div class="tab-content" id="myTabContent">
 
+
       <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home1-tab">
-        <%# render partial: "shared/index-route-card", object: @route%>
+        <%= render partial: "shared/profile-page-route-cards", object: @routes %>
         <p>Hello</p>
       </div>
 
 
       <div class="tab-pane fade show" id="home2" role="tabpanel" aria-labelledby="home2-tab">
-        <p>Hello 2</p>
-        <%# render partial: "shared/outcoming_booking_status_card", object: @trip%>
+
+    </div>
+  </div>
+</div>
+
       </div>
 
       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -39,3 +44,4 @@
     </div>
   </div>
 </div>
+
