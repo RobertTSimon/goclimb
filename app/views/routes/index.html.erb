@@ -20,9 +20,12 @@
         </div>
         <% count += 1 %>
       <% end %>
-
+      <br>
       <nav aria-label="...">
         <ul class="pagination nav" role="tablist">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous"> < </a>
+          </li>
           <% count = 1 %>
           <% @routes.each_slice(5).to_a.each do |slice|%>
             <li class="page-item">
@@ -30,6 +33,9 @@
             </li>
             <% count += 1 %>
           <% end %>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next"> > </a>
+          </li>
         </ul>
       </nav>
     </div>
