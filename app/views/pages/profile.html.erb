@@ -51,8 +51,8 @@
 <h3>Following:</h1>
 <% if @user.following.present? %>
   <ul>
-    <% @user.following.each do |follower| %>
-      <li> <%= follower.username %></li>
+    <% @user.following.each do |follower_id| %>
+      <li> <%= User.find(follower_id).username %></li>
     <% end %>
   </ul>
 <% end %>
@@ -60,8 +60,8 @@
 <h3>Followers:</h1>
 <% if @user.followed_by.present? %>
   <ul>
-    <% @user.followed_by.each do |user| %>
-      <li> <%= User.find(user).username %></li>
+    <% @user.followed_by.each do |user_id| %>
+      <li> <%= User.find(user_id).username %></li>
     <% end %>
   </ul>
 <% end %>

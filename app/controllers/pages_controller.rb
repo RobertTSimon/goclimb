@@ -34,17 +34,10 @@ class PagesController < ApplicationController
   def add_follower
     @climber = User.find(params[:id])
     @current_user = current_user
-    if @climber.followed_by.nil?
-      @climber.followed_by = [current_user.id]
-    else
-      @climber.followed_by.push(@current_user.id)
-    end
-    if @current_user.following.nil?
-      @current_user.following = [@climber.id]
-    else
-      @current_user.following.push(@climber)
-      @current_user.save!
-    end
+    @climber.followed_by.push(current_user.id)
+    @climber.save!
+    @current_user.following.push(@climber.id)
+    @current_user.save!
     redirect_to profile_path(@climber)
   end
 
