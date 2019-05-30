@@ -71,6 +71,7 @@
 .card-route-index:hover{
   transform: scale(1.05);
 }
+
 .card-route-show{
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -81,6 +82,11 @@
   }
 }
 
+
+
+.map-card{
+  border-radius: 5px;
+}
 
 
 

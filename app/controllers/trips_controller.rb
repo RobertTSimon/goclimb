@@ -12,6 +12,17 @@ class TripsController < ApplicationController
 
   def show
     authorize @trip
+    @routes = @trip.routes
+    @routes_marked = @routes.reject do |route|
+      route.latitude.nil? || route.longitude.nil?
+    end
+
+    @markers = @routes_marked.map do |route_marked|
+      {
+        lat: route_marked.latitude,
+        lng: route_marked.longitude
+      }
+    end
   end
 
   def destroy
