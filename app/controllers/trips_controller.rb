@@ -34,12 +34,16 @@ class TripsController < ApplicationController
   end
 
   def update
+    @trip = current_user.trips.first
+    @route = Route.find(params[:id])
+    @trip.routes += [@route]
     authorize @trip
+    redirect_to trip_path(@trip)
   end
 
   private
 
   def set_trip
-    @trip = Trip.find(params[:id])
+    @trip = current_user.trips.first
   end
 end

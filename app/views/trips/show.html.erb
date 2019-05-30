@@ -22,6 +22,18 @@
               </div>
             <% end %>
           <% end %>
+
+          <%= link_to routes_path do %>
+          <%  route = Route.all.sample(1).first %>
+              <div class="card-route-index">
+                <%= image_tag route.photos.first.photo %>
+                <div class="card-route-index-info">
+                  <h2> Add a new route ! </h2>
+                </div>
+              </div>
+            <% end %>
+
+
         </div>
         <% count += 1 %>
       <% end %>
