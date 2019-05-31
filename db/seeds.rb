@@ -16,6 +16,8 @@ puts "cleaning trips.."
 Trip.destroy_all
 puts "cleaning photos.."
 Photo.destroy_all
+puts "cleaning reviews..."
+Review.destroy_all
 puts "cleaning routes.."
 Route.destroy_all
 puts "cleaning sites.."
@@ -70,7 +72,7 @@ if number_users == 27
   User.create!(username: "Marc", email: "marc@email.com", password: "123456", location: "Lyon, France", bio: "I was a restaurant aficionado in France, but now climbing is my diet", favorite_styles: "crimpy, belaying", current_level: "5.8+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144154/Students%20photos/ma-tallec_dqdwkq.jpg")
   User.create!(username: "Joe", email: "joe@email.com", password: "123456", location: "Calabria, Italy", bio: "I love to climb after a good expresso and some pepperoni pizza", favorite_styles: "belaying, top rope", current_level: "5.8", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144154/Students%20photos/jo-delillo_uhfxoy.jpg")
   User.create!(username: "Joelle", email: "joelle@email.com", password: "123456", location: "Corsica, France", bio: "I climb mostly with my kid. He's just soo good you should see him!", favorite_styles: "short, pumpy", current_level: "5.7+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144154/Students%20photos/joelle-colomas_xuj3l2.jpg")
-  User.create!(username: "Gustaf", email: "gustaf@email.com", password: "123456", location: "Oslo, Sweden", bio: "I've been ice climbing for a while, and that's why I like climbing in Canada", favorite_styles: "ice, multi-pitch", current_level: "5.10b", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144153/Students%20photos/gustaf-folkmar_byqbps.jpg")
+  User.create!(username: "Gustaf", email: "gustaf@email.com", password: "123456", location: "Stockholm, Sweden", bio: "I've been ice climbing for a while, and that's why I like climbing in Canada", favorite_styles: "ice, multi-pitch", current_level: "5.10b", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144153/Students%20photos/gustaf-folkmar_byqbps.jpg")
   User.create!(username: "Jackie", email: "jackie@email.com", password: "123456", location: "Toronto, Ontario", bio: "When I was a child, I used to watch movies about climbing ninjas, and I could not stop myself!", favorite_styles: "crimpy, technical", current_level: "5.13a", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144153/Students%20photos/jackie-chao_ev7vxi.jpg")
   User.create!(username: "Erik", email: "erik@email.com", password: "123456", location: "New York City, NY", bio: "I started doing parkour in the city, then moved to Vermont and love the outdoors climbs up there", favorite_styles: "soloeing, overhang", current_level: "5.9+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144153/Students%20photos/erik-pendleton_jhvnfy.jpg")
   User.create!(username: "Heather", email: "heather@email.com", password: "123456", location: "Stoke, Vermont", bio: "I grew up climbing in the Green State, so I got quite good at that!", favorite_styles: "technical, crimpy", current_level: "5.10b", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144153/Students%20photos/heather-demanbey_mjyjpa.jpg")
@@ -89,15 +91,37 @@ end
 puts "creating sites, cities and states/provinces..."
 
 
-sites = ["Rumney", "Montreal", "Kamouraska"]
+sites = ["Rumney", "Montreal", "Kamouraska", "Alabama", "Arizona", "California", "Boulder","Connecticut", "Idaho", "Kentucky", "Illinois", "Nevada", "Montana", "New Mexico", "New York", "North Carolina", "North Carolina", "Tennessee", "Utah", "Vermont", "Squamish", "Quebec"]
 
 sites_url = { "Rumney" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=43.8053486&lon=-71.8125811&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
  "Montreal" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=45.50884&lon=-73.58781&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Kamouraska" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=47.5661&lon=-69.866&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0"
+ "Kamouraska" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=47.5661&lon=-69.866&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Alabama" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=34.18&lon=-85.817&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Alaska" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=61.058&lon=-149.798&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Arizona" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=32.447&lon=-110.791&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "California" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=34.012&lon=-116.168&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Boulder" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=40.002&lon=-105.41&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Colorado" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=39.081&lon=-108.522&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Connecticut" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=41.348&lon=-73.256&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Idaho" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=42.078&lon=-113.724&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Kentucky" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=37.784&lon=-83.682&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Illinois" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=37.507&lon=-88.682&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Nevada" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=36.131&lon=-115.425&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Montana" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=45.407&lon=-111.225&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "New Mexico" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=36.406&lon=-36.406&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "New York" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=41.682&lon=-74.221&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "North Carolina" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=35.449&lon=-82.214&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "South Dakota" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=44.458&lon=-103.859&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Tennessee" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=35.072&lon=-85.403&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Utah" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=40.562&lon=-111.687&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Vermont" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=44.226&lon=-72.587&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Squamish" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=49.68&lon=-116.168&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Quebec" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=46.028&lon=-74.2&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+
 }
 
 if default == false
-  puts "How many sites do you want between 1 and 3"
+  puts "How many sites do you want between 1 and 24"
   number_sites = STDIN.gets.chomp.to_i
   sites = sites.sample(number_sites)
   puts "Creating #{sites.count} site(s) : #{sites}"
@@ -132,7 +156,7 @@ sites.each do |site|
 
     new_route.save!
   end
-  sleep 3
+  sleep 2
 end
 
 descriptions = [
@@ -151,9 +175,15 @@ descriptions = [
 "The start is not that hard then you get to then roof. Find your positioning and you will make that launch to the jug. You can expect your feet to swing loose but you will hold that jug and pull yourself atop. Easy climbing to the anchor.",
 "Start with a ringlock/jam in the crack on the backside of the boulder. Use a series of toe hooks, heel hooks, and bicycles to work your way under the roof traverse. Pop out on the other side onto a good ledge and use crimps to gain access to the slopey topout.",
 "Montreal Steak Seasoning climbs the outside of the Tunnel Boulder. P1-9+, 80\', 10 bolts Chimney to the outside of the Tunnel Boulder, step on, highstep the overlap, and continue up the arete to anchor. P2-7, 80\', mostly gear and few bolts: Step across gap and follow the slabby crack system to anchor.",
-"A must do if you climb in this site. From the first anchor, go left and up the dihedral. You will then negotiate a small roof by going a little right. Go up another dihedral and finish on the slab to get to the anchor."
-]
-
+"A must do if you climb in this site. From the first anchor, go left and up the dihedral. You will then negotiate a small roof by going a little right. Go up another dihedral and finish on the slab to get to the anchor.",
+"This route is split by a large chimney. The left half offers several right-facing corners; Cosmosis is the large right-facing corner, about 70 feet high, which overhangs at the top. Shortly right of it, the wall bends inward to the large chimney. The second (or third) pitch finishes in a large, left-facing corner above. The route is further identified by the beautiful bolted arete just to its left - Verve - though there are a lot of bolts on this cliff. 
+It should be easy to cross the river on a huge tree that lies across it. Cosmosis is directly above, but broken 5th class bars access to the start. Go left on a path, then back right when feasible up a ramp that leads to the ledge going under the base of the route. 
+The crux is the thin bottom section (site of a small, chalked up flake), solved with interesting stemming. More excellent stemming lead to the beautiful hand crack finale. Belay from bolts just above the corner.", 
+"Nothing to hide here! The climbing is reminicent of the struggle-fests found on just about every multi-pitch 5.9 in Yosemite- this is a good trainer for building confidence in thrashing. The climbing is actually quite good, and well-protected to boot. Getting off the ground is the hard part, but the whole climb provides a sustained workout. Step left to anchors on Grand Inquisitor or Hound Dog, then rappel; or continue up and right to join upper Cosmosis. The aspiring 5.9/5.10- trad climber could devise a bit of a marathon on Bell Buttress by climbing Gates of Eden, Double Jeopardy, Cosmosis, West Crack, and West Face in-a-day.",
+"Climb the headwall above the first pitch of West Face and left of the second (top-out) pitch of West Face. On July 26, 1974, Ron Gilligan led this headwall, using clean aid. I followed most of it free, after leading the 5.9 approach pitch. This was before they stated in guidebooks. Perhaps the later team did the FFA.",
+"This is a variation/extension of the previously existing route called, 'The Spoils.' The route diverges right at the rest about 2/3 way up the original route. It climbs onto an arete/face crux section and then up the slab to the Cosmosis anchors.",
+"JP has interesting, steep climbing over a few bulges up to the anchors for Three Minute Hero. It is fairly lichen-covered, but it is a reasonably good warm up for the area. It felt stiff for the grade and may warrant a PG-13 rating- probably not a route for the .7 leader.",
+"Approach Bell Buttress via the tyrolean and pass the Patio area, continuing up stream no more than 15 feet above the water. Find a broken ledge and step across to a nice, shady tree. Above are two thin cracks. The left is harder and more difficult to protect. The right dials in around 5.7 and takes gear. Climb good holds and chunky rock to a ledge. Pro is scattered and may require some hunting, but the climbing is casual."]
 
 # ------------- style
 styles = [
