@@ -4,7 +4,7 @@
 <div class="subNavbar">
   <div class="subNavbar-links">
     <ul class="nav subNavbar-links" id="myTab" role="tablist">
-      <li>z
+      <li>
         <a class="subNavbarLink active" id="home1-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="home1" aria-selected="true">Profile</a>
       </li>
       <li>
@@ -38,26 +38,26 @@
   </div>
 </div>
 
-<% if @user.id != current_user.id %>
-  <%= link_to "Follow", add_follower_path(@user) %>
-<% end %>
+<%# if @user.id != current_user.id %>
+  <%# link_to "Follow", add_follower_path(@user) %>
+<%# end %>
 
-<h3>Following:</h1>
-<% if @user.following.present? %>
-  <ul>
-    <% @user.following.each do |follower_id| %>
-      <li> <%= User.find(follower_id).username %></li>
-    <% end %>
-  </ul>
-<% end %>
+<!-- <h3>Following:</h1> -->
+<%# if @user.following.present? %>
+  <!-- <ul> -->
+    <%# @user.following.each do |follower_id| %>
+      <!-- <li> <%# User.find(follower_id).username %></li> -->
+    <%# end %>
+  <!-- </ul> -->
+<%# end %>
 
-<h3>Followers:</h1>
-<% if @user.followed_by.present? %>
-  <ul>
-    <% @user.followed_by.each do |user_id| %>
-      <li> <%= User.find(user_id).username %></li>
-    <% end %>
-  </ul>
-<% end %>
+<!-- <h3>Followers:</h1> -->
+<%# if @user.followed_by.present? %>
+  <!-- <ul> -->
+    <%# @user.followed_by.each do |user_id| %>
+      <!-- <li> <%# User.find(user_id).username %></li> -->
+    <%# end %>
+  <!-- </ul> -->
+<%# end %>
 
 

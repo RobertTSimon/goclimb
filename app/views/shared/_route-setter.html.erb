@@ -1,18 +1,62 @@
-<div class="cards-route" id="sport-cards-index">
-  <% @routes.each do |route|%>
-    <%= link_to route_path(route) do %>
-      <div class="card-route">
-        <%= image_tag route.photos.first.photo %>
-        <div class="card-route-info">
-          <div>
-            <h2><%= route.name %></h2>
-            <div class="avatar_photo_card">
-              <%= cl_image_tag route.user.avatar_photo, width: 20, height: 20, crop: :fill, radius: "max" %>
-              <p><%= route.user.username %></p>
+<div class="full-height profile route-setter-page">
+
+  <div class="form-card-route-setter" id="profile-avatar">
+    <h2>Profile</h2>
+    <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
+    <div class="user-info">
+      <h3>Hi <%= @user.username %>!</h3>
+      <p><strong>Routes Set:   </strong><%= @user.routes.count %></p>
+      <p><strong>Attention needed: </strong>@routes.condition</p>
+
+      <!-- <p><strong>Following:    </strong></p> -->
+      <!-- <p><strong>Followed By:    </strong></p> -->
+      <% if @user.id != current_user.id %>
+        <%= link_to "Follow", add_follower_path(@user) %>
+      <% end %>
+
+      <h3>Following:</h1>
+      <% if @user.following.present? %>
+          <% @user.following.each do |follower_id| %>
+            <%= image_tag User.find(follower_id).avatar_photo, width: 50, height: 50 %>
+          <% end %>
+      <% end %>
+
+      <h3>Followers:</h1>
+      <% if @user.followed_by.present? %>
+          <% @user.followed_by.each do |user_id| %>
+            <%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+    <div class="cards-route" id="sport-cards-index">
+      <% @routes.each do |route|%>
+        <%= link_to route_path(route) do %>
+          <div class="card-route">
+            <%= image_tag route.photos.first.photo %>
+            <div class="card-route-info">
+              <div>
+                <h2><%= route.name %></h2>
+                <div class="avatar_photo_card">
+                  <%= cl_image_tag route.user.avatar_photo, width: 20, height: 20, crop: :fill, radius: "max" %>
+                  <p><%= route.user.username %></p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+        <% end %>
+      <% end %>
+    </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
