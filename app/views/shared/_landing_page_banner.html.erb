@@ -5,11 +5,10 @@
     <h2 class="row justify-content-center typed">
      <span id="banner-typed-text"></span>
     </h2>
-  </div>
-  <div class="row justify-content-center" id="search-box">
-
-    <%= form_tag(routes_path, method: :get) do %>
-        <%= text_field_tag :query, params[:query], :placeholder => "Find your next challenge", class: "form-control", id: "landing-page-search-form" %>
-    <% end %>
+    <div class="row justify-content-center" id="search-box">
+      <%= form_tag(routes_path, method: :get) do %>
+          <%= text_field_tag :query, params[:query], :placeholder => "Find your next challenge", class: "form-control", id: "landing-page-search-form" %>
+      <% end %>
+    </div>
   </div>
 </div>
