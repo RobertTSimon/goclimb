@@ -29,7 +29,6 @@ const initGeoloc = () => {
   if (geoElement) {
     testGeoloc();
     navigator.geolocation.getCurrentPosition((data) => {
-      console.log(data.coords);
     });
   }
 };

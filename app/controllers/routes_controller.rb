@@ -41,7 +41,7 @@ class RoutesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js  # <-- idem
+      format.js # <-- idem
     end
   end
 

@@ -25,6 +25,13 @@
             <% end %>
           <% end %>
 
+
+
+        </div>
+        <% count += 1 %>
+      <% end %>
+
+
           <%= link_to routes_path do %>
           <%  route = Route.all.sample(1).first %>
               <div class="card-route-index">
@@ -34,11 +41,6 @@
                 </div>
               </div>
             <% end %>
-
-
-        </div>
-        <% count += 1 %>
-      <% end %>
 
       <br>
 
