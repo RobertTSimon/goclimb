@@ -126,7 +126,7 @@ sites.each do |site|
 
       next if route["imgMedium"].nil?
 
-    new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: route["stars"].to_i, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
+    new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: route["stars"].to_f, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
     Photo.create!(imageable: new_route, photo: route["imgMedium"])
     # puts "--- #{new_route.name} created"
 
@@ -175,21 +175,32 @@ puts "creating random trips for everyone.."
 
 t = Time.now
 User.all.each do |user|
+  trip = Trip.create!(user: user, start_date: t, end_date: t, state: 'next')
+  Route.all.sample(rand(1..5)).each do |route|
+    RouteTrip.create!(route: route, trip: trip)
+    end
   rand(1..2).times do
-    trip = Trip.create!(user: user, start_date: t, end_date: t)
+    trip = Trip.create!(user: user, start_date: t, end_date: t, state: 'archived')
     Route.all.sample(rand(1..5)).each do |route|
       RouteTrip.create!(route: route, trip: trip)
     end
   end
+    rand(0..2).times do
+    trip = Trip.create!(user: user, start_date: t, end_date: t, state: 'done')
+    Route.all.sample(rand(1..5)).each do |route|
+      RouteTrip.create!(route: route, trip: trip)
+    end
+  end
+
 end
 
 User.all.each do |user|
-  3.times do
+  rand(1..3).times do
     add_user = rand 1..User.all.count
     user.following.push(add_user) unless user.id == add_user
     user.save!
   end
-  3.times do
+  rand(1..3).times do
     add_user = rand 1..User.all.count
     user.followed_by.push(add_user) unless user.id == add_user
     user.save!
