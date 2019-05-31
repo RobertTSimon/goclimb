@@ -77,12 +77,27 @@
   grid-template-columns: 1fr 2fr;
   grid-gap: 8px;
   position: relative;
+  margin-bottom: 40px;
   img {
     width: 478px;
     height: 606px;
   }
   .button-green{
     position: absolute;
+    bottom: -24px;
+    left: 12%;
+  }
+  #description{
+    margin-top: 24px;
+    color: #6C6C6C;
+    p {
+      font-size: 18px;
+    }
+    h5 {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
   }
 }
 .avatar_photo_card{
