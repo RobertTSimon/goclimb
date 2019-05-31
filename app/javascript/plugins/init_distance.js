@@ -16,7 +16,7 @@ const calculDistance = (marker, geoloc) => {
 
  const display = (distance) => {
   if (routeElement) {
-     routeElement.innerHTML = routeElement.innerHTML + `<p>distance :${distance}</p>`;
+     routeElement.innerHTML = routeElement.innerHTML + `<p>DISTANCE: ${Math.trunc(distance)} km</p>`;
     }
   };
 
