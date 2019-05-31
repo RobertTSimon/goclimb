@@ -9,6 +9,10 @@
       class="container"
         data-markers="<%= @markers.to_json %>"
       ></div>
+      <div class="airbnb-image">
+        <p class="m-0"><strong>Accomodation near your trip:</strong></p>
+        <%= link_to image_tag("https://res.cloudinary.com/dts9y3u9o/image/upload/v1559324820/airbnb_horizontal_lockup_white_print_dpe4zi.jpg"), "https://www.airbnb.ca/s/all?query=montreal", target: :_blank %>
+      </div>
 
       <div id="distance"></div>
 
