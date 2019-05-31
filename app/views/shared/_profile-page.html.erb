@@ -3,6 +3,7 @@
     <h2>Profile</h2>
     <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
     <div class="user-info">
+      <p><strong>Name:  </strong><%= @user.username %></p>
       <p><strong>Bio:  </strong>"<%= @user.bio %>"</p>
       <p><strong>Location:   </strong><%= @user.location %></p>
       <p><strong>Level:   </strong><%= @user.current_level %></p>
