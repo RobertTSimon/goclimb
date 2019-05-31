@@ -3,17 +3,21 @@
   justify-content: center;
   margin-top: 48px;
   margin-bottom: 56px;
-
   .button-green{
-    background-color: #7be978;
-    border-radius: 4px;
-    color: white;
     padding: 12px 114px;
-    font-weight: bold;
-    transition: 0.5s;
-  }
-  .button-green:hover{
-    text-decoration: none;
-    transform: scale(1.05);
   }
 }
+.button-green{
+  background-color: #7be978;
+  border-radius: 4px;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  transition: 0.5s;
+}
+.button-green:hover{
+  text-decoration: none;
+  transform: scale(1.05);
+  color: white;
+}
+
