@@ -79,7 +79,7 @@ if number_users == 27
   User.create!(username: "Benjamin", email: "benjamin@email.com", password: "123456", location: "Belo-Horizonte, Brazil", bio: "Been in Montreal for some years, now. Whenever I have a moment, I love to go on a weekend climbing trip", favorite_styles: "crimpy, overhang", current_level: "5.9+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144152/Students%20photos/benjamin-domingue_w5fgne.jpg")
   User.create!(username: "Kristyna", email: "kristyna@email.com", password: "123456", location: "Prague, Czech Republic", bio: "When you grow up in Prague, you just learn how to climb. Come over and you'll find why.", favorite_styles: "technical, top rope", current_level: "5.9+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144152/Students%20photos/_Kristyna-Dierstein_o8iby1.jpg")
   User.create!(username: "Fito", email: "fito@email.com", password: "123456", location: "Port-au-prince, Haiti", bio: "I'm a longtime climber that learnt old-school. Now I'm ready for new challenges", favorite_styles: "crimpy, sloppy", current_level: "5.9+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144152/Students%20photos/fito-brandt_vcyf3a.jpg")
-  User.create!(username: "Guillaume", email: "guillaume@email.com", password: "123456", location: "Montreal, QC", bio: "I've been a runner for a long time but when I first tried to climb a wall I persisted going there day and night until I sent it", favorite_styles: "crimpy, bouldery", current_level: "5.8+", avatar_photo: "")
+  User.create!(username: "Guillaume", email: "guillaume@email.com", password: "123456", location: "Montreal, QC", bio: "I've been a runner for a long time but when I first tried to climb a wall I persisted going there day and night until I sent it", favorite_styles: "crimpy, bouldery", current_level: "5.8+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144152/Students%20photos/guillaume-grassiant_vv6izr.jpg")
   User.create!(username: "Alex", email: "alex@email.com", password: "123456", location: "Greenfield Park, QC", bio: "My parents didn't want me to climb the house up to the rooftop, and that's why I started!", favorite_styles: "bouldery, short", current_level: "5.10a", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144152/Students%20photos/alex-tang_kdcenl.jpg")
   User.create!(username: "Aaron", email: "aaron@email.com", password: "123456", location: "Montreal, QC", bio: "I was a meme guy but then I found climbing and loved so much that I only do climbing memes", favorite_styles: "chill, belaying", current_level: "5.7+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144152/Students%20photos/aaron-feldman_k0pywe.jpg")
   User.create!(username: "Stephane", email: "stephane@email.com", password: "123456", route_setter: true, location: "Laval, QC", bio: "I love to climb outdoors but I mostly enjoy setting routes so others can enjoy!", favorite_styles: "crimpy, bouldery", current_level: "5.12a", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559148091/Students%20photos/stephane_g3asa7.jpg")
@@ -126,7 +126,7 @@ sites.each do |site|
 
       next if route["imgMedium"].nil?
 
-    new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: route["stars"].to_i, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
+    new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: route["stars"].to_f, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
     Photo.create!(imageable: new_route, photo: route["imgMedium"])
     # puts "--- #{new_route.name} created"
 
@@ -175,21 +175,32 @@ puts "creating random trips for everyone.."
 
 t = Time.now
 User.all.each do |user|
+  trip = Trip.create!(user: user, start_date: t, end_date: t, state: 'next')
+  Route.all.sample(rand(1..5)).each do |route|
+    RouteTrip.create!(route: route, trip: trip)
+    end
   rand(1..2).times do
-    trip = Trip.create!(user: user, start_date: t, end_date: t)
+    trip = Trip.create!(user: user, start_date: t, end_date: t, state: 'archived')
     Route.all.sample(rand(1..5)).each do |route|
       RouteTrip.create!(route: route, trip: trip)
     end
   end
+    rand(0..2).times do
+    trip = Trip.create!(user: user, start_date: t, end_date: t, state: 'done')
+    Route.all.sample(rand(1..5)).each do |route|
+      RouteTrip.create!(route: route, trip: trip)
+    end
+  end
+
 end
 
 User.all.each do |user|
-  3.times do
+  rand(1..3).times do
     add_user = rand 1..User.all.count
     user.following.push(add_user) unless user.id == add_user
     user.save!
   end
-  3.times do
+  rand(1..3).times do
     add_user = rand 1..User.all.count
     user.followed_by.push(add_user) unless user.id == add_user
     user.save!
