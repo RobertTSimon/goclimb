@@ -22,7 +22,7 @@ class RoutesController < ApplicationController
     @the_end = false
 
     if params[:page]
-      @list_routes = @routes[(params[:page].to_i  ) * 5, 5] # to optimize, should be in the sql query rather then a subset of .all
+      @list_routes = @routes[params[:page].to_i * 5, 5] # to optimize, should be in the sql query rather then a subset of .all
       @the_end = @routes[(params[:page].to_i + 1) * 5, 5].empty?
     else
       @list_routes = @routes[0, 5]
@@ -39,10 +39,9 @@ class RoutesController < ApplicationController
       }
     end
 
-
     respond_to do |format|
       format.html
-      format.js  # <-- idem
+      format.js # <-- idem
     end
   end
 

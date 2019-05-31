@@ -48,8 +48,7 @@ number_users = 27
 if default == false
   puts "lots of users ? [Y/n]"
   answer = STDIN.gets.chomp
-  lots_users = (answer.downcase == "y") ? true : false
-  number_users = lots_users ? 27 : 5
+  number_users = (answer.downcase == "y") ? 27 : 5
 end
 
 
@@ -61,6 +60,7 @@ User.create!(username: "Simon", email: "simon@email.com", password: "123456", ro
 User.create!(username: "Javier",email: "javier@email.com", password: "123456", route_setter: true, location: "Montreal, Quebec", bio: "Been climbing for a couple of years, I'm always up for climbing trips with friends!", favorite_styles: "bouldery, ice", current_level: "5.11c", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144153/Students%20photos/javier-vaquero_lqx9uc.jpg")
 User.create!(username: "Diego", email: "diego@email.com", password: "123456", route_setter: true,location: "Guadalajara, Mexico", bio: "Climbing trees since I was a child, now ready to get into more challenging routes!", favorite_styles: "crimpy, overhang", current_level: "5.9+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144153/Students%20photos/diego-ulibarri_qepsrc.jpg")
 User.create!(username: "Robert", email: "robert@email.com", password: "123456", route_setter: true, location: "Sydney, Australia", bio: "Former skater, I transitioned into climbing recently but getting good pretty fast!", favorite_styles: "crimpy, sloppy", current_level: "5.9+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144155/Students%20photos/robert-simon_jx82ah.jpg")
+if number_users == 27
   User.create!(username: "Thomas", email: "thomas@email.com", password: "123456", location: "Victoria, BC", bio: "I'm a nature lover and a strong climber", favorite_styles: "bouldery, pumpy", current_level: "5.10a", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144155/Students%20photos/thomas-ferris_isbbgs.jpg")
   User.create!(username: "Michael", email: "michael@email.com", password: "123456", location: "Montreal, QC", bio: "I've been bouldering indoors for a while, and want to test my skills outdoors now", favorite_styles: "bouldery, pumpy", current_level: "5.9+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144155/Students%20photos/michael-zhu_oknie4.jpg")
   User.create!(username: "Philippe", email: "philippe@email.com", password: "123456", location: "Laval, QC", bio: "Recent climber with a lot of potential... they say ;)", favorite_styles: "pumpy, top rope", current_level: "5.10b", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144155/Students%20photos/philippe-desjardins_ghprav.jpg")
@@ -83,7 +83,7 @@ User.create!(username: "Robert", email: "robert@email.com", password: "123456", 
   User.create!(username: "Alex", email: "alex@email.com", password: "123456", location: "Greenfield Park, QC", bio: "My parents didn't want me to climb the house up to the rooftop, and that's why I started!", favorite_styles: "bouldery, short", current_level: "5.10a", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144152/Students%20photos/alex-tang_kdcenl.jpg")
   User.create!(username: "Aaron", email: "aaron@email.com", password: "123456", location: "Montreal, QC", bio: "I was a meme guy but then I found climbing and loved so much that I only do climbing memes", favorite_styles: "chill, belaying", current_level: "5.7+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144152/Students%20photos/aaron-feldman_k0pywe.jpg")
   User.create!(username: "Stephane", email: "stephane@email.com", password: "123456", route_setter: true, location: "Laval, QC", bio: "I love to climb outdoors but I mostly enjoy setting routes so others can enjoy!", favorite_styles: "crimpy, bouldery", current_level: "5.12a", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559148091/Students%20photos/stephane_g3asa7.jpg")
-
+end
 
 
 puts "creating sites, cities and states/provinces..."
@@ -105,10 +105,9 @@ end
 
 sites.each do |site|
 
-  puts "creating routes for #{site}..."
   response = RestClient.get sites_url[site]
   routes = JSON.parse(response)
-  puts "#{site} parsed"
+  puts "creating routes for #{site}..."
   routes["routes"].each do |route|
     state = StateProvince.find_by(name: route["location"][0])
     	if state.nil?

@@ -4,6 +4,7 @@ const routeElement = document.getElementById('distance');
 
 
 
+
 const calculDistance = (marker, geoloc) => {
     const lat1 = geoloc.latitude*2*3.14/360
     const lon1 = geoloc.longitude*2*3.14/360
@@ -25,13 +26,10 @@ const initDistance = () => {
   if (mapElement) {
     navigator.geolocation.getCurrentPosition((data) => {
       const geoloc = data.coords
-      console.log(data.coords);
       const markers = JSON.parse(mapElement.dataset.markers);
       const markers_distances = markers.map((marker) => {
         const distance = calculDistance(marker, geoloc)
         marker.distance = distance;
-        console.log(marker)
-        console.log(distance)
         display(distance)
       });
     });
