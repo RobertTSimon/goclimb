@@ -1,4 +1,4 @@
-<%= simple_form_for([ @route, @review ]) do |form| %>
+<%= simple_form_for([ @route, @review ], remote: true) do |form| %>
   <%= form.input :title, as: :string %>
   <%= form.input :description, as: :text %>
   <%= form.input :rating, as: :integer %>
