@@ -18,14 +18,15 @@
       <h3>Following:</h1>
       <% if @user.following.present? %>
           <% @user.following.each do |follower_id| %>
-            <%= image_tag User.find(follower_id).avatar_photo, width: 50, height: 50 %>
+            <a href="<%= profile_path(follower_id) %>"><%= image_tag User.find(follower_id).avatar_photo, width: 50, height: 50 %></a>
+
           <% end %>
       <% end %>
 
       <h3>Followers:</h1>
       <% if @user.followed_by.present? %>
           <% @user.followed_by.each do |user_id| %>
-            <%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %>
+            <a href="<%= profile_path(user_id) %>"><%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %></a>
           <% end %>
       <% end %>
 
