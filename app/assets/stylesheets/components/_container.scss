@@ -14,3 +14,8 @@
     font-size: 56px;
   }
 }
+.full-height {
+  display: flex;
+  align-items: center;
+  height: calc(100vh - 66px);
+}
