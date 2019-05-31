@@ -35,6 +35,12 @@
         <% end %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <% if user_signed_in? %>
+          <%= link_to profile_path, class: 'dropdown-item' do %>
+              <i class=“fa fa-sign-out”></i>Your profile
+              <% end %>
+              <%= link_to trip_path, class: 'dropdown-item' do %>
+              <i class=“fa fa-sign-out”></i>Your trips
+              <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
               <i class=“fa fa-sign-out”></i>Log out
             <% end %>
