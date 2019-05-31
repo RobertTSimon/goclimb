@@ -27,6 +27,10 @@ class TripPolicy < ApplicationPolicy
     user_is_owner?
   end
 
+  def delete?
+    user_is_owner?
+  end
+
   private
 
   def user_is_owner?
