@@ -2,11 +2,13 @@ class Route < ApplicationRecord
   belongs_to :user
   # geocoded_by :address
   # after_validation :geocode, if: :will_save_change_to_address?
-  belongs_to :site
+  belongs_to :site, optional: true
   has_one :city, through: :site
   has_many :photos, as: :imageable
   has_many :reviews
   has_many :trips, through: :route_trip
+
+  accepts_nested_attributes_for :photos
 
   include AlgoliaSearch
 
@@ -17,11 +19,11 @@ class Route < ApplicationRecord
   end
 
   def site_name
-    site.name
+    site_id.nil? ? nil : site.name
   end
 
   def city_name
-    city.name
+    site_id.nil? ? nil : city.name
   end
   # validates :name, presence: true, uniqueness: true
   # validates :latitude, presence: true

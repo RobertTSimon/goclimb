@@ -48,13 +48,18 @@ class RoutesController < ApplicationController
   def new
     @route = Route.new
     authorize @route
-    # @route_attachment = @route.route_attachments.build
+    @photo = @route.photos.build
   end
 
   def create
     @route = Route.new(route_params)
-    if route.save
-      redirect route_path(@route)
+    @route.user = current_user
+    authorize @route
+    if @route.save!
+      params[:photos]['photo'].each do |image_url|
+        @photo = @route.photos.create!(photo: image_url, imageable_id: @route.id, imageable_type: "route")
+      end
+      redirect_to route_path(@route)
     else
       render :new
     end
@@ -89,6 +94,6 @@ class RoutesController < ApplicationController
   end
 
   def route_params
-    route.permit(:route).require(:name, :longitude, :latitude, :description, :type, :style, :level, :rating, :page)
+    params.require(:route).permit(:name, :longitude, :latitude, :description, :type, :style, :level, :rating, :page)
   end
 end

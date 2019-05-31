@@ -4,9 +4,13 @@
     <h1>Create a new Route</h1>
     <%= simple_form_for @route do |f| %>
       <%= f.input :name, label: false, placeholder: 'Route Name' %>
-      <%= f.input :city, label: false, placeholder: 'location' %>
       <%= f.input :description, label: false, placeholder: 'Description' %>
-
+      <%= f.fields_for :photos do |p| %>
+        <div class="field">
+          <%= p.label :photo %><br>
+          <%= p.file_field :photo, :multiple => true, name:     "photos[photo][]" %>
+        </div>
+      <% end %>
       <%= f.submit "Create", class: "btn btn-success" %>
     <% end %>
   </div>
