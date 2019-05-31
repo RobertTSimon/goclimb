@@ -13,24 +13,6 @@ class PagesController < ApplicationController
     @routes = @user.routes
   end
 
-  def follow
-    if current_user.follow(@user.id)
-      respond_to do |format|
-        format.html { redirect_to root_path }
-        format.js
-      end
-    end
-  end
-
-  def unfollow
-    if current_user.unfollow(@user.id)
-      respond_to do |format|
-        format.html { redirect_to root_path }
-        format.js { render action: :follow }
-      end
-    end
-  end
-
   def add_follower
     @climber = User.find(params[:id])
     @current_user = current_user
