@@ -11,6 +11,7 @@ class PagesController < ApplicationController
     @users = User.where.not(id: current_user.id)
     @user = set_user
     @routes = @user.routes
+    @trips = @user.trips
   end
 
   def add_follower

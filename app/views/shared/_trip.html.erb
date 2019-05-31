@@ -1,0 +1,18 @@
+  </div>
+    <div class="cards-route" id="sport-cards-index">
+      <h2>Your Trips</h2>
+      <% @trips.each do |trip|%>
+      <% route = trip.routes.first %>
+        <%= link_to trip_path(trip) do %>
+          <div class="card-route" id="card-route-setter-page">
+            <%= image_tag trip.routes.first.photos.first.photo %>
+            <div class="card-route-info">
+              <div>
+                <h2>Start :<%= trip.start_date %> -- End: <%= trip.end_date %></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>

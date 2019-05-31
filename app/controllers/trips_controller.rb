@@ -23,6 +23,15 @@ class TripsController < ApplicationController
         lng: route_marked.longitude
       }
     end
+
+    site_lat = 0
+    site_long = 0
+    @routes_marked.each do |route_marked|
+      site_lat += route_marked.latitude
+      site_long += route_marked.longitude
+    end
+
+    @site_loc = { lat: site_lat / @routes_marked.count.to_f, long: site_long / @routes_marked.count.to_f }
   end
 
   def destroy
