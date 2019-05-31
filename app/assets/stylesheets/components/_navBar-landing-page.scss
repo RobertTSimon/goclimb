@@ -25,15 +25,23 @@
   /* border: 1px solid red; */
   justify-content: space-evenly;
 }
-.nav-div-landing-page .nav-link-landing-page {
+
+
+.nav-link-landing-page {
   color: white;
-}
+
+  }
+
 .dropdown-item i {
   color: black;
 }
 
-.nav-link {
-  margin-bottom: 0;
+.navbar {
+  color: white;
+  .nav-link {
+    margin-bottom: 0;
+    color: white;
+  }
 }
 
 .nav-div {
@@ -44,4 +52,12 @@
   float: right;
   /* border: 1px solid red; */
   justify-content: space-evenly;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+  color: white;
 }
