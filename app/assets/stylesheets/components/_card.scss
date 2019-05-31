@@ -76,9 +76,13 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 8px;
+  position: relative;
   img {
     width: 478px;
     height: 606px;
+  }
+  .button-green{
+    position: absolute;
   }
 }
 .avatar_photo_card{
