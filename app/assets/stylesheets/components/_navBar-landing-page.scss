@@ -1,9 +1,11 @@
 .navbar-lewagon-2 {
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: center;
   background: transparent;
   position: absolute;
   width: 100vw;
   top: 0;
+
 }
 
 .navbar-lewagon-2 .navbar-collapse {
@@ -15,6 +17,13 @@
 }
 .nav-div-landing-page {
   color: white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 250px;
+  float: right;
+  /* border: 1px solid red; */
+  justify-content: space-evenly;
 }
 .nav-div-landing-page .nav-link-landing-page {
   color: white;
@@ -23,4 +32,16 @@
   color: black;
 }
 
+.nav-link {
+  margin-bottom: 0;
+}
 
+.nav-div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 250px;
+  float: right;
+  /* border: 1px solid red; */
+  justify-content: space-evenly;
+}
