@@ -19,6 +19,12 @@ class RoutesController < ApplicationController
       @routes = Route.all
     end
 
+    if current_user.trips.first.routes.first != nil
+      @routes = @routes.select do |route|
+        route.site == current_user.trips.first.routes.first.site
+      end
+    end
+
     @the_end = false
 
     if params[:page]
