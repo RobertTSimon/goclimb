@@ -8,8 +8,7 @@
     <div class="route-info">
 
       <h1><%= @route.name %></h1>
-      <h3><%= @route.city.name %></h3>
-      <h5>Rating: <%= @route.rating %></h5>
+      <h3><%= @route.city.state_province.name %></h3>
 
       <div class="container">
         <div class="subNavbar">
@@ -37,9 +36,9 @@
               <p>LEVEL: <%= @route.level %></p>
               <p>STYLE: <%= @route.style %></p>
               <p>TYPE: <%= @route.type_of %></p>
-              <p>SET BY: <%= link_to "#{@route.user.username}", profile_path(@route.user) %></p>
-
+              <p>SET BY: <%= image_tag @route.user.avatar_photo, id: "avatar-photo-show-route"%> <%= link_to "#{@route.user.username}", profile_path(@route.user) %></p>
               <div id="distance"></div>
+              <p>CITY: <%= @route.city.name %></p>
             </div>
             <div id="reviews" class="tab-pane fade show" role="tabpanel">
               <% if @route.reviews.blank? %>
