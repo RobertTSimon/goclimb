@@ -1,7 +1,7 @@
 
 const mapElement = document.getElementById('map');
+const routeElement = document.getElementById('distance');
 
-const routeElement = document.querySelector('distance');
 
 
 

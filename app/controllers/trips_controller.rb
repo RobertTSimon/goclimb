@@ -41,6 +41,14 @@ class TripsController < ApplicationController
     redirect_to trip_path(@trip)
   end
 
+  def delete
+    @trip = current_user.trips.first
+    @route = Route.find(params[:id])
+    @trip.routes.delete(@route)
+    authorize @trip
+    redirect_to trip_path(@trip)
+  end
+
   private
 
   def set_trip

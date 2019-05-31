@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 	end
 	resources :trips
   get "/trips/update/:id", to: "trips#update", as: :trip_update
+  get "/trips/delete/:id", to: "trips#delete", as: :trip_delete
 	resources :reviews, only: [:destroy]
 
 	resources :sites, only: [:show] do
