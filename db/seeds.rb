@@ -194,15 +194,17 @@ User.all.each do |user|
 
 end
 
+puts "creating followers"
+
 User.all.each do |user|
   rand(1..3).times do
     add_user = rand 1..User.all.count
-    user.following.push(add_user) unless user.id == add_user
+    user.following.push(add_user) unless (user.id == add_user || user.following.include?(add_user))
     user.save!
   end
   rand(1..3).times do
     add_user = rand 1..User.all.count
-    user.followed_by.push(add_user) unless user.id == add_user
+    user.followed_by.push(add_user) unless (user.id == add_user || user.followed_by.include?(add_user))
     user.save!
   end
 end

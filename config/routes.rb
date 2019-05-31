@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'profile/:id', to: 'pages#profile', as: :profile
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'add_follower/:id', to: 'pages#add_follower', as: :add_follower
+  get 'delete_follower/:id', to: 'pages#delete_follower', as: :delete_follower
 
 end
 

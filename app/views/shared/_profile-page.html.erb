@@ -9,8 +9,10 @@
       <p><strong>Favourite Styles:   </strong>"<%= @user.favorite_styles %>"</p>
       <!-- <p><strong>Following:    </strong></p> -->
       <!-- <p><strong>Followed By:    </strong></p> -->
-      <% if @user.id != current_user.id %>
-        <%= link_to "Follow", add_follower_path(@user) %>
+      <% if (@user.id != current_user.id && !@user.followed_by.include?(current_user.id))%>
+        <%= link_to "Follow", add_follower_path(@user), class: "btn btn-primary" %>
+      <% elsif (@user.id != current_user.id && @user.followed_by.include?(current_user.id)) %>
+        <%= link_to "Unfollow", delete_follower_path(@user), class: "btn btn-primary" %>
       <% end %>
 
       <h3>Following:</h1>
@@ -26,6 +28,8 @@
             <%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %>
           <% end %>
       <% end %>
+
+
     </div>
   </div>
 </div>

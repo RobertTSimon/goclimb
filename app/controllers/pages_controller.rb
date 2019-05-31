@@ -41,6 +41,19 @@ class PagesController < ApplicationController
     redirect_to profile_path(@climber)
   end
 
+  def delete_follower
+    @climber = User.find(params[:id])
+    @current_user = current_user
+    @climber.followed_by.delete(current_user.id)
+    @climber.save!
+    @current_user.following.delete(@climber.id)
+    @current_user.save!
+    redirect_to profile_path(@climber)
+  end
+
+
+
+
   private
 
   def set_user
