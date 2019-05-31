@@ -1,5 +1,4 @@
-<div class="full-height profile route-setter-page">
-
+<div class="d-flex profile route-setter-page">
   <div class="form-card-route-setter" id="profile-avatar">
     <h2>Profile</h2>
     <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
@@ -7,32 +6,15 @@
       <h3>Hi <%= @user.username %>!</h3>
       <p><strong>Routes Set:   </strong><%= @user.routes.count %></p>
       <p><strong>Attention needed: </strong>@routes.condition</p>
-
-      <!-- <p><strong>Following:    </strong></p> -->
-      <!-- <p><strong>Followed By:    </strong></p> -->
-      <% if @user.id != current_user.id %>
-        <%= link_to "Follow", add_follower_path(@user) %>
-      <% end %>
-
-      <h3>Following:</h1>
-      <% if @user.following.present? %>
-          <% @user.following.each do |follower_id| %>
-            <%= image_tag User.find(follower_id).avatar_photo, width: 50, height: 50 %>
-          <% end %>
-      <% end %>
-
-      <h3>Followers:</h1>
-      <% if @user.followed_by.present? %>
-          <% @user.followed_by.each do |user_id| %>
-            <%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %>
-          <% end %>
-      <% end %>
+      <%= link_to "Add a new route", new_route_path(current_user), class: "btn btn-success" %>
     </div>
+
   </div>
     <div class="cards-route" id="sport-cards-index">
+      <h2>Your Routes</h2>
       <% @routes.each do |route|%>
         <%= link_to route_path(route) do %>
-          <div class="card-route">
+          <div class="card-route" id="card-route-setter-page">
             <%= image_tag route.photos.first.photo %>
             <div class="card-route-info">
               <div>
@@ -48,15 +30,3 @@
       <% end %>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
