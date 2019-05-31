@@ -9,10 +9,12 @@
       class="container"
         data-markers="<%= @markers.to_json %>"
       ></div>
+      <% unless @trip.routes.first.nil? %>
       <div class="airbnb-image">
         <p class="m-0"><strong>Accomodation near your trip:</strong></p>
         <%= link_to image_tag("https://res.cloudinary.com/dts9y3u9o/image/upload/v1559324820/airbnb_horizontal_lockup_white_print_dpe4zi.jpg"), "https://www.airbnb.ca/s/all?query=#{@trip.routes.first.city.name}", target: :_blank %>
       </div>
+      <% end %>
 
       <div id="distance"></div>
 
@@ -29,6 +31,8 @@
       <% count = 1 %>
       <% @routes.each_slice(5).to_a.each do |slice|%>
         <div id="page-<%= count %>" role="tabpanel"  class="tab-pane fade <%= 'show active' if count == 1 %>">
+
+
           <% slice.each do |route| %>
             <%= link_to route_path(route) do %>
               <div class="card-route-index">
@@ -41,6 +45,9 @@
               </div>
             <% end %>
           <% end %>
+
+
+
         </div>
         <% count += 1 %>
       <% end %>
