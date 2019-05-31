@@ -25,13 +25,10 @@ const initDistance = () => {
   if (mapElement) {
     navigator.geolocation.getCurrentPosition((data) => {
       const geoloc = data.coords
-      console.log(data.coords);
       const markers = JSON.parse(mapElement.dataset.markers);
       const markers_distances = markers.map((marker) => {
         const distance = calculDistance(marker, geoloc)
         marker.distance = distance;
-        console.log(marker)
-        console.log(distance)
         display(distance)
       });
     });
