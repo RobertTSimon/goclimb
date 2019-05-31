@@ -117,7 +117,6 @@ sites_url = { "Rumney" => "https://www.mountainproject.com/data/get-routes-for-l
  "Vermont" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=44.226&lon=-72.587&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
  "Squamish" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=49.68&lon=-116.168&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
  "Quebec" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=46.028&lon=-74.2&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
-
 }
 
 if default == false
@@ -151,7 +150,7 @@ sites.each do |site|
       next if route["imgMedium"].nil?
 
     new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: route["stars"].to_f, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
-    Photo.create!(imageable: new_route, photo: route["imgMedium"])
+    Photo.create!(imageable: new_route, remote_photo_url: route["imgMedium"])
     # puts "--- #{new_route.name} created"
 
     new_route.save!
@@ -176,9 +175,9 @@ descriptions = [
 "Start with a ringlock/jam in the crack on the backside of the boulder. Use a series of toe hooks, heel hooks, and bicycles to work your way under the roof traverse. Pop out on the other side onto a good ledge and use crimps to gain access to the slopey topout.",
 "Montreal Steak Seasoning climbs the outside of the Tunnel Boulder. P1-9+, 80\', 10 bolts Chimney to the outside of the Tunnel Boulder, step on, highstep the overlap, and continue up the arete to anchor. P2-7, 80\', mostly gear and few bolts: Step across gap and follow the slabby crack system to anchor.",
 "A must do if you climb in this site. From the first anchor, go left and up the dihedral. You will then negotiate a small roof by going a little right. Go up another dihedral and finish on the slab to get to the anchor.",
-"This route is split by a large chimney. The left half offers several right-facing corners; Cosmosis is the large right-facing corner, about 70 feet high, which overhangs at the top. Shortly right of it, the wall bends inward to the large chimney. The second (or third) pitch finishes in a large, left-facing corner above. The route is further identified by the beautiful bolted arete just to its left - Verve - though there are a lot of bolts on this cliff. 
-It should be easy to cross the river on a huge tree that lies across it. Cosmosis is directly above, but broken 5th class bars access to the start. Go left on a path, then back right when feasible up a ramp that leads to the ledge going under the base of the route. 
-The crux is the thin bottom section (site of a small, chalked up flake), solved with interesting stemming. More excellent stemming lead to the beautiful hand crack finale. Belay from bolts just above the corner.", 
+"This route is split by a large chimney. The left half offers several right-facing corners; Cosmosis is the large right-facing corner, about 70 feet high, which overhangs at the top. Shortly right of it, the wall bends inward to the large chimney. The second (or third) pitch finishes in a large, left-facing corner above. The route is further identified by the beautiful bolted arete just to its left - Verve - though there are a lot of bolts on this cliff.
+It should be easy to cross the river on a huge tree that lies across it. Cosmosis is directly above, but broken 5th class bars access to the start. Go left on a path, then back right when feasible up a ramp that leads to the ledge going under the base of the route.
+The crux is the thin bottom section (site of a small, chalked up flake), solved with interesting stemming. More excellent stemming lead to the beautiful hand crack finale. Belay from bolts just above the corner.",
 "Nothing to hide here! The climbing is reminicent of the struggle-fests found on just about every multi-pitch 5.9 in Yosemite- this is a good trainer for building confidence in thrashing. The climbing is actually quite good, and well-protected to boot. Getting off the ground is the hard part, but the whole climb provides a sustained workout. Step left to anchors on Grand Inquisitor or Hound Dog, then rappel; or continue up and right to join upper Cosmosis. The aspiring 5.9/5.10- trad climber could devise a bit of a marathon on Bell Buttress by climbing Gates of Eden, Double Jeopardy, Cosmosis, West Crack, and West Face in-a-day.",
 "Climb the headwall above the first pitch of West Face and left of the second (top-out) pitch of West Face. On July 26, 1974, Ron Gilligan led this headwall, using clean aid. I followed most of it free, after leading the 5.9 approach pitch. This was before they stated in guidebooks. Perhaps the later team did the FFA.",
 "This is a variation/extension of the previously existing route called, 'The Spoils.' The route diverges right at the rest about 2/3 way up the original route. It climbs onto an arete/face crux section and then up the slab to the Cosmosis anchors.",

@@ -1,7 +1,7 @@
 <% @list_routes.each do |route|%>
   <%= link_to route_path(route) do %>
     <div class="card-route-index">
-      <%= image_tag route.photos.first.photo %>
+      <%= image_tag route.photos.first.photo_url %>
       <div class="card-route-index-info">
         <h2><%= route.name %></h2>
         <p><%= route.city.name %></p>
