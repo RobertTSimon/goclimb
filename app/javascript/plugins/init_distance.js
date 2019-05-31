@@ -1,7 +1,8 @@
 
 const mapElement = document.getElementById('map');
 
-const routeElement = document.querySelector('.card-route-index-info');
+const routeElement = document.querySelector('distance');
+
 
 
 const calculDistance = (marker, geoloc) => {
