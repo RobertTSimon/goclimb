@@ -41,11 +41,8 @@ const fetchWeatherByCoordinates = (url) => {
 const initWeather = () => {
   if (weatherElement) {
     const markers = JSON.parse(weatherElement.dataset.markers);
-    console.log(markers)
     const lat = markers[0].lat
     const lng = markers[0].lng
-    console.log(lat)
-    console.log(lng)
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&appid=4969f88bf4001da7a381b09a81cb5ac5`
     fetchWeatherByCoordinates(url)
   }

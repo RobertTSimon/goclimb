@@ -7,8 +7,13 @@
     <div>
       <div id="weather"
       class="container"
-        data-markers="<%= @markers.to_json %>"
+      data-markers="<%= @markers.to_json %>"
       ></div>
+
+      <div id="distance_site"
+      data-site="<%= @site_loc.to_json %>"
+      ></div>
+
       <% unless @trip.routes.first.nil? %>
       <div class="airbnb-image">
         <p class="m-0"><strong>Accomodation near your trip:</strong></p>
@@ -16,7 +21,6 @@
       </div>
       <% end %>
 
-      <div id="distance"></div>
 
       <div class='map-card'
         id="map"

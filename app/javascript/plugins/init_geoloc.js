@@ -1,5 +1,5 @@
 
-const geoElement = document.getElementById('map');
+const geoElement = document.getElementById('geoloc');
 
 const testGeoloc = () => {
   if (navigator.geolocation) {
