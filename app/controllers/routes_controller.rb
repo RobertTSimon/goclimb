@@ -61,12 +61,17 @@ class RoutesController < ApplicationController
     @route = Route.new(route_params)
     @route.user = current_user
     authorize @route
-    if @route.save!
+
+    if params[:photos]
       params[:photos]['photo'].each do |image_url|
-        @photo = @route.photos.create!(photo: image_url, imageable_id: @route.id, imageable_type: "route")
+        @route.photos.new(photo: image_url, imageable_id: @route.id, imageable_type: "route")
       end
+    end
+
+    if @route.save
       redirect_to route_path(@route)
     else
+      @route.photos.build if @route.photos.length == 0
       render :new
     end
   end
