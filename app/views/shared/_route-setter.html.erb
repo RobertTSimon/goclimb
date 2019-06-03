@@ -15,7 +15,15 @@
       <% @routes.each do |route|%>
         <%= link_to route_path(route) do %>
           <div class="card-route" id="card-route-setter-page">
+<<<<<<< HEAD
             <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil?%>
+=======
+            <% if !route.photos.first.photo_url.nil? %>
+              <%= image_tag route.photos.first.photo_url %>
+            <% else %>
+              <% print "pb met with uri imag of", route %>
+            <% end %>
+>>>>>>> 0a51b894becfcdf666af85c58b34cab43d2d8c37
             <div class="card-route-info">
               <div>
                 <h2><%= route.name %></h2>

@@ -1,8 +1,5 @@
-
 const mapElement = document.getElementById('map');
 const routeElement = document.getElementById('distance');
-
-
 
 
 const calculDistance = (marker, geoloc) => {
@@ -13,17 +10,15 @@ const calculDistance = (marker, geoloc) => {
     return Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon2-lon1))*6371;
 }
 
-
-
  const display = (distance) => {
   if (routeElement) {
-     routeElement.innerHTML = routeElement.innerHTML + `<p>DISTANCE: ${Math.trunc(distance)} km</p>`;
+     routeElement.innerHTML = routeElement.innerHTML + `<p>DISTANCE FROM YOU: ${Math.trunc(distance)} km</p>`;
     }
   };
 
 
 const initDistance = () => {
-  if (mapElement) {
+  if (routeElement) {
     navigator.geolocation.getCurrentPosition((data) => {
       const geoloc = data.coords
       const markers = JSON.parse(mapElement.dataset.markers);
@@ -35,10 +30,5 @@ const initDistance = () => {
     });
   }
 };
-
-
-
-
-
 
 export { initDistance };
