@@ -23,6 +23,14 @@ class RoutesController < ApplicationController
     else
       @routes = Route.all
     end
+
+    # if !current_user.nil? && !current_user.trips.first.routes.first.nil? # Viktor Fix this...
+    #   @routes = @routes.select do |route|
+    #     route.site == current_user.trips.first.routes.first.site
+    #   end
+    # end
+
+
     @the_end = false
     if params[:page]
       @list_routes = @routes[params[:page].to_i * 5, 5] # to optimize, should be in the sql query rather then a subset of .all
