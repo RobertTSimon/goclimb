@@ -10,6 +10,10 @@ class Route < ApplicationRecord
 
   accepts_nested_attributes_for :photos
 
+  validates :name, presence: true, uniqueness: true
+  validates :longitude, presence: true
+  validates :latitude, presence: true
+
   include AlgoliaSearch
 
   algoliasearch do
@@ -25,12 +29,4 @@ class Route < ApplicationRecord
   def city_name
     site_id.nil? ? nil : city.name
   end
-  # validates :name, presence: true, uniqueness: true
-  # validates :latitude, presence: true
-  # validates :longitude, presence: true
-  # validates :description, presence: true
-  # validates :type, presence: true
-  # validates :style, presence: true
-  # validates :level, presence: true
-  # validates :rating, presence: true
 end
