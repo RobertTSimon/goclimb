@@ -15,11 +15,11 @@ class RoutesController < ApplicationController
     @routes = @routes.uniq # supress double routes
 
     # Only suggest the same site of the routes of your next trip
-    if user_signed_in? && !current_user.trips.first.routes.first.nil?
-      @routes = @routes.select do |route|
-        route.site == current_user.trips.first.routes.first.site
-      end
-    end
+    # if user_signed_in? && !current_user.trips.first.routes.first.nil?
+    #   @routes = @routes.select do |route|
+    #     route.site == current_user.trips.first.routes.first.site
+    #   end
+    # end
     mark_routes # mark the routes with @markers
 
     create_references_levels # reference levels in @references
