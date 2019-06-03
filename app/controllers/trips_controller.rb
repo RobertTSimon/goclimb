@@ -45,12 +45,10 @@ class TripsController < ApplicationController
   end
 
   def update
-
-    @trip = current_user.trips.first
+    @trip = current_user.next_trip
     authorize @trip
+
     @trip.update(trip_params)
-    @route = Route.find(params[:id])
-    @trip.routes += [@route]
     redirect_to trip_path(@trip)
   end
 
