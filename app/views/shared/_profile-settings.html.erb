@@ -1,6 +1,5 @@
-<div class="container">
-  <div class="full-height profile">
-    <div class="form-card2" id="profile-avatar">
+  <div class="full-height profile margin-settings">
+    <div class="form-card" id="profile-avatar">
       <h2>Profile</h2>
       <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
       <%= simple_form_for @user, method: :patch, html: {style: "width: 100%"} do |f| %>
@@ -21,4 +20,3 @@
       <br>
     </div>
   </div>
-</div>
