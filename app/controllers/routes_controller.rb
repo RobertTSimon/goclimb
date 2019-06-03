@@ -9,13 +9,12 @@ class RoutesController < ApplicationController
     @routes = @routes.uniq # supress double routes <!> can cause a bug with the seeds
 
     # Only suggest the same site of the routes of your next trip
-    if user_signed_in? && !current_user.trips.first.routes.first.nil?
-      @routes = @routes.select do |route|
-        route.site == current_user.trips.first.routes.first.site
-      end
-    end
+    # if user_signed_in? && !current_user.trips.first.routes.first.nil?
+    #   @routes = @routes.select do |route|
+    #     route.site == current_user.trips.first.routes.first.site
+    #   end
+    # end
     mark_routes # mark the routes with @markers
-
     create_references_levels # reference levels in @references and
     # sort_levels # sort the routes by level
     sort_by_level_for_user if user_signed_in?
@@ -85,7 +84,7 @@ class RoutesController < ApplicationController
   private
 
   def sort_by_level_for_user
-    @routes.sort_by { |route| (@references[route.level] - @references[current_user.current_level]).abs }
+    @routes = @routes.sort_by { |route| (@references[route.level] - @references[current_user.current_level]).abs }
   end
 
   def sort_levels
@@ -134,13 +133,13 @@ class RoutesController < ApplicationController
     else
       @routes = Route.all
     end
-    @the_end = false
   end
 
   def set_index_pages2
+    @the_end = false
     if params[:page]
       @list_routes = @routes[params[:page].to_i * 5, 5] # to optimize, should be in the sql query rather then a subset of .all
-      @the_end = @routes[(params[:page].to_i + 1) * 5, 5].empty?
+      @the_end = @routes[(params[:page].to_i + 1) * 5, 5].nil?
     else
       @list_routes = @routes[0, 5]
     end

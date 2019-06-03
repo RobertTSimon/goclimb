@@ -4,7 +4,7 @@
       <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil? %>
       <div class="card-route-index-info">
         <h2><%= route.name %></h2>
-        <p><%= route.city.name %></p>
+        <p><%= route.city&.name %></p>
         <p><%= route.level %></p>
       </div>
     </div>
@@ -18,11 +18,11 @@
     <% elsif @current_page == 0%>
       <a data-remote="true" href="<% @current_page_link %>"> < </a>
       <a data-remote="true" href="<%= @current_page_link %>" id="current-page"><%= @current_page %></a>
-      <a data-remote="true" href="<%= @next_page %>"><%= @current_page + 1 %></a>
-      <a data-remote="true" href="<%= @current_page_plus2 %>"><%= @current_page + 2 %></a>
-      <a data-remote="true" href="<%= @next_page %>"> > </a>
-    <% elsif @list_routes.count < 5  %>
-      <a data-remote="true" href="<%= @previous_page  %>"> < </a>
+      <% unless @the_end %>
+        <a data-remote="true" href="<%= @next_page %>"><%= @current_page + 1 %></a>
+        <a data-remote="true" href="<%= @current_page_plus2 %>"><%= @current_page + 2 %></a>
+        <a data-remote="true" href="<%= @next_page %>"> > </a>
+      <% end %>
     <% else %>
       <a data-remote="true" href="<%= @previous_page  %>"> < </a>
         <a data-remote="true" href="<%= @previous_page  %>"><%= @current_page - 1 %></a>
