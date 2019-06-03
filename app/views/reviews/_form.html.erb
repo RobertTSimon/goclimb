@@ -2,5 +2,6 @@
   <%= form.input :title, as: :string %>
   <%= form.input :description, as: :text %>
   <%= form.input :rating, as: :integer %>
+  <%= form.select :alert, Route::ALERTS %>
   <%= form.button :submit, class: "btn btn-success" %>
 <% end %>
