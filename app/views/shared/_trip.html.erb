@@ -2,7 +2,7 @@
   <div class="cards-route" id="sport-cards-index">
     <h2>Your Trips</h2>
     <% @trips.each do |trip|%>
-    <% route = trip.routes.first %>
+    <% route = trip.routes.first unless trip.routes.first.nil? %>
       <%= link_to trip_path(trip) do %>
         <div class="card-route" id="card-route-setter-page">
           <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
