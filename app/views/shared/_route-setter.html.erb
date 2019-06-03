@@ -1,36 +1,37 @@
 <div class="d-flex profile route-setter-page">
-  <div class="form-card-route-setter" id="profile-avatar">
+  <div class="form-card-route-setter" id="profile-routes-set">
     <h2>Profile</h2>
     <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
     <div class="user-info">
-      <h3>Hi <%= @user.username %>!</h3>
+      <span class="d-flex add-route">
+        <h3>Hi <%= @user.username %>!</h3>
+        <%= link_to "Add a new route", new_route_path(current_user), class: "button-green" %>
+      </span>
       <p><strong>Routes Set:   </strong><%= @user.routes.count %></p>
       <p><strong>Attention needed: </strong>@routes.condition</p>
-      <%= link_to "Add a new route", new_route_path(current_user), class: "btn btn-success" %>
     </div>
 
   </div>
-    <div class="cards-route" id="sport-cards-index">
-      <h2>Your Routes</h2>
-      <% @routes.each do |route|%>
-        <%= link_to route_path(route) do %>
-          <div class="card-route" id="card-route-setter-page">
-            <% if !route.photos.first.photo_url.nil? %>
-              <%= image_tag route.photos.first.photo_url %>
-            <% else %>
-              <% print "pb met with uri imag of", route %>
-            <% end %>
-            <div class="card-route-info">
-              <div>
-                <h2><%= route.name %></h2>
-                <div class="avatar_photo_card">
-                  <%= cl_image_tag route.user.avatar_photo, width: 20, height: 20, crop: :fill, radius: "max" %>
-                  <p><%= route.user.username %></p>
-                </div>
+  <div class="cards-route" id="sport-cards-index">
+    <% @routes.each do |route|%>
+      <%= link_to route_path(route) do %>
+        <div class="card-route" id="card-route-setter-page">
+          <% if !route.photos.first.photo_url.nil? %>
+            <%= image_tag route.photos.first.photo_url %>
+          <% else %>
+            <% print "pb met with uri imag of", route %>
+          <% end %>
+          <div class="card-route-info">
+            <div>
+              <h2><%= route.name %></h2>
+              <div class="avatar_photo_card">
+                <%= cl_image_tag route.user.avatar_photo, width: 20, height: 20, crop: :fill, radius: "max" %>
+                <p><%= route.user.username %></p>
               </div>
             </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
+  </div>
 </div>
