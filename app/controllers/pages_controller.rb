@@ -12,6 +12,7 @@ class PagesController < ApplicationController
     @user = set_user
     @routes = @user.routes
     @trips = @user.trips
+    @load_trips = params[:trip] == "true"
   end
 
   def add_follower
