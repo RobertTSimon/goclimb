@@ -6,13 +6,7 @@ class RoutesController < ApplicationController
     @routes = policy_scope(Route).order(created_at: :desc) # policy for routes
     set_index_pages1 # pages for routes cf private, begin of index
 
-    # if !current_user.nil? && !current_user.trips.first.routes.first.nil? # Viktor Fix this...
-    #   @routes = @routes.select do |route|
-    #     route.site == current_user.trips.first.routes.first.site
-    #   end
-    # end
-
-    @routes = @routes.uniq # supress double routes
+    @routes = @routes.uniq # supress double routes <!> can cause a bug with the seeds
 
     # Only suggest the same site of the routes of your next trip
     # if user_signed_in? && !current_user.trips.first.routes.first.nil?
@@ -20,10 +14,13 @@ class RoutesController < ApplicationController
     #     route.site == current_user.trips.first.routes.first.site
     #   end
     # end
-    mark_routes # mark the routes with @markers
 
-    create_references_levels # reference levels in @references
-    sort_levels # sort the routes by level
+    @routes = @routes.uniq # supress double routes
+
+    mark_routes # mark the routes with @markers
+    create_references_levels # reference levels in @references and
+    # sort_levels # sort the routes by level
+    sort_by_level_for_user if user_signed_in?
 
     set_index_pages2 # pages for routes, end of index
   end
@@ -35,7 +32,6 @@ class RoutesController < ApplicationController
   end
 
   def create
-
     @route = Route.new(route_params)
     @route.user = current_user
     authorize @route
@@ -75,13 +71,11 @@ class RoutesController < ApplicationController
 
   def update
     authorize @route
-
     if params[:photos]
       params[:photos]['photo'].each do |image_url|
         @route.photos.new(photo: image_url, imageable_id: @route.id, imageable_type: "route")
       end
     end
-
     if @route.update(route_params)
       redirect_to route_path(@route)
     else
@@ -92,18 +86,8 @@ class RoutesController < ApplicationController
 
   private
 
-  def create_references_levels
-    easy = []
-    hard = []
-    Route.all.each do |route|
-      easy << route.level if route.level.chars.third != '1' && !easy.include?(route.level)
-      hard << route.level if route.level.chars.third == '1' && !hard.include?(route.level)
-    end
-    @levels = easy.sort + hard.sort
-    @references = {}
-    @levels.each_with_index do |level, index|
-      @references[level] = index
-    end
+  def sort_by_level_for_user
+    @routes = @routes.sort_by { |route| (@references[route.level] - @references[current_user.current_level]).abs }
   end
 
   def sort_levels
@@ -125,13 +109,10 @@ class RoutesController < ApplicationController
   end
 
   def mark_routes
-    # Only keep localized routes
-    @routes = @routes.reject do |route|
+    @routes = @routes.reject do |route| # Only keep localized routes
       route.latitude.nil? || route.longitude.nil?
     end
-
-    # add the markers
-    @markers = @routes.map do |route_marked|
+    @markers = @routes.map do |route_marked| # add the markers
       {
         lat: route_marked.latitude,
         lng: route_marked.longitude
@@ -159,7 +140,6 @@ class RoutesController < ApplicationController
 
   def set_index_pages2
     @the_end = false
-
     if params[:page]
       @list_routes = @routes[params[:page].to_i * 5, 5] # to optimize, should be in the sql query rather then a subset of .all
       @the_end = @routes[(params[:page].to_i + 1) * 5, 5].nil?
