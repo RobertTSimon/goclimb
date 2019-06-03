@@ -10,7 +10,7 @@ class Route < ApplicationRecord
 
   accepts_nested_attributes_for :photos
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
   validates :longitude, presence: true
   validates :latitude, presence: true
 

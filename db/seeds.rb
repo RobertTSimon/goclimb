@@ -122,7 +122,8 @@ sites_url = { "Rumney" => "https://www.mountainproject.com/data/get-routes-for-l
 if default == false
   puts "How many sites do you want between 1 and 24"
   number_sites = STDIN.gets.chomp.to_i
-  sites = sites.sample(number_sites)
+  sites = sites[0..number_sites]
+
   puts "Creating #{sites.count} site(s) : #{sites}"
 end
 
@@ -207,7 +208,7 @@ User.all.each do |user|
   trip = Trip.create!(user: user, start_date: t, end_date: t, state: 'next')
   Route.all.sample(rand(1..5)).each do |route|
     RouteTrip.create!(route: route, trip: trip)
-    end
+  end
   rand(1..2).times do
     trip = Trip.create!(user: user, start_date: t, end_date: t, state: 'archived')
     Route.all.sample(rand(1..5)).each do |route|
