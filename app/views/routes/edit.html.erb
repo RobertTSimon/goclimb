@@ -1,7 +1,6 @@
-<%= render 'shared/navbar' %>
 <div class="full-height">
   <div class="form-card">
-    <h1>Create a new Route</h1>
+    <h1>Edit</h1>
     <%= simple_form_for @route do |f| %>
       <%= f.input :name, label: false, placeholder: 'Route Name' %>
       <%= f.input :description, label: false, placeholder: 'Description' %>
@@ -13,9 +12,13 @@
         </div>
       <% end %>
 
-      <%= f.input :latitude, label: false, placeholder: 'latitude' %>
-      <%= f.input :longitude, label: false, placeholder: 'longitude' %>
-      <%= f.submit "Create", class: "btn btn-success" %>
+      <%= f.input :latitude, label: false, placeholder: 'Latitude' %>
+      <%= f.input :longitude, label: false, placeholder: 'Longitude' %>
+      <%= f.input :type_of, label: false, placeholder: 'Type' %>
+      <%= f.input :style, label: false, placeholder: 'Style' %>
+      <%= f.input :level, label: false, placeholder: 'Level' %>
+
+      <%= f.submit "Change", class: "btn btn-success" %>
     <% end %>
   </div>
 </div>
