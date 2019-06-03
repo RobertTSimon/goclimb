@@ -9,12 +9,16 @@ Rails.application.routes.draw do
 	  resources :reviews, only: [:new, :index, :create, :show]
 	end
 
-	resources :trips, only: [:show] do
-    resources :routes, only: [:show] do
-      get 'delete', to: "trips#delete", as: :trip_delete
-    end
-  end
+  resources :trips, only: [:show]
+  get '/route_trips/:id/delete', to: "route_trips#destroy", as: :route_trip
 
+	# resources :trips, only: [:show] do
+ #    resources :routes, only: [:show] do
+ #      get 'delete', to: "trips#delete", as: :trip_delete
+ #    end
+ #  end
+
+  # resources :route_trips, only: [:destroy]
 
   get "/trips/update/:id", to: "trips#update", as: :trip_update
   # get "/trips/delete/:id", to: "trips#delete", as: :trip_delete

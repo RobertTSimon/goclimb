@@ -42,7 +42,10 @@
                 <div class="card-route-index-info">
                   <h2><%= route.name %></h2>
                   <p><%= route.city.name %></p>
-                  <%= link_to "DELETE THIS ROUTE", trip_delete_path(route), class: "btn btn-danger" %>
+                  <% rt = RouteTrip.all.select do |route_trips|
+                    route_trips.route == route && route_trips.trip == @trip
+                  end %>
+                  <%= link_to "DELETE THIS ROUTE", route_trip_path(rt), class: "btn btn-danger" %>
                 </div>
               </div>
             <% end %>
