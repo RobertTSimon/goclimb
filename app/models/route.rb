@@ -13,7 +13,6 @@ class Route < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :longitude, presence: true
   validates :latitude, presence: true
-  validate :photos?
 
   include AlgoliaSearch
 
@@ -29,9 +28,5 @@ class Route < ApplicationRecord
 
   def city_name
     site_id.nil? ? nil : city.name
-  end
-
-  def photos?
-    errors.add(:has_photos, "need photo") if photos.length.zero?
   end
 end
