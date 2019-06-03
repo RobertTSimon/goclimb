@@ -1,23 +1,22 @@
-
-  <div class="full-height profile margin-settings">
-    <div class="form-card" id="profile-avatar">
-      <h2>Profile</h2>
-      <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
-      <%= simple_form_for @user, method: :patch, html: {style: "width: 100%"} do |f| %>
-        <div class="form-inputs">
-          <%= f.input :username, placeholder: 'Change your username', id: "profile-input", label: "Username:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
-          <%= f.input :email, placeholder: "Change your email", id: "profile-input", label: "Email:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
-          <%= f.input :password, placeholder: "Change your password", id: "profile-input", label: "Password:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
-          <%= f.input :avatar_photo, placeholder: "Change your avatar", id: "profile-input", label: "Photo:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
-          <%= f.input :location, placeholder: "Change your location", id: "profile-input", label: "Location:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
-          <%= f.input :bio, placeholder: "Change your bio", id: "profile-input", label: "Bio:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"}%>
-          <%= f.input :favorite_styles, placeholder: "Change your favourite styles", id: "profile-input", label: "Styles:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"}  %>
-        <%= f.input :current_level, placeholder: "Change your level", id: "profile-input", label: "Level:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
-        </div>
-        <div class="form-actions">
-          <%= f.button :submit, "Save", class: "btn btn-outline-success btn-block" %>
-        </div>
-      <% end %>
-      <br>
-    </div>
+<div class="full-height profile margin-settings">
+  <div class="form-card" id="profile-avatar">
+    <h2>Profile</h2>
+    <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
+    <%= simple_form_for @user, method: :patch, html: {style: "width: 100%"} do |f| %>
+      <div class="form-inputs">
+        <%= f.input :username, placeholder: 'Change your username', id: "profile-input", label: "Username:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
+        <%= f.input :email, placeholder: "Change your email", id: "profile-input", label: "Email:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
+        <%= f.input :password, placeholder: "Change your password", id: "profile-input", label: "Password:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
+        <%= f.input :avatar_photo, placeholder: "Change your avatar", id: "profile-input", label: "Photo:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
+        <%= f.input :location, placeholder: "Change your location", id: "profile-input", label: "Location:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
+        <%= f.input :bio, placeholder: "Change your bio", id: "profile-input", label: "Bio:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"}%>
+        <%= f.input :favorite_styles, placeholder: "Change your favourite styles", id: "profile-input", label: "Styles:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"}  %>
+      <%= f.input :current_level, placeholder: "Change your level", id: "profile-input", label: "Level:", wrapper_html: {class: "d-flex align-items-center"}, label_html: {class: "m-0 font-weight-bold w-100"} %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Save", class: "btn btn-outline-success btn-block" %>
+      </div>
+    <% end %>
+    <br>
   </div>
+</div>
