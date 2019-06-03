@@ -70,7 +70,8 @@
         </div>
       <% end %>
       <br>
-      <%= link_to "Save", profile_path(current_user), class: "btn btn-success" %>
+      <%= link_to "/profile/#{current_user.id}?trip=true", class: "btn btn-success" do %><i class=“fa fa-sign-out”></i>Save
+      <% end %>
     </div>
 
   </div>
