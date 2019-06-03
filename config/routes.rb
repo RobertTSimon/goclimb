@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 	end
 
   resources :trips, only: [:show]
-  get '/route_trips/:id/delete', to: "route_trips#destroy", as: :route_trip
+  # get '/route_trips/:id/delete', to: "route_trips#destroy", as: :route_trip
 
 	# resources :trips, only: [:show] do
  #    resources :routes, only: [:show] do
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
  #    end
  #  end
 
-  # resources :route_trips, only: [:destroy]
+  resources :route_trips, only: [:destroy]
 
   get "/trips/update/:id", to: "trips#update", as: :trip_update
   # get "/trips/delete/:id", to: "trips#delete", as: :trip_delete

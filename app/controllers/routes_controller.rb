@@ -115,6 +115,20 @@ class RoutesController < ApplicationController
 
   private
 
+  def sort_levels
+    easy = []
+    hard = []
+    Route.all.each_with_index do |route, index|
+      easy << route.level if route.level.chars.third != '1'
+      hard << route.level if route.level.chars.third == '1'
+    end
+    @levels = easy.sort + hard.sort
+    @references = {}
+    @levels.each_with_index do |level, index|
+      references[level] = index
+    end
+  end
+
   def set_route
     @route = Route.find(params[:id])
   end

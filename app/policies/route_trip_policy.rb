@@ -1,4 +1,4 @@
-class RoutePolicy < ApplicationPolicy
+class RouteTripPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -12,6 +12,6 @@ class RoutePolicy < ApplicationPolicy
   private
 
   def user_is_owner?
-    record.user == user
+    record.trip.user == user
   end
 end

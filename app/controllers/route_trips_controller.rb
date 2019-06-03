@@ -2,6 +2,7 @@ class RouteTripsController < ApplicationController
   def destroy
     unless RouteTrip.find(params[:id]).nil?
       @route_trip = RouteTrip.find(params[:id])
+      authorize @route_trip
       @trip = @route_trip.trip
       # @route = Route.find(params[:route_id])
       # @trip.routes.delete(@route)
