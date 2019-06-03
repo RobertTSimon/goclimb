@@ -12,4 +12,8 @@ class User < ApplicationRecord
 
   has_many :photos, as: :imageable
   has_many :trips
+
+  def next_trip
+    self.trips.find_by(state: "next")
+  end
 end

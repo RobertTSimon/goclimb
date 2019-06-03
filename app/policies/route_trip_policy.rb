@@ -9,6 +9,10 @@ class RouteTripPolicy < ApplicationPolicy
     user_is_owner?
   end
 
+  def create?
+    true
+  end
+
   private
 
   def user_is_owner?

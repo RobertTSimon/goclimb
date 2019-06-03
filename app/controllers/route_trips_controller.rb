@@ -10,4 +10,16 @@ class RouteTripsController < ApplicationController
     end
     redirect_to trip_path(@trip)
   end
+
+  # POST /routes/:route_id/route_trips
+  def create
+    @trip = current_user.next_trip
+    @route = Route.find(params[:route_id])
+    @route_trip = RouteTrip.new(trip: @trip, route: @route)
+
+    authorize @route_trip
+    @route_trip.save
+
+    redirect_to trip_path(@trip)
+  end
 end

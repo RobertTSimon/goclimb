@@ -7,9 +7,10 @@ Rails.application.routes.draw do
 
 	resources :routes do
 	  resources :reviews, only: [:new, :index, :create, :show]
+    resources :route_trips, only: [:create]
 	end
 
-  resources :trips, only: [:show]
+  resources :trips, only: [:show, :update]
   # get '/route_trips/:id/delete', to: "route_trips#destroy", as: :route_trip
 
 	# resources :trips, only: [:show] do
