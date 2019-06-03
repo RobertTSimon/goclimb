@@ -1,4 +1,4 @@
-<div class="d-flex profile route-setter-page">
+<div class="profile route-setter-page">
   <div class="form-card-route-setter" id="profile-routes-set">
     <h2>Profile</h2>
     <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
@@ -20,32 +20,31 @@
           </div>
         <% end %>
       <% end %>
-
       <p><strong>Attention needed: </strong>@routes.condition</p>
-
     </div>
-
   </div>
     <div class="cards-route" id="sport-cards-index">
-      <h2>Your Routes</h2>
+
       <% @routes.each do |route|%>
-        <%= link_to route_path(route) do %>
-          <div class="card-route" id="card-route-setter-page">
+        <div class="card-route" id="card-route-setter-page">
+          <%= link_to route_path(route) do %>
             <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil?%>
-            <div class="card-route-info">
-              <div>
-                <h2><%= route.name %></h2>
-                <div class="avatar_photo_card">
-                  <%= cl_image_tag route.user.avatar_photo, width: 20, height: 20, crop: :fill, radius: "max" %>
-                  <p><%= route.user.username %></p>
-                </div>
+          <% end %>
+          <div class="card-route-info">
+            <div>
+              <h2><%= route.name %></h2>
+              <div class="avatar_photo_card">
+                <%= cl_image_tag route.user.avatar_photo, width: 20, height: 20, crop: :fill, radius: "max" %>
+                <p><%= route.user.username %></p>
               </div>
-              <%= link_to "Edit", edit_route_path(route) ,class: "btn btn-danger" %>
-              <%= link_to "Delete", route_path(route.id) , method: "delete" ,class: "btn btn-danger" %>
+            </div>
+            <div>
+              <%= link_to "Edit", edit_route_path(route), class: "btn btn-danger" %>
+              <%= link_to "Delete", route_path(route.id), class: "btn btn-danger", method: :delete %>
             </div>
           </div>
         </div>
       <% end %>
-    <% end %>
-  </div>
+    </div>
 </div>
+
