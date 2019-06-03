@@ -31,7 +31,9 @@
 .full-height {
   display: flex;
   align-items: center;
-  overflow: scroll;
+  // overflow: scroll;
+  // min-height: 600px;
+  margin-bottom: 150px;
 }
 .form-inputs input {
   border-bottom: 3px solid rgb(211, 211, 211);
