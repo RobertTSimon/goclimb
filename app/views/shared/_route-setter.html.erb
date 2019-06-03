@@ -1,12 +1,29 @@
 <div class="d-flex profile route-setter-page">
-  <div class="form-card-route-setter" id="profile-avatar">
+  <div class="form-card-route-setter" id="profile-routes-set">
     <h2>Profile</h2>
     <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
     <div class="user-info">
-      <h3>Hi <%= @user.username %>!</h3>
+      <span class="d-flex add-route">
+        <h3>Hi <%= @user.username %>!</h3>
+        <%= link_to "Add a new route", new_route_path(current_user), class: "button-green" %>
+      </span>
       <p><strong>Routes Set:   </strong><%= @user.routes.count %></p>
-      <p><strong>Attention needed: </strong>@routes.condition</p>
+
+      <p><strong>Attention needed: </strong></p>
+      <% @user.received_reviews.each do |review| %>
+        <% unless review.fixed || review.alert == 'Nothing to report' %>
+          <div class="card text-white bg-warning p-4 my-3 fade show" role="alert" data-review-id="<%= review.id %>" >
+            User <%= review.user.username %> has reported <strong><%= review.alert %></strong> on route <%= link_to review.route.name, route_path(review.route)%>!
+            <%= link_to fix_alert_path(review), class: "close", method: :patch, remote: true do %>
+              <span aria-hidden="true">Mark as done</span>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
       <%= link_to "Add a new route", new_route_path(current_user), class: "btn btn-success" %>
+
+      <p><strong>Attention needed: </strong>@routes.condition</p>
+
     </div>
 
   </div>
@@ -28,7 +45,8 @@
               <%= link_to "Delete", route_path(route.id) , method: "delete" ,class: "btn btn-danger" %>
             </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
+  </div>
 </div>

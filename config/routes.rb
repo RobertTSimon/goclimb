@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/trips/update/:id", to: "trips#update", as: :trip_update
   get "/trips/delete/:id", to: "trips#delete", as: :trip_delete
 	resources :reviews, only: [:destroy]
+  patch "/reviews/:id/mark_as_fixed", to: "reviews#mark_as_fixed", as: :fix_alert
 
 	resources :sites, only: [:show] do
 	  resources :reviews
