@@ -18,6 +18,14 @@
   display: flex;
   align-items: center;
 }
+
+.calendar {
+  margin-top: 10px;
+}
+#trip-confirmation {
+  border-radius: 10px;
+}
+
 .pagination-container{
   max-width: 300px;
   padding: 24px;
@@ -33,11 +41,13 @@
   #current-page{
     background-color: rgba(138, 236, 135, 0.8);
   }
+}
+
   a{
     background-color: white;
     color: black;
     border-radius: 4px;
     text-align: center;
   }
-}
+
 

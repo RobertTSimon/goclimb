@@ -10,16 +10,18 @@ class Route < ApplicationRecord
 
   accepts_nested_attributes_for :photos
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
   validates :longitude, presence: true
   validates :latitude, presence: true
 
   include AlgoliaSearch
 
   algoliasearch do
-    attribute :name, :level, :type, :description, :style
+    attribute :name, :style, :level, :type, :description
     attribute :site_name
     attribute :city_name
+
+    searchableAttributes ['name', 'style', 'level', 'type', 'site_name', 'city_name', 'description']
   end
 
   def site_name

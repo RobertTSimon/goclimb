@@ -45,7 +45,11 @@ class TripsController < ApplicationController
   end
 
   def update
+
+    @trip = current_user.trips.first
     authorize @trip
+    @trip.update(trip_params)
+    @route = Route.find(params[:id])
     @trip.routes += [@route]
     redirect_to trip_path(@trip)
   end
@@ -70,6 +74,10 @@ class TripsController < ApplicationController
 
   def set_trip_by_next
     @trip = Trip.where(state: "next").first
+  end
+
+  def trip_params
+    params.require(:trip).permit(:start_date, :end_date)
   end
 
   def optimization_way_by_distance
