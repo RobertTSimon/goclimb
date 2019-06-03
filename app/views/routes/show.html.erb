@@ -3,7 +3,7 @@
   <br>
   <div class="card-route-show">
 
-    <%= image_tag @route.photos.first.photo_url %>
+    <%= image_tag @route.photos.first.photo_url unless @route.photos.first.nil? || @route.photos.first.photo_url.nil? %>
 
     <div class="route-info">
 
