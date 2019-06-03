@@ -4,8 +4,10 @@ class RoutesController < ApplicationController
 
   def index
     @routes = policy_scope(Route).order(created_at: :desc)
+
     @previous_page = "/routes?page=#{params[:page].to_i - 1}"
     @next_page = "/routes?page=#{params[:page].to_i + 1}"
+    @current_page_plus2 = "/routes?page=#{params[:page].to_i + 2}"
     @current_page_link = "/routes?page=#{params[:page].to_i}"
     @current_page = params[:page].to_i
 
@@ -14,7 +16,8 @@ class RoutesController < ApplicationController
       # Navigate through pages with query. Diego
       @previous_page += "&query=#{params[:query]}"
       @next_page += "&query=#{params[:query]}"
-      @current_page_link = "&query=#{params[:query]}"
+      @current_page_plus2 += "&query=#{params[:page]}"
+      @current_page_link += "&query=#{params[:query]}"
     else
       @routes = Route.all
     end
