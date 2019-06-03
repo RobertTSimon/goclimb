@@ -8,10 +8,9 @@
         <%= link_to "Add a new route", new_route_path(current_user), class: "button-green" %>
       </span>
       <p><strong>Routes Set:   </strong><%= @user.routes.count %></p>
-
-      <p><strong>Attention needed: </strong></p>
       <% @user.received_reviews.each do |review| %>
         <% unless review.fixed || review.alert == 'Nothing to report' %>
+          <p><strong>This routes need your attention: </strong></p>
           <div class="card text-white bg-warning p-4 my-3 fade show" role="alert" data-review-id="<%= review.id %>" >
             User <%= review.user.username %> has reported <strong><%= review.alert %></strong> on route <%= link_to review.route.name, route_path(review.route)%>!
             <%= link_to fix_alert_path(review), class: "close", method: :patch, remote: true do %>
@@ -20,7 +19,6 @@
           </div>
         <% end %>
       <% end %>
-      <p><strong>Attention needed: </strong>@routes.condition</p>
     </div>
   </div>
     <div class="cards-route" id="sport-cards-index">
