@@ -3,33 +3,10 @@ class RoutesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @routes = policy_scope(Route).order(created_at: :desc) #policy for routes
-    
-    @routes = @routes.uniq #supress double routes
+    @routes = policy_scope(Route).order(created_at: :desc) # policy for routes
+    set_index_pages1 # pages for routes cf private, begin of index
 
-    #pages for routes
-    @previous_page = "/routes?page=#{params[:page].to_i - 1}"
-    @next_page = "/routes?page=#{params[:page].to_i + 1}"
-    @current_page_plus2 = "/routes?page=#{params[:page].to_i + 2}"
-    @current_page_link = "/routes?page=#{params[:page].to_i}"
-    @current_page = params[:page].to_i
-    if params[:query].present?
-      @routes = Route.order(id: :asc).search(params[:query])
-      # Navigate through pages with query. Diego
-      @previous_page += "&query=#{params[:query]}"
-      @next_page += "&query=#{params[:query]}"
-      @current_page_plus2 += "&query=#{params[:page]}"
-      @current_page_link += "&query=#{params[:query]}"
-    else
-      @routes = Route.all
-    end
-    @the_end = false
-    if params[:page]
-      @list_routes = @routes[params[:page].to_i * 5, 5] # to optimize, should be in the sql query rather then a subset of .all
-      @the_end = @routes[(params[:page].to_i + 1) * 5, 5].empty?
-    else
-      @list_routes = @routes[0, 5]
-    end
+    @routes = @routes.uniq # supress double routes
 
     # Only suggest the same site of the routes of your next trip
     if user_signed_in? && !current_user.trips.first.routes.first.nil?
@@ -37,22 +14,12 @@ class RoutesController < ApplicationController
         route.site == current_user.trips.first.routes.first.site
       end
     end
-    # Only keep localized routes
-    @routes_marked = @routes.reject do |route|
-      route.latitude.nil? || route.longitude.nil?
-    end
-    #add the markers
-    @markers = @routes_marked.map do |route_marked|
-      {
-        lat: route_marked.latitude,
-        lng: route_marked.longitude
-      }
-    end
-    #IDK wtf is this
-    respond_to do |format|
-      format.html
-      format.js # <-- idem
-    end
+    mark_routes # mark the routes with @markers
+
+    create_references_levels # reference levels in @references
+    sort_levels # sort the routes by level
+
+    set_index_pages2 # pages for routes, end of index
   end
 
   def new
@@ -118,18 +85,28 @@ class RoutesController < ApplicationController
 
   private
 
-  def sort_levels
+  def create_references_levels
     easy = []
     hard = []
-    Route.all.each_with_index do |route, index|
-      easy << route.level if route.level.chars.third != '1'
-      hard << route.level if route.level.chars.third == '1'
+    Route.all.each do |route|
+      easy << route.level if route.level.chars.third != '1' && !easy.include?(route.level)
+      hard << route.level if route.level.chars.third == '1' && !hard.include?(route.level)
     end
     @levels = easy.sort + hard.sort
     @references = {}
     @levels.each_with_index do |level, index|
-      references[level] = index
+      @references[level] = index
     end
+  end
+
+  def sort_levels
+    easy = []
+    hard = []
+    @routes.each do |route|
+      easy << route if route.level.chars.third != '1' && !easy.include?(route)
+      hard << route if route.level.chars.third == '1' && !hard.include?(route)
+    end
+    @routes = easy.sort_by { |route| route.level } + hard.sort_by { |route| route.level }
   end
 
   def set_route
@@ -138,5 +115,52 @@ class RoutesController < ApplicationController
 
   def route_params
     params.require(:route).permit(:name, :longitude, :latitude, :description, :type, :style, :level, :rating, :page)
+  end
+
+  def mark_routes
+    # Only keep localized routes
+    @routes = @routes.reject do |route|
+      route.latitude.nil? || route.longitude.nil?
+    end
+
+    # add the markers
+    @markers = @routes.map do |route_marked|
+      {
+        lat: route_marked.latitude,
+        lng: route_marked.longitude
+      }
+    end
+  end
+
+  def set_index_pages1
+    @previous_page = "/routes?page=#{params[:page].to_i - 1}"
+    @next_page = "/routes?page=#{params[:page].to_i + 1}"
+    @current_page_plus2 = "/routes?page=#{params[:page].to_i + 2}"
+    @current_page_link = "/routes?page=#{params[:page].to_i}"
+    @current_page = params[:page].to_i
+    if params[:query].present?
+      @routes = Route.order(id: :asc).search(params[:query])
+      # Navigate through pages with query. Diego
+      @previous_page += "&query=#{params[:query]}"
+      @next_page += "&query=#{params[:query]}"
+      @current_page_plus2 += "&query=#{params[:page]}"
+      @current_page_link += "&query=#{params[:query]}"
+    else
+      @routes = Route.all
+    end
+    @the_end = false
+  end
+
+  def set_index_pages2
+    if params[:page]
+      @list_routes = @routes[params[:page].to_i * 5, 5] # to optimize, should be in the sql query rather then a subset of .all
+      @the_end = @routes[(params[:page].to_i + 1) * 5, 5].empty?
+    else
+      @list_routes = @routes[0, 5]
+    end
+    respond_to do |format|
+      format.html
+      format.js # <-- idem
+    end
   end
 end
