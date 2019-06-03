@@ -4,7 +4,7 @@
       <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil? %>
       <div class="card-route-index-info">
         <h2><%= route.name %></h2>
-        <p><%= route.city.name %></p>
+        <p><%= route.city&.name %></p>
         <p><%= route.level %></p>
       </div>
     </div>
