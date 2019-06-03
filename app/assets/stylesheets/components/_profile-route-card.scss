@@ -28,13 +28,6 @@
   margin: 0;
   color: black;
 }
-.card-route .card-route-info {
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
-}
 .card-route-info img {
   border-radius: 50%;
 }
@@ -68,7 +61,7 @@
 }
 
 .form-card-route-setter {
-  width: 600px;
+  // width: 600px;
   margin-right: 20px;
   background-color: white;
   padding: 24px;
@@ -126,6 +119,8 @@
 }
 .route-setter-page {
   padding: 24px;
+  display: grid;
+  grid-template-columns: auto 50%;
 }
 
 

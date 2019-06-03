@@ -15,7 +15,7 @@
 .card-route:hover{
   transform: scale(1.05);
 }
-.card-route > img {
+.card-route > a > img {
   height: 200px;
   width: 100%;
   object-fit: cover;
