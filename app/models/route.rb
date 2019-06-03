@@ -7,6 +7,7 @@ class Route < ApplicationRecord
   has_many :photos, as: :imageable
   has_many :reviews
   has_many :trips, through: :route_trip
+  
 
   accepts_nested_attributes_for :photos
 
@@ -29,4 +30,8 @@ class Route < ApplicationRecord
   def city_name
     site_id.nil? ? nil : city.name
   end
+
+ 
+  ALERTS = [ "Nothing to report", "Weeds on the wall (needs cleaning)", "Missing bolts", "Dangerous approach", "falling rocks", "Other (see reviews)"]
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_145546) do
+ActiveRecord::Schema.define(version: 2019_06_03_142522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2019_05_31_145546) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "route_id"
+    t.string "alert"
+    t.boolean "fixed", default: false
     t.index ["route_id"], name: "index_reviews_on_route_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
