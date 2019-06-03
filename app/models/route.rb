@@ -11,6 +11,10 @@ class Route < ApplicationRecord
 
   accepts_nested_attributes_for :photos
 
+  validates :name, presence: true, uniqueness: true
+  validates :longitude, presence: true
+  validates :latitude, presence: true
+
   include AlgoliaSearch
 
   algoliasearch do
@@ -26,8 +30,8 @@ class Route < ApplicationRecord
   def city_name
     site_id.nil? ? nil : city.name
   end
+
  
   ALERTS = [ "Nothing to report", "Weeds on the wall (needs cleaning)", "Missing bolts", "Dangerous approach", "falling rocks", "Other (see reviews)"]
-
 
 end
