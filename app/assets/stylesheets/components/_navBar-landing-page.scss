@@ -29,8 +29,11 @@
 
 .nav-link-landing-page {
   color: white;
-
   }
+
+.nav-link-landing-page:hover {
+  color: #afb9c0;
+}
 
 .dropdown-item i {
   color: black;
@@ -40,7 +43,6 @@
   color: white;
   .nav-link {
     margin-bottom: 0;
-    color: white;
   }
 }
 
@@ -54,7 +56,7 @@
   justify-content: space-evenly;
 }
 
-.navbar-light .navbar-nav .nav-link {
+.navbar-light .navbar-nav {
   color: white;
 }
 
