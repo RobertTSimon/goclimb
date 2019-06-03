@@ -19,7 +19,7 @@ class RoutesController < ApplicationController
       @routes = Route.all
     end
 
-    if user.logged_in? && !current_user.trips.first.routes.first.nil? # Viktor Fix this...
+    if !current_user.nil? && !current_user.trips.first.routes.first.nil? # Viktor Fix this...
       @routes = @routes.select do |route|
         route.site == current_user.trips.first.routes.first.site
       end

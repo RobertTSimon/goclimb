@@ -12,9 +12,13 @@
         </div>
       <% end %>
 
-      <%= f.input :latitude, label: false, placeholder: 'latitude' %>
-      <%= f.input :longitude, label: false, placeholder: 'longitude' %>
-      <%= f.submit "Create", class: "btn btn-success" %>
+      <%= f.input :latitude, label: false, placeholder: 'Latitude' %>
+      <%= f.input :longitude, label: false, placeholder: 'Longitude' %>
+      <%= f.input :type_of, label: false, placeholder: 'Type' %>
+      <%= f.input :style, label: false, placeholder: 'Style' %>
+      <%= f.input :level, label: false, placeholder: 'Level' %>
+
+      <%= f.submit "Change", class: "btn btn-success" %>
     <% end %>
   </div>
 </div>
