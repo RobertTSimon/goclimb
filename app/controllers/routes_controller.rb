@@ -19,7 +19,7 @@ class RoutesController < ApplicationController
       @routes = Route.all
     end
 
-    if current_user.trips.first.routes.first != nil
+    if !current_user.nil? && !current_user.trips.first.routes.first.nil? # Viktor Fix this...
       @routes = @routes.select do |route|
         route.site == current_user.trips.first.routes.first.site
       end
@@ -71,7 +71,7 @@ class RoutesController < ApplicationController
     if @route.save
       redirect_to route_path(@route)
     else
-      @route.photos.build if @route.photos.length == 0
+      @route.photos.build if @route.photos.length.zero?
       render :new
     end
   end
@@ -86,8 +86,9 @@ class RoutesController < ApplicationController
   end
 
   def destroy
-    set_route
     authorize @route
+    @route.delete
+    redirect_to profile_path(current_user)
   end
 
   def edit
@@ -96,6 +97,19 @@ class RoutesController < ApplicationController
 
   def update
     authorize @route
+
+    if params[:photos]
+      params[:photos]['photo'].each do |image_url|
+        @route.photos.new(photo: image_url, imageable_id: @route.id, imageable_type: "route")
+      end
+    end
+
+    if @route.update(route_params)
+      redirect_to route_path(@route)
+    else
+      @route.photos.build if @route.photos.length.zero?
+      render :edit
+    end
   end
 
   private
