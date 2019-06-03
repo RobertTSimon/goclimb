@@ -34,9 +34,6 @@ class PagesController < ApplicationController
     redirect_to profile_path(@climber)
   end
 
-
-
-
   private
 
   def set_user
