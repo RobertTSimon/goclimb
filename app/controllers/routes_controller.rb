@@ -14,6 +14,9 @@ class RoutesController < ApplicationController
     #     route.site == current_user.trips.first.routes.first.site
     #   end
     # end
+
+    @routes = @routes.uniq # supress double routes
+
     mark_routes # mark the routes with @markers
     create_references_levels # reference levels in @references and
     # sort_levels # sort the routes by level
