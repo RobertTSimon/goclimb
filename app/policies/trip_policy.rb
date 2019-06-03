@@ -14,11 +14,11 @@ class TripPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user_is_owner?
   end
 
   def update?
-    true
+    user_is_owner?
     # - record: the restaurant passed to the `authorize` method in controller
     # - user:   the `current_user` signed in with Devise.
   end
