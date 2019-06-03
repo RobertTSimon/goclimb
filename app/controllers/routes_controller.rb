@@ -4,6 +4,7 @@ class RoutesController < ApplicationController
 
   def index
     @routes = policy_scope(Route).order(created_at: :desc)
+    @routes = @routes.uniq
     @previous_page = "/routes?page=#{params[:page].to_i - 1}"
     @next_page = "/routes?page=#{params[:page].to_i + 1}"
     @current_page_link = "/routes?page=#{params[:page].to_i}"

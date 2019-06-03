@@ -35,8 +35,6 @@
       <% count = 1 %>
       <% @routes.each_slice(5).to_a.each do |slice|%>
         <div id="page-<%= count %>" role="tabpanel"  class="tab-pane fade <%= 'show active' if count == 1 %>">
-
-
           <% slice.each do |route| %>
             <%= link_to route_path(route) do %>
               <div class="card-route-index">
@@ -49,9 +47,6 @@
               </div>
             <% end %>
           <% end %>
-
-
-
         </div>
         <% count += 1 %>
       <% end %>
