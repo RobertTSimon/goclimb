@@ -238,7 +238,7 @@ User.all.each do |user|
   end
 end
 
-
+Route.clear_index!
 Route.reindex!
 
 

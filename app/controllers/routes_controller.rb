@@ -16,23 +16,23 @@ class RoutesController < ApplicationController
       # Navigate through pages with query. Diego
       @previous_page += "&query=#{params[:query]}"
       @next_page += "&query=#{params[:query]}"
-      @current_page_plus2 += "&query=#{params[:page]}"
+      @current_page_plus2 += "&query=#{params[:query]}"
       @current_page_link += "&query=#{params[:query]}"
     else
       @routes = Route.all
     end
 
-    if !current_user.nil? && !current_user.trips.first.routes.first.nil? # Viktor Fix this...
-      @routes = @routes.select do |route|
-        route.site == current_user.trips.first.routes.first.site
-      end
-    end
+    # if !current_user.nil? && !current_user.trips.first.routes.first.nil? # Viktor Fix this...
+    #   @routes = @routes.select do |route|
+    #     route.site == current_user.trips.first.routes.first.site
+    #   end
+    # end
 
     @the_end = false
 
     if params[:page]
       @list_routes = @routes[params[:page].to_i * 5, 5] # to optimize, should be in the sql query rather then a subset of .all
-      @the_end = @routes[(params[:page].to_i + 1) * 5, 5].empty?
+      @the_end = @routes[(params[:page].to_i + 2) * 5, 5].empty?
     else
       @list_routes = @routes[0, 5]
     end
