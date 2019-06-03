@@ -17,9 +17,11 @@ class Route < ApplicationRecord
   include AlgoliaSearch
 
   algoliasearch do
-    attribute :name, :level, :type, :description, :style
+    attribute :name, :style, :level, :type, :description
     attribute :site_name
     attribute :city_name
+
+    searchableAttributes ['name', 'style', 'level', 'type', 'site_name', 'city_name', 'description']
   end
 
   def site_name
