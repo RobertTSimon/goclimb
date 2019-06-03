@@ -6,7 +6,40 @@ class RoutesController < ApplicationController
     @routes = policy_scope(Route).order(created_at: :desc) # policy for routes
     set_index_pages1 # pages for routes cf private, begin of index
 
+    #pages for routes
+    @previous_page = "/routes?page=#{params[:page].to_i - 1}"
+    @next_page = "/routes?page=#{params[:page].to_i + 1}"
+    @current_page_plus2 = "/routes?page=#{params[:page].to_i + 2}"
+    @current_page_link = "/routes?page=#{params[:page].to_i}"
+    @current_page = params[:page].to_i
+    if params[:query].present?
+      @routes = Route.order(id: :asc).search(params[:query])
+      # Navigate through pages with query. Diego
+      @previous_page += "&query=#{params[:query]}"
+      @next_page += "&query=#{params[:query]}"
+      @current_page_plus2 += "&query=#{params[:query]}"
+      @current_page_link += "&query=#{params[:query]}"
+    else
+      @routes = Route.all
+    end
+
+    # if !current_user.nil? && !current_user.trips.first.routes.first.nil? # Viktor Fix this...
+    #   @routes = @routes.select do |route|
+    #     route.site == current_user.trips.first.routes.first.site
+    #   end
+    # end
+
+
+    @the_end = false
+    if params[:page]
+      @list_routes = @routes[params[:page].to_i * 5, 5] # to optimize, should be in the sql query rather then a subset of .all
+      @the_end = @routes[(params[:page].to_i + 2) * 5, 5].empty?
+    else
+      @list_routes = @routes[0, 5]
+    end
+
     @routes = @routes.uniq # supress double routes
+
 
     # Only suggest the same site of the routes of your next trip
     if user_signed_in? && !current_user.trips.first.routes.first.nil?
