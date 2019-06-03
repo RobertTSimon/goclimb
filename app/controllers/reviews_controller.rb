@@ -45,6 +45,14 @@ class ReviewsController < ApplicationController
     authorize @review
   end
 
+  def mark_as_fixed
+    @review = Review.find(params[:id]) 
+    @review.fixed = true
+    @review.save!
+
+    authorize @review
+  end
+
   private
 
   def set_route
@@ -52,6 +60,6 @@ class ReviewsController < ApplicationController
   end
 
   def params_review
-    params.require(:review).permit(:route_id, :user_id, :title, :description, :rating)
+    params.require(:review).permit(:route_id, :user_id, :title, :description, :rating, :alert)
   end
 end
