@@ -5,8 +5,11 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { initGeoloc } from '../plugins/init_geoloc';
 import { initWeather } from '../plugins/init_weather';
 import { initDistance } from '../plugins/init_distance';
+import { initDistanceSite } from '../plugins/init_distance_site';
+
 
 initMapbox();
 initGeoloc();
 initWeather();
 initDistance();
+initDistanceSite();

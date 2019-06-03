@@ -63,4 +63,30 @@ class TripsController < ApplicationController
   def set_trip
     @trip = current_user.trips.first
   end
+
+  def optimization_way_by_distance
+    @trip.routes = recursive([], @trip.routes)
+  end
+
+  def recursive(way, left)
+    r = recursive(way + [left.first], left.delete_at(0))
+
+    return [way, dist_tot(way)] if left == []
+
+    left.each_at_index do |l, i|
+      try = recursive(way + [l], left.delete_at(i))
+      r = try if try.last < r.last
+    end
+  end
+
+  def dist_tot(routes)
+    d = 0
+    routes.each_with_index do |r, i|
+      d += dist(r, r[i + 1]) if r != routes.last
+    end
+  end
+
+  def dist(route1, route2)
+    Math.acos(Math.sin(route1.latitude) * Math.sin(route2.latitude) + Math.cos(route1.latitude) * Math.cos(route2.latitude) * Math.cos(route2.longitude - route1.longitude)) * 6371
+  end
 end
