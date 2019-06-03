@@ -8,9 +8,13 @@
       <%= f.fields_for :photos do |p| %>
         <div class="field">
           <%= p.label :photo %><br>
-          <%= p.file_field :photo, :multiple => true, name:     "photos[photo][]" %>
+          <%= p.file_field :photo, :multiple => true, name: "photos[photo][]" %>
+          <%= p.hidden_field :photo_cache %>
         </div>
       <% end %>
+
+      <%= f.input :latitude, label: false, placeholder: 'latitude' %>
+      <%= f.input :longitude, label: false, placeholder: 'longitude' %>
       <%= f.submit "Create", class: "btn btn-success" %>
     <% end %>
   </div>
