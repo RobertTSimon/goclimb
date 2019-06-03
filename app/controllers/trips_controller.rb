@@ -1,5 +1,7 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :destroy, :update]
+  before_action :set_trip_by_id, only: [:show, :edit, :destroy]
+  before_action :set_route_by_id, only: [:update]
+  before_action :set_trip_by_next, only: [:update]
 
   def new
     @trip = Trip.new
@@ -43,25 +45,39 @@ class TripsController < ApplicationController
   end
 
   def update
+
     @trip = current_user.trips.first
+    authorize @trip
+    @trip.update(trip_params)
     @route = Route.find(params[:id])
     @trip.routes += [@route]
-    authorize @trip
     redirect_to trip_path(@trip)
   end
 
   def delete
-    @trip = current_user.trips.first
+    raise
     @route = Route.find(params[:id])
-    @trip.routes.delete(@route)
     authorize @trip
+    @trip.routes.delete(@route)
     redirect_to trip_path(@trip)
   end
 
   private
 
-  def set_trip
-    @trip = current_user.trips.first
+  def set_route_by_id
+    @route = Route.find(params[:id])
+  end
+
+  def set_trip_by_id
+    @trip = Trip.find(params[:id])
+  end
+
+  def set_trip_by_next
+    @trip = Trip.where(state: "next").first
+  end
+
+  def trip_params
+    params.require(:trip).permit(:start_date, :end_date)
   end
 
   def optimization_way_by_distance

@@ -1,11 +1,10 @@
 const weatherElement = document.querySelector('#weather')
 
 
- const display = (name, temp, description, now, icon) => {
+ const display = (name, temp, description, icon) => {
   if (weatherElement) {
      weatherElement.innerHTML = `
        <h2>Weather in ${name}</h2>
-       <h4>${now}</h4>
        <p>${description}</p>
        <div class="weather">
          <img src='http://openweathermap.org/img/w/${icon}.png' alt='icon'>
@@ -25,14 +24,14 @@ const fetchWeatherByCoordinates = (url) => {
         console.log(data)
         const date = new Date();
         const options = {
-          weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric'
+          weekday: 'long', month: 'long', day: 'numeric'
         };
         const now = date.toLocaleDateString('EN-EN', options);
         const name = data.name;
         const temp = data.main.temp;
         const icon = data.weather[0].icon;
         const description = data.weather[0].description;
-        display(name, temp, description, now, icon);
+        display(name, temp, description, icon);
       });
   }
 };
