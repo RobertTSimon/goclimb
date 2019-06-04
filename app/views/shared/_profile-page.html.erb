@@ -16,6 +16,9 @@
         <%= link_to "Unfollow", delete_follower_path(@user), class: "btn btn-primary" %>
       <% end %>
 
+      <%= link_to "Invite to next trip", "/trips/#{current_user.trips.order(id: :asc).first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-primary" %>
+
+
       <h3>Following:</h1>
       <% if @user.following.present? %>
           <% @user.following.each do |follower_id| %>
@@ -30,9 +33,20 @@
             <a href="<%= profile_path(user_id) %>"><%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %></a>
           <% end %>
       <% end %>
-
-
     </div>
   </div>
+</div>
+
+<div class="container">
+  <% if current_user.id == @user.id %>
+    <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
+      <%= jut.trip.user.username %> invited you to this trip:
+      <%= simple_form_for [jut.trip, jut] do |f| %>
+        <%= f.submit "Accept", class:"btn btn-outline-success" %>
+        <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
+      <% end %>
+    <% end %>
+  <% end %>
+
 </div>
 
