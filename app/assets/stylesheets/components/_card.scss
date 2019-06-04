@@ -74,22 +74,34 @@
 
 .card-route-show{
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 600px;
   grid-gap: 8px;
-  position: relative;
   margin-bottom: 40px;
-  img {
-    width: 478px;
-    height: 606px;
+  height: 600px;
+  .image-show{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .button-green{
+      margin-top: -25px;
+    }
   }
-  .button-green{
-    position: absolute;
-    bottom: -24px;
-    left: 12%;
+  .subNavbar{
+    justify-content: space-between;
+  }
+  .subnavbar-show{
+    width: 100%
   }
   #description{
     margin-top: 24px;
     color: #6C6C6C;
+    max-height: 100%;
+    overflow-y: scroll;
     p {
       font-size: 18px;
     }
@@ -99,7 +111,56 @@
       margin-bottom: 20px;
     }
   }
+  #technical-details{
+    margin-top: 24px;
+    color: #6C6C6C;
+    max-height: 100%;
+    overflow-y: scroll;
+    p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    a{
+      color: #6C6C6C;
+    }
+    a:hover{
+      text-decoration: none;
+      color: rgba(108, 108, 108, 0.5)
+    }
+  }
+  #reviews{
+    max-height: 438px;
+    overflow-y: scroll;
+    word-break: break-all;
+  }
 }
+
+.card-review{
+  margin: 8px 0;
+  padding: 4px 30px;
+  display: flex;
+  align-items: center;
+  background-color: #E4E4E4;
+  overflow: scroll;
+  color: #6C6C6C;
+  position: relative;
+  p{
+    margin: 0;
+  }
+  img{
+    position: absolute;
+    left: 0;
+  }
+  a{
+    position: absolute;
+    right: 0;
+  }
+  a:hover {
+    color: red;
+  }
+}
+
+
 .avatar_photo_card{
   display: flex;
   margin-top: 8px;
@@ -114,3 +175,4 @@
 .card-route-index-info{
     padding: 15px;
 }
+
