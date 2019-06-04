@@ -11,6 +11,15 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   transition: 0.5s;
+      margin: 10px 0;
+
+  &.next-trip:first-child {
+    margin-top: 20px;
+  }
+
+  &.next-trip:last-child {
+    margin-bottom: 40px;
+  }
 }
 .card-route:hover{
   transform: scale(1.05);

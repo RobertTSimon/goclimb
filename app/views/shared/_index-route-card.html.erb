@@ -4,6 +4,7 @@
     <% @routes.take(9).each do |route|%>
       <%= link_to route_path(route) do %>
         <div class="card-route">
+        <%# raise %>
           <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil? %>
           <div class="card-route-info">
             <div>

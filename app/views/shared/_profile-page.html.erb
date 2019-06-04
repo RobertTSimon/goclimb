@@ -40,28 +40,27 @@
   </div>
   <div class="d-flex profile route-setter-page">
     <div class="cards-route" id="sport-cards-index">
-      <h2>Trips</h2>
       <% @next_trip.each do |trip|%>
-          <h4>Your Next Trip :</h4>
+          <h4>Your Next Trip</h4>
           <%= link_to trip_path(trip) do %>
-            <div class="card-route" id="card-route-setter-page">
+            <div class="card-route next-trip">
               <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
               <div class="card-route-info">
                 <div>
-                  <h2>Start date :<%= trip.start_date %> -- End date: <%= trip.end_date %></h2>
+                  <h2><%= trip.start_date.strftime("%B %e, %Y") %> - <%= trip.end_date.strftime("%B %e, %Y") %></h2>
                 </div>
               </div>
             </div>
           <% end %>
         <% end %>
-        <h4>Your Past Trips :</h4>
+        <h4>Past Trips</h4>
         <% @old_trips.each do |trip|%>
         <%= link_to trip_path(trip) do %>
-          <div class="card-route" id="card-route-setter-page">
+          <div class="card-route">
             <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
             <div class="card-route-info">
               <div>
-                <h2>Start date :<%= trip.start_date %> -- End date: <%= trip.end_date %></h2>
+                <h2><%= trip.start_date.strftime("%B %e, %Y") %> - <%= trip.end_date.strftime("%B %e, %Y") %></h2>
               </div>
             </div>
           </div>
