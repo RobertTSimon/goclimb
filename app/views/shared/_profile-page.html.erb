@@ -17,12 +17,13 @@
       <% end %>
 
 
+
+      <% if @user.id != current_user.id %>
+        <%= link_to "Invite to next trip", "/trips/#{current_user.trips.order(id: :asc).first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-primary" %>
+      <% end %>
+
+
       <h3>Following:</h3>
-
-      <%= link_to "Invite to next trip", "/trips/#{current_user.trips.order(id: :asc).first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-primary" %>
-
-
-      <h3>Following:</h1>
 
       <% if @user.following.present? %>
           <% @user.following.each do |follower_id| %>
@@ -40,6 +41,35 @@
   </div>
   <div class="d-flex profile route-setter-page">
     <div class="cards-route" id="sport-cards-index">
+
+        <h4>Your Invites</h4>
+
+      <div class="card-route" id="card-route-setter-page">
+        <% if current_user.id == @user.id %>
+          <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
+            <div style="position:relative;">
+
+              <%= link_to trip_path(jut.trip) do %>
+                <div class="card-route" id="card-route-setter-page">
+                  <%= image_tag jut.trip.routes.first.photos.first.photo_url unless jut.trip.routes.first.nil? %>
+                  <div class="card-route-info">
+                    <div>
+                      <h4>Your Next Trip with <%= jut.trip.user.username %>?</h4>
+
+                      <%= simple_form_for [jut.trip, jut] do |f| %>
+                        <%= f.submit "Accept", class:"btn btn-outline-success" %>
+                        <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
+                      <% end %>
+                      <h2><%= jut.trip.start_date.strftime("%B %e, %Y") %> - <%= jut.trip.end_date.strftime("%B %e, %Y") %></h2>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+
+      </div>
       <% @next_trip.each do |trip|%>
           <h4>Your Next Trip</h4>
           <%= link_to trip_path(trip) do %>
@@ -72,17 +102,5 @@
 
 
 
-<div class="container">
-  <% if current_user.id == @user.id %>
-    <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
-      <%= jut.trip.user.username %> invited you to this trip:
-      <%= simple_form_for [jut.trip, jut] do |f| %>
-        <%= f.submit "Accept", class:"btn btn-outline-success" %>
-        <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
-      <% end %>
-    <% end %>
-  <% end %>
-
-</div>
 
 
