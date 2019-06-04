@@ -19,7 +19,7 @@ class RoutesController < ApplicationController
     # sort_levels # sort the routes by level
     sort_by_level_for_user if user_signed_in?
 
-    mark_routes # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
+    mark_routes_index # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
     set_index_pages2 # pages for routes, end of index
   end
 
@@ -106,7 +106,7 @@ class RoutesController < ApplicationController
     params.require(:route).permit(:name, :longitude, :latitude, :description, :type, :style, :level, :rating, :page)
   end
 
-  def mark_routes
+  def mark_routes_index
     @routes = @routes.reject do |route| # Only keep localized routes
       route.latitude.nil? || route.longitude.nil?
     end
