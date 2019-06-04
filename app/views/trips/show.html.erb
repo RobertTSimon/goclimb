@@ -75,6 +75,14 @@
     </div>
 
   </div>
+</div>
 
+<div class="container">
+  <% @trip.joint_user_trips.each do |jut| %>
+    <div class="card">
+      <%= jut.status %>
+      <%=  jut.user.username %>
+    </div>
+  <% end %>
 </div>
 

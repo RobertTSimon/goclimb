@@ -1,7 +1,7 @@
 <%= simple_form_for([ @route, @review ], remote: true) do |form| %>
-  <%= form.input :title, as: :string %>
-  <%= form.input :description, as: :text %>
-  <%= form.input :rating, as: :integer %>
-  <%= form.select :alert, Route::ALERTS %>
-  <%= form.button :submit, class: "btn btn-success" %>
+  <div id="review-form">
+    <%= form.input :description, as: :text, label: false, placeholder: 'Write your own review' %>
+    <%= form.select :alert, Route::ALERTS %>
+    <%= form.submit "Add", class: "button-green" %>
+  </div>
 <% end %>

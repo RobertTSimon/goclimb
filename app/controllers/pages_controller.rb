@@ -11,7 +11,11 @@ class PagesController < ApplicationController
     @users = User.where.not(id: current_user.id)
     @user = set_user
     @routes = @user.routes
-    @trips = @user.trips
+    @trips = []
+    @trips << @user.trips
+    @trips << @user.joint_user_trips.map { |jut| jut.trip }
+    @trips = @trips.flatten
+    
     @load_trips = params[:trip] == "true"
     sort_trips
   end

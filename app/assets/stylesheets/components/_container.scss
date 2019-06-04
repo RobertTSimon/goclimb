@@ -41,12 +41,17 @@
   #current-page{
     background-color: rgba(138, 236, 135, 0.8);
   }
-}
-
   a{
     color: black;
     border-radius: 4px;
     text-align: center;
   }
+}
+#review-form{
+  .button-green{
+    padding: 1px 30px;
+    font-weight: normal;
+  }
+}
 
 
