@@ -50,11 +50,11 @@ class RoutesController < ApplicationController
 
   def show
     set_route
-    unless (@route.latitude.nil? || @route.longitude.nil?)
-      @markers = [{ lat: @route.latitude, lng: @route.longitude }]
-    end
+    @markers = [{ lat: @route.latitude, lng: @route.longitude }] unless @route.latitude.nil? || @route.longitude.nil?
     @review = Review.new
     authorize @route
+    create_references_levels
+    test_level_of_the_route_for_the_user if user_signed_in?
   end
 
   def destroy
@@ -85,7 +85,7 @@ class RoutesController < ApplicationController
   private
 
   def sort_by_level_for_user
-    @routes = @routes.sort_by { |route| (@references[route.level] - @references[current_user.current_level]).abs }
+    @routes = @routes.sort_by { |route| (@references[route.level] - @references[@user.current_level]).abs }
   end
 
   def sort_levels
@@ -119,6 +119,15 @@ class RoutesController < ApplicationController
       }
       @markers << marker
     end
+  end
+
+  def test_level_of_the_route_for_the_user
+    @relative_level = @references[@route.level] - @references[current_user.current_level]
+    @relative_statut = "easy for you, good warming" if @relative_level < -2
+    @relative_statut = "perfect for you" if @relative_level.nil?
+    @relative_statut = "too hard for now" if  @relative_level > -2
+    @relative_statut = "quiete eay, do it for traing" if  @relative_level <= 2 && @relative_level.positive?
+    @relative_statut = "a bit hard, good for progression" if @relative_level >= -2 && @relative_level.negative?
   end
 
   def set_index_pages1
