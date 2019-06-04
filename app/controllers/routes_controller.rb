@@ -15,13 +15,11 @@ class RoutesController < ApplicationController
     #   end
     # end
 
-    @routes = @routes.uniq # supress double routes
-
-    mark_routes # mark the routes with @markers
     create_references_levels # reference levels in @references and
     # sort_levels # sort the routes by level
     sort_by_level_for_user if user_signed_in?
 
+    mark_routes # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
     set_index_pages2 # pages for routes, end of index
   end
 
@@ -112,11 +110,14 @@ class RoutesController < ApplicationController
     @routes = @routes.reject do |route| # Only keep localized routes
       route.latitude.nil? || route.longitude.nil?
     end
-    @markers = @routes.map do |route_marked| # add the markers
-      {
+    @markers = []
+    @routes.each_with_index do |route_marked, i| # add the markers
+      marker = {
         lat: route_marked.latitude,
-        lng: route_marked.longitude
+        lng: route_marked.longitude,
+        infowindow: render_to_string(partial: "infowindow", locals: { route: route_marked, pag: (i.to_f / 5.0).floor })
       }
+      @markers << marker
     end
   end
 
