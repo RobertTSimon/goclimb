@@ -85,7 +85,7 @@ class RoutesController < ApplicationController
   private
 
   def sort_by_level_for_user
-    @routes = @routes.sort_by { |route| (@references[route.level] - @references[@user.current_level]).abs }
+    @routes = @routes.sort_by { |route| (@references[route.level] - @references[current_user.current_level]).abs }
   end
 
   def sort_levels
