@@ -90,19 +90,26 @@
   background-color: white;
   color: #6d767e;
 }
+
 .cards-route {
   flex-grow: 1;
+
+  a {
+    color: initial;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
+
 #sport-cards-index {
   padding: 24px;
   text-align: center;
   background-color: white;
   border-radius: 4px;
 }
-#card-route-setter-page {
-  margin-top: 10px;
 
-}
 #profile-routes-set {
   display: flex;
   flex-direction: column;
