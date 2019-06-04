@@ -15,8 +15,15 @@ class TripsController < ApplicationController
   # I refactorized this show method, sorry. Simon
   def show
     authorize @trip
+    @user = current_user
     @routes = @trip.routes
     add_markers_and_site_geoloc # add the markers and the @site_loc. Reject routes without localisation.
+    
+    @trips = []
+    @trips << @user.trips
+    @trips << @user.joint_user_trips.map { |jut| jut.trip }
+    @trips = @trips.flatten
+
   end
 
   def destroy
@@ -46,6 +53,10 @@ class TripsController < ApplicationController
 
   private
 
+  def set_trip_by_next
+    @trip = Trip.where(state: "next").first
+  end
+
   def set_route_by_id
     @route = Route.find(params[:id])
   end
@@ -54,9 +65,6 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
   end
 
-  def set_trip_by_next
-    @trip = Trip.where(state: "next").first
-  end
 
   def trip_params
     params.require(:trip).permit(:start_date, :end_date)

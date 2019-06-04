@@ -17,6 +17,7 @@ class PagesController < ApplicationController
     @trips = @trips.flatten
     
     @load_trips = params[:trip] == "true"
+    sort_trips
   end
 
   def add_follower
@@ -40,6 +41,12 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def sort_trips
+    @next_trip = Trip.where(state: "next").where(user: @user)
+    @old_trips = Trip.where(state: "archived").where(user: @user)
+    @trips = @next_trip + @old_trips
+  end
 
   def set_user
     @user = User.find(params[:id])

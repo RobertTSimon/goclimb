@@ -1,7 +1,8 @@
 <%= render partial: "shared/navBar" %>
 <div class="container">
+  
 
-  <h1>Your trip</h1>
+  <h1>Trip:</h1>
   <div class="index-container">
 
     <div>
@@ -10,10 +11,19 @@
       data-markers="<%= @markers.to_json %>"
       ></div>
       <div class="calendar" id="set-dates-for-trip">
-        <%= simple_form_for @trip do |f| %>
-          <%= f.input :start_date, { html5: true} %>
-          <%= f.input :end_date, { html5: true} %>
-          <%= f.submit "Confirm", class: "btn btn-outline-success btn-block" %>
+        <% if @user == @trip.user%>
+          <%= simple_form_for @trip do |f| %>
+            <%= f.input :start_date, { html5: true} %>
+            <%= f.input :end_date, { html5: true} %>
+            <%= f.submit "Confirm", class: "btn btn-outline-success btn-block"%>
+          <% end %>
+        <% elsif (@user != @trip.user && !JointUserTrip.where(trip: @trip).where(user: @user).empty?) %>
+          <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
+            <%= simple_form_for [jut.trip, jut] do |f| %>
+              <%= f.submit "Accept", class:"btn btn-outline-success" %>
+              <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
 
@@ -52,7 +62,7 @@
                   <% rt = RouteTrip.all.select do |route_trips|
                     route_trips.route == route && route_trips.trip == @trip
                   end %>
-                  <%= link_to "DELETE THIS ROUTE", route_trip_path(rt.first), method: :delete, class: "btn btn-danger" %>
+                  <%= link_to "DELETE THIS ROUTE", route_trip_path(rt.first), method: :delete, class: "btn btn-danger" if @user == @trip.user%>
                 </div>
               </div>
             <% end %>
@@ -70,7 +80,9 @@
         </div>
       <% end %>
       <br>
-      <%= link_to "/profile/#{current_user.id}?trip=true", class: "btn btn-success" do %><i class=“fa fa-sign-out”></i>Save
+        <% if @user == @trip.user %>
+          <%= link_to "/profile/#{current_user.id}?profile=true", class: "btn btn-success" do %><i class=“fa fa-sign-out”></i>Save
+        <% end %>
       <% end %>
     </div>
 
