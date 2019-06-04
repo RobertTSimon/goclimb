@@ -137,23 +137,24 @@
 
 .card-review{
   margin: 8px 0;
-  padding: 4px 30px;
+  padding: 4px 34px;
   display: flex;
   align-items: center;
-  background-color: #E4E4E4;
+  background-color: #EAEAEA;
   overflow: scroll;
   color: #6C6C6C;
   position: relative;
   p{
     margin: 0;
+    font-size: 12px;
   }
   img{
     position: absolute;
-    left: 0;
+    left: 3px;
   }
   a{
     position: absolute;
-    right: 0;
+    right: 15px;
   }
   a:hover {
     color: red;
