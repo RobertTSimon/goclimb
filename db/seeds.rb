@@ -122,7 +122,7 @@ sites_url = { "Rumney" => "https://www.mountainproject.com/data/get-routes-for-l
 if default == false
   puts "How many sites do you want between 1 and 24"
   number_sites = STDIN.gets.chomp.to_i
-  sites = sites[0..number_sites]
+  sites = sites[0...number_sites]
 
   puts "Creating #{sites.count} site(s) : #{sites}"
 end
@@ -150,7 +150,7 @@ sites.each do |site|
 
       next if route["imgMedium"].nil?
 
-    new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: route["stars"].to_f, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
+    new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: (route["stars"] - 4) *100, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
     Photo.create!(imageable: new_route, remote_photo_url: route["imgMedium"])
     # puts "--- #{new_route.name} created"
 
