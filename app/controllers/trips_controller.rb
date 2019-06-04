@@ -12,28 +12,11 @@ class TripsController < ApplicationController
     authorize @trip
   end
 
+  # I refactorized this show method, sorry. Simon
   def show
     authorize @trip
     @routes = @trip.routes
-    @routes_marked = @routes.reject do |route|
-      route.latitude.nil? || route.longitude.nil?
-    end
-
-    @markers = @routes_marked.map do |route_marked|
-      {
-        lat: route_marked.latitude,
-        lng: route_marked.longitude
-      }
-    end
-
-    site_lat = 0
-    site_long = 0
-    @routes_marked.each do |route_marked|
-      site_lat += route_marked.latitude
-      site_long += route_marked.longitude
-    end
-
-    @site_loc = { lat: site_lat / @routes_marked.count.to_f, long: site_long / @routes_marked.count.to_f }
+    add_markers_and_site_geoloc # add the markers and the @site_loc. Reject routes without localisation.
   end
 
   def destroy
@@ -52,13 +35,14 @@ class TripsController < ApplicationController
     redirect_to trip_path(@trip)
   end
 
-  def delete
-    raise
-    @route = Route.find(params[:id])
-    authorize @trip
-    @trip.routes.delete(@route)
-    redirect_to trip_path(@trip)
-  end
+  # We can probably delete this method now (I created it). Simon.
+  # def delete
+  #   raise
+  #   @route = Route.find(params[:id])
+  #   authorize @trip
+  #   @trip.routes.delete(@route)
+  #   redirect_to trip_path(@trip)
+  # end
 
   private
 
@@ -76,6 +60,29 @@ class TripsController < ApplicationController
 
   def trip_params
     params.require(:trip).permit(:start_date, :end_date)
+  end
+
+  def add_markers_and_site_geoloc
+    @routes = @routes.reject do |route|
+      route.latitude.nil? || route.longitude.nil?
+    end
+    @markers = []
+    @routes.each_with_index do |route_marked, i|
+      marker = {
+        lat: route_marked.latitude,
+        lng: route_marked.longitude,
+        index: i,
+        infowindow: render_to_string(partial: "infowindow", locals: { route: route_marked, index: i })
+      }
+      @markers << marker
+    end
+    site_lat = 0
+    site_long = 0
+    @routes.each do |route_marked|
+      site_lat += route_marked.latitude
+      site_long += route_marked.longitude
+    end
+    @site_loc = { lat: site_lat / @routes.count.to_f, long: site_long / @routes.count.to_f }
   end
 
   def optimization_way_by_distance

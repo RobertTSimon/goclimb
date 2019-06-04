@@ -10,7 +10,10 @@ Rails.application.routes.draw do
     resources :route_trips, only: [:create]
 	end
 
-  resources :trips, only: [:show, :update]
+  resources :trips, only: [:show, :update] do 
+    resources :joint_user_trips, only: [:new, :index, :create, :update, :edit, :destroy] 
+  end
+
   # get '/route_trips/:id/delete', to: "route_trips#destroy", as: :route_trip
 
 	# resources :trips, only: [:show] do
