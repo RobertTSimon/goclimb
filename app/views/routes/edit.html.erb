@@ -1,9 +1,10 @@
+<%= render partial: "shared/navBar" %>
 <div class="full-height">
   <div class="form-card">
-    <h1>Edit</h1>
-    <%= simple_form_for @route do |f| %>
-      <%= f.input :name, label: false, placeholder: 'Route Name' %>
-      <%= f.input :description, label: false, placeholder: 'Description' %>
+    <h1>Edit <%= @route.name %></h1>
+      <%= simple_form_for @route do |f| %>
+      <%= f.input :name, placeholder: 'Route Name' %>
+      <%= f.input :description, placeholder: 'Description' %>
       <%= f.fields_for :photos do |p| %>
         <div class="field">
           <%= p.label :photo %><br>
@@ -12,13 +13,15 @@
         </div>
       <% end %>
 
-      <%= f.input :latitude, label: false, placeholder: 'Latitude' %>
-      <%= f.input :longitude, label: false, placeholder: 'Longitude' %>
-      <%= f.input :type_of, label: false, placeholder: 'Type' %>
-      <%= f.input :style, label: false, placeholder: 'Style' %>
-      <%= f.input :level, label: false, placeholder: 'Level' %>
+      <%= f.input :latitude, placeholder: 'Latitude' %>
+      <%= f.input :longitude, placeholder: 'Longitude' %>
+      <%= f.input :type_of, placeholder: 'Type' %>
+      <%= f.input :style, placeholder: 'Style' %>
+      <%= f.input :level, placeholder: 'Level' %>
 
       <%= f.submit "Change", class: "btn btn-success" %>
     <% end %>
   </div>
 </div>
+
+
