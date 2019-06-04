@@ -1,5 +1,5 @@
 <div class="full-height page-profile" id="profile-page">
-  <div class="form-card" id="profile-avatar">
+  <div class="profile-card" id="profile-avatar">
     <h2>Profile</h2>
     <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
     <div class="user-info">
@@ -16,23 +16,50 @@
         <%= link_to "Unfollow", delete_follower_path(@user), class: "btn btn-primary" %>
       <% end %>
 
-      <h3>Following:</h1>
+      <h3>Following:</h3>
       <% if @user.following.present? %>
           <% @user.following.each do |follower_id| %>
             <a href="<%= profile_path(follower_id) %>"><%= image_tag User.find(follower_id).avatar_photo, width: 50, height: 50 %></a>
-
           <% end %>
       <% end %>
 
-      <h3>Followers:</h1>
+      <h3>Followers:</h3>
       <% if @user.followed_by.present? %>
           <% @user.followed_by.each do |user_id| %>
             <a href="<%= profile_path(user_id) %>"><%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %></a>
           <% end %>
       <% end %>
-
-
     </div>
   </div>
+  <div class="d-flex profile route-setter-page">
+    <div class="cards-route" id="sport-cards-index">
+      <h2>Trips</h2>
+      <% @next_trip.each do |trip|%>
+          <h4>Your Next Trip :</h4>
+          <%= link_to trip_path(trip) do %>
+            <div class="card-route" id="card-route-setter-page">
+              <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
+              <div class="card-route-info">
+                <div>
+                  <h2>Start date :<%= trip.start_date %> -- End date: <%= trip.end_date %></h2>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <h4>Your Past Trips :</h4>
+        <% @old_trips.each do |trip|%>
+        <%= link_to trip_path(trip) do %>
+          <div class="card-route" id="card-route-setter-page">
+            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
+            <div class="card-route-info">
+              <div>
+                <h2>Start date :<%= trip.start_date %> -- End date: <%= trip.end_date %></h2>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+   </div>
+ </div>
 </div>
-

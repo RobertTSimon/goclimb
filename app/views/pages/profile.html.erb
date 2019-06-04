@@ -15,9 +15,6 @@
         <li>
           <a class="subNavbarLink" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home2" aria-selected="false">Route Setter</a>
         </li>
-        <li>
-          <a class="subNavbarLink <%= 'active' if @load_trips %>" id="profile-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="home2" aria-selected="false">Your Trips</a>
-        </li>
 
       <% end %>
     </ul>
@@ -42,10 +39,6 @@
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
           <%= render partial: "shared/route-setter", object: @user %>
           <%# render partial: "shared/profile-page-cards", object: @route%>
-        </div>
-
-        <div class="tab-pane fade <%= 'show active' if @load_trips %>" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
-          <%= render partial: "shared/trip", object: @user %>
         </div>
 
       <% end %>

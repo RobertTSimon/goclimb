@@ -84,16 +84,11 @@
 .form-card-route-setter img {
   border-radius: 50%;
   justify-content: center;
-  margin-left: 20px;
 }
 .form-card-route-setter select{
   border: 1px solid #ced4da;
   background-color: white;
   color: #6d767e;
-}
-#profile-avatar{
-  position: sticky;
-  top: 0;
 }
 .cards-route {
   flex-grow: 1;
@@ -122,9 +117,6 @@
   display: grid;
   grid-template-columns: auto 50%;
 }
-
-
-
 .form-card2 {
   margin-top: 64px;
 }

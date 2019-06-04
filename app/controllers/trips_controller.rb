@@ -62,6 +62,10 @@ class TripsController < ApplicationController
 
   private
 
+  def set_trip_by_next
+    @trip = Trip.where(state: "next").first
+  end
+
   def set_route_by_id
     @route = Route.find(params[:id])
   end
@@ -70,9 +74,6 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
   end
 
-  def set_trip_by_next
-    @trip = Trip.where(state: "next").first
-  end
 
   def trip_params
     params.require(:trip).permit(:start_date, :end_date)
