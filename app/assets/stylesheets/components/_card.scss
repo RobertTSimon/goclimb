@@ -67,10 +67,13 @@
   display: flex;
   align-items: center;
   transition: 0.7s;
+  position: relative;
+  border-radius: 5px;
   img{
-    height: 100%;
+    height: 120px;
     width: 120px;
     object-fit: cover;
+
   }
   h2{
     font-size: 16px;
@@ -86,6 +89,11 @@
     margin-top: 8px;
     color: black;
   }
+  .photo-suggestions-div {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 }
 .card-route-index:hover{
   transform: scale(1.05);
@@ -97,6 +105,7 @@
   grid-gap: 8px;
   margin-bottom: 40px;
   height: 600px;
+
   .image-show{
     display: flex;
     flex-direction: column;
@@ -105,6 +114,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 5px;
     }
     .button-green{
       margin-top: -25px;
@@ -195,6 +205,18 @@
 }
 
 .card-route-index-info{
-    padding: 15px;
+    padding: 16px;
+    i {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      color: #C8C8C8;
+      transition: 0.3s;
+    }
+    i:hover {
+      color: #42433e;
+    }
 }
+
+
 
