@@ -11,6 +11,21 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   transition: 0.5s;
+      margin: 10px 0;
+
+  &.next-trip:first-child {
+    margin-top: 20px;
+  }
+
+  &.next-trip:last-child {
+    margin-bottom: 40px;
+  }
+
+  &.trip {
+    .card-route-info {
+      display: block;
+    }
+  }
 }
 .card-route:hover{
   transform: scale(1.05);
@@ -38,6 +53,10 @@
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
+
+  .edit_joint_user_trip {
+    margin-bottom: 15px;
+  }
 }
 
 .card-route-index{
@@ -142,12 +161,13 @@
     max-height: 438px;
     overflow-y: scroll;
     word-break: break-all;
+    overflow-x: hidden;
   }
 }
 
 .card-review{
   margin: 8px 0;
-  padding: 4px 34px;
+  padding: 7px 34px;
   display: flex;
   align-items: center;
   background-color: #EAEAEA;
@@ -157,6 +177,7 @@
   p{
     margin: 0;
     font-size: 12px;
+    width: 90%;
   }
   img{
     position: absolute;
@@ -184,7 +205,17 @@
 }
 
 .card-route-index-info{
-    padding: 15px;
+    padding: 16px;
+    i {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      color: #C8C8C8;
+      transition: 0.3s;
+    }
+    i:hover {
+      color: #42433e;
+    }
 }
 
 

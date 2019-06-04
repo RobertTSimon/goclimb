@@ -40,6 +40,8 @@
               <div id="distance"></div>
               <p>CITY: <%= @route.city.name unless @route.site_id.nil? %></p>
               <p>RATING: <%= (@route.rating / 100.0) + 4 unless @route.rating.nil? %></p>
+              <p> Advices from GoClimb : </p>
+              <p> <%= @relative_statut %></p>
             </div>
             <div id="reviews" class="tab-pane fade show" role="tabpanel">
               <% @route.reviews.each do |review| %>
@@ -53,7 +55,6 @@
     </div>
   </div>
 
-
   <br>
 
   <div class="map-card"
@@ -64,7 +65,4 @@
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
   ></div>
 </div>
-
-
-
 
