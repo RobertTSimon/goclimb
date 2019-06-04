@@ -18,8 +18,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(params_review)
-    @user = current_user
-    @review.user = @user
+    @review.user = current_user
     @review.route = @route
 
     authorize @review
@@ -41,12 +40,15 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
 
     @review.destroy
-    redirect_to route_path(@review.route)
     authorize @review
+    respond_to do |format|
+      format.html { redirect_to route_path(@review.route) }
+      format.js # <-- idem
+    end
   end
 
   def mark_as_fixed
-    @review = Review.find(params[:id]) 
+    @review = Review.find(params[:id])
     @review.fixed = true
     @review.save!
 

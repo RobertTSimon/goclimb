@@ -1,7 +1,41 @@
-<%= simple_form_for([ @route, @review ], remote: true) do |form| %>
+<%= simple_form_for([ route, review ], remote: true) do |form| %>
   <div id="review-form">
     <%= form.input :description, as: :text, label: false, placeholder: 'Write your own review' %>
-    <%= form.select :alert, Route::ALERTS %>
-    <%= form.submit "Add", class: "button-green" %>
+    <div class="form-end-line">
+      <%= form.select :alert, Route::ALERTS %>
+      <div class="rating">
+        <label>
+          <input type="radio" name="review[rating]" value="1" />
+          <span class="icon">★</span>
+        </label>
+        <label>
+          <input type="radio" name="review[rating]" value="2" />
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+        </label>
+        <label>
+          <input type="radio" name="review[rating]" value="3" />
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+        </label>
+        <label>
+          <input type="radio" name="review[rating]" value="4" />
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+        </label>
+        <label>
+          <input type="radio" name="review[rating]" value="5" />
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+        </label>
+      </div>
+      <%= form.submit "Add", class: "button-green" %>
+    </div>
   </div>
 <% end %>
