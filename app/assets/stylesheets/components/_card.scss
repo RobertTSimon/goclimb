@@ -132,12 +132,13 @@
     max-height: 438px;
     overflow-y: scroll;
     word-break: break-all;
+    overflow-x: hidden;
   }
 }
 
 .card-review{
   margin: 8px 0;
-  padding: 4px 34px;
+  padding: 7px 34px;
   display: flex;
   align-items: center;
   background-color: #EAEAEA;
