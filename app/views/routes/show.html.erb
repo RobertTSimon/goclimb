@@ -39,8 +39,7 @@
               <p>SET BY: <a href="<%= profile_path(@route.user) %>"><%= image_tag @route.user.avatar_photo, id: "avatar-photo-show-route" %> <%= @route.user.username %></a></p>
               <div id="distance"></div>
               <p>CITY: <%= @route.city.name unless @route.site_id.nil? %></p>
-<!--               <p>RATING: <%= (@route.rating / 100.0) + 4 unless @route.rating.nil? %></p>
- -->
+              <p>RATING: <%= (@route.rating / 100.0) + 4 unless @route.rating.nil? %></p>
             </div>
             <div id="reviews" class="tab-pane fade show" role="tabpanel">
               <% @route.reviews.each do |review| %>
