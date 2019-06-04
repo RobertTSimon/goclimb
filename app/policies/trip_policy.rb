@@ -14,7 +14,7 @@ class TripPolicy < ApplicationPolicy
   end
 
   def show?
-    user_is_owner?
+    user_is_owner? || is_invited?
   end
 
   def update?
@@ -32,6 +32,10 @@ class TripPolicy < ApplicationPolicy
   end
 
   private
+
+  def is_invited?
+    !JointUserTrip.where(trip: record).where(user: user).empty?
+  end
 
   def user_is_owner?
     record.user == user

@@ -42,38 +42,37 @@
   <div class="d-flex profile route-setter-page">
     <div class="cards-route" id="sport-cards-index">
 
-        <h4>Your Invites</h4>
+      <h4>Your Invites</h4>
 
-      <div class="card-route" id="card-route-setter-page">
-        <% if current_user.id == @user.id %>
-          <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
-            <div style="position:relative;">
+      <% if current_user.id == @user.id %>
+        <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
+          <div style="position:relative;">
 
-              <%= link_to trip_path(jut.trip) do %>
-                <div class="card-route" id="card-route-setter-page">
-                  <%= image_tag jut.trip.routes.first.photos.first.photo_url unless jut.trip.routes.first.nil? %>
-                  <div class="card-route-info">
-                    <div>
-                      <h4>Your Next Trip with <%= jut.trip.user.username %>?</h4>
+            <%= link_to trip_path(jut.trip) do %>
+              <div class="card-route trip" id="card-route-setter-page">
+                <%= @site_loc %>
+                <%= image_tag jut.trip.routes.first.photos.first.photo_url unless jut.trip.routes.first.nil? %>
+                <div class="card-route-info">
+                  <div>
+                    <h4><%= jut.trip.user.username %> has invited you!</h4>
 
-                      <%= simple_form_for [jut.trip, jut] do |f| %>
-                        <%= f.submit "Accept", class:"btn btn-outline-success" %>
-                        <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
-                      <% end %>
-                      <h2><%= jut.trip.start_date.strftime("%B %e, %Y") %> - <%= jut.trip.end_date.strftime("%B %e, %Y") %></h2>
-                    </div>
+                    <%= simple_form_for [jut.trip, jut] do |f| %>
+                      <%= f.submit "Accept", class:"btn btn-outline-success" %>
+                      <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
+                    <% end %>
+                    <h2><%= jut.trip.start_date.strftime("%B %e, %Y") %> - <%= jut.trip.end_date.strftime("%B %e, %Y") %></h2>
                   </div>
                 </div>
-              <% end %>
-            </div>
-          <% end %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
+      <% end %>
 
-      </div>
       <% @next_trip.each do |trip|%>
           <h4>Your Next Trip</h4>
           <%= link_to trip_path(trip) do %>
-            <div class="card-route next-trip">
+            <div class="card-route trip next-trip">
               <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
               <div class="card-route-info">
                 <div>
@@ -86,7 +85,7 @@
         <h4>Past Trips</h4>
         <% @old_trips.each do |trip|%>
         <%= link_to trip_path(trip) do %>
-          <div class="card-route">
+          <div class="card-route trip">
             <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
             <div class="card-route-info">
               <div>

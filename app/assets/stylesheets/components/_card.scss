@@ -20,6 +20,12 @@
   &.next-trip:last-child {
     margin-bottom: 40px;
   }
+
+  &.trip {
+    .card-route-info {
+      display: block;
+    }
+  }
 }
 .card-route:hover{
   transform: scale(1.05);
@@ -47,6 +53,10 @@
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
+
+  .edit_joint_user_trip {
+    margin-bottom: 15px;
+  }
 }
 
 .card-route-index{
