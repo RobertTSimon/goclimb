@@ -1,6 +1,7 @@
 #index-container{
   max-width: 1000px;
   margin: 24px auto;
+  min-height: calc(100vh - 56px - 80px - 48px);
   @media (min-width: 576px) {
     margin: 24px;
   }
