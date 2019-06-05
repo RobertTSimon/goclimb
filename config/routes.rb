@@ -41,5 +41,6 @@ Rails.application.routes.draw do
   get 'add_follower/:id', to: 'pages#add_follower', as: :add_follower
   get 'delete_follower/:id', to: 'pages#delete_follower', as: :delete_follower
 
+  
 end
 

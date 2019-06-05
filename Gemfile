@@ -21,6 +21,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'rest-client'
+gem 'exception_handler', '~> 0.8.0.0'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
