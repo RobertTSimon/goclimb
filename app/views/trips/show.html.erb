@@ -87,7 +87,8 @@
       <% end %>
       <br>
         <% if @user == @trip.user %>
-          <%= link_to "/profile/#{current_user.id}?profile=true", class: "btn btn-success" do %><i class=“fa fa-sign-out”></i>Save
+          <button class="button-green" id="validate-trip">Save</button>
+          <%= link_to "/profile/#{current_user.id}?profile=true", class: "hidden", id: "save-link" do %>
         <% end %>
       <% end %>
 
