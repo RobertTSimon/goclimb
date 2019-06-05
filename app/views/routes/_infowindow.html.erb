@@ -1,3 +1,5 @@
-<%= route.name %>
-<br>
-(page: <%= pag%>)
+<%= link_to route_path(route) do %>
+  <%= route.name %>
+  <br>
+  (page: <%= pag%>)
+<% end %>

@@ -16,7 +16,6 @@ class RoutesController < ApplicationController
     # end
 
     create_references_levels # reference levels in @references and
-    # sort_levels # sort the routes by level
     sort_by_level_for_user if user_signed_in?
 
     mark_routes_index # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
@@ -33,13 +32,11 @@ class RoutesController < ApplicationController
     @route = Route.new(route_params)
     @route.user = current_user
     authorize @route
-
     if params[:photos]
       params[:photos]['photo'].each do |image_url|
         @route.photos.new(photo: image_url, imageable_id: @route.id, imageable_type: "route")
       end
     end
-
     if @route.save
       redirect_to route_path(@route)
     else
@@ -123,11 +120,11 @@ class RoutesController < ApplicationController
 
   def test_level_of_the_route_for_the_user
     @relative_level = @references[@route.level] - @references[current_user.current_level]
-    @relative_statut = "easy for you, good warm-up" if @relative_level < -2
+    @relative_statut = "easy for you, good warm-up" if @relative_level < -3
     @relative_statut = "perfect for you" if @relative_level == 0
-    @relative_statut = "too hard for now" if  @relative_level > 2
-    @relative_statut = "quite easy, do it for training" if  @relative_level <= 2 && @relative_level.positive?
-    @relative_statut = "a bit hard, good for progression" if @relative_level >= -2 && @relative_level.negative?
+    @relative_statut = "too hard for now" if  @relative_level > 3
+    @relative_statut = "quite easy, do it for training" if @relative_level <= 3 && @relative_level.positive?
+    @relative_statut = "a bit hard, good for progression" if @relative_level >= -3 && @relative_level.negative?
   end
 
   def set_index_pages1
