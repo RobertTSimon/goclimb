@@ -1,11 +1,11 @@
 const weatherElement = document.querySelector('#weather')
-
+import capitalize from 'capitalize'
 
  const display = (name, temp, description, icon) => {
   if (weatherElement) {
      weatherElement.innerHTML = `
        <div class="weather">
-         <h6><img src='http://openweathermap.org/img/w/${icon}.png' alt='icon'> ${description} , ${temp} ºC</h6>
+         <h6><img src='http://openweathermap.org/img/w/${icon}.png' alt='icon'> ${capitalize.words(description)} , ${temp} ºC</h6>
        </div> 
      `;
     }
