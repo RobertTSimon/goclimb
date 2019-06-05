@@ -1,7 +1,7 @@
 <%= render partial: "shared/navBar" %>
 <div class="container">
 
-  <div class="index-container">
+  <div class="index-container-grid">
 
     <div>
       <div class="card-trip-container">
@@ -119,5 +119,8 @@
           <%= link_to "/profile/#{current_user.id}?profile=true", class: "hidden", id: "save-link" do %>
         <% end %>
       <% end %>
+    </div>
+  </div>
+</div>
 
 
