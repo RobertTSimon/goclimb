@@ -40,4 +40,5 @@ class ApplicationController < ActionController::Base
       @references[level] = index
     end
   end
+
 end
