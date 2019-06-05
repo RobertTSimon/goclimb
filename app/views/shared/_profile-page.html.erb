@@ -20,20 +20,24 @@
         <%= link_to "Invite to next trip", "/trips/#{current_user.trips.order(id: :asc).first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-primary" %>
       <% end %>
 
-      <h3>Following:</h3>
+      <div class="followers">
+      <h6>Following:</h3>
+        <% if @user.following.present? %>
+            <% @user.following.each do |follower_id| %>
+              <a href="<%= profile_path(follower_id) %>"><%= image_tag User.find(follower_id).avatar_photo, width: 50, height: 50 %></a>
+            <% end %>
+        <% end %>
+      </div>
 
-      <% if @user.following.present? %>
-          <% @user.following.each do |follower_id| %>
-            <a href="<%= profile_path(follower_id) %>"><%= image_tag User.find(follower_id).avatar_photo, width: 50, height: 50 %></a>
-          <% end %>
-      <% end %>
+      <div class="followers">
+        <h6>Followers:</h3>
+        <% if @user.followed_by.present? %>
+            <% @user.followed_by.each do |user_id| %>
+              <a href="<%= profile_path(user_id) %>"><%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %></a>
+            <% end %>
+        <% end %>  
+      </div>
 
-      <h3>Followers:</h3>
-      <% if @user.followed_by.present? %>
-          <% @user.followed_by.each do |user_id| %>
-            <a href="<%= profile_path(user_id) %>"><%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %></a>
-          <% end %>
-      <% end %>
     </div>
   </div>
   <div class="d-flex profile route-setter-page">
