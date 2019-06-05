@@ -108,11 +108,11 @@
   grid-template-columns: 2fr 600px;
   grid-gap: 8px;
   margin-bottom: 40px;
-  height: 600px;
   @media (min-width: 576px) {
     grid-template-columns: 1fr;
   }
   @media (min-width: 992px) {
+    height: 600px;
     grid-template-columns: 2fr 600px;
   }
 
@@ -228,5 +228,12 @@
     }
 }
 
+
+.center-tech-detail {
+  padding-left: 10px;
+  padding-right: 10px;
+
+
+}
 
 
