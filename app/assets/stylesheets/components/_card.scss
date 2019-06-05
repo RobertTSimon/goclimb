@@ -115,11 +115,11 @@
   grid-template-columns: 2fr 600px;
   grid-gap: 8px;
   margin-bottom: 40px;
-  height: 600px;
   @media (min-width: 576px) {
     grid-template-columns: 1fr;
   }
   @media (min-width: 992px) {
+    height: 600px;
     grid-template-columns: 2fr 600px;
   }
 
@@ -191,7 +191,7 @@
   img {
     width: 70px;
     height: 70px;
-    margin-right: 16px;
+    margin-bottom: 10px;
     margin-right: 16px;
     box-shadow: 1px 1px 10px #00000014;
   }
@@ -226,7 +226,7 @@
   }
 
   .review-description {
-    margin-top: 20px;
+    margin-top: 10px;
 
     p {
       color: #7b7b7b;
@@ -234,32 +234,6 @@
       margin: 0px;
     }
   }
-
-
-  // margin: 8px 0;
-  // padding: 7px 34px;
-  // display: flex;
-  // align-items: center;
-  // background-color: #EAEAEA;
-  // overflow: scroll;
-  // color: #6C6C6C;
-  // position: relative;
-  // p{
-  //   margin: 0;
-  //   font-size: 12px;
-  //   width: 90%;
-  // }
-  // img{
-  //   position: absolute;
-  //   left: 3px;
-  // }
-  // a{
-  //   position: absolute;
-  //   right: 15px;
-  // }
-  // a:hover {
-  //   color: red;
-  // }
 }
 
 #photo-card-route-setter {
@@ -299,7 +273,15 @@
   color: $medium-gray;
 }
 
+
+.center-tech-detail {
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
 .route-info {
   display: flex;
   justify-content: space-between;
 }
+
