@@ -25,7 +25,7 @@
           <%= link_to profile_path(current_user.id), class: 'dropdown-item' do %>
               <i class=“fa fa-sign-out”></i>Your profile
               <% end %>
-              <%= link_to trip_path(current_user.trips.first), class: 'dropdown-item' do %>
+              <%= link_to trip_path(current_user.next_trip), class: 'dropdown-item' do %>
               <i class=“fa fa-sign-out”></i>Your next trip
               <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>

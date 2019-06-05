@@ -4,10 +4,13 @@
   <div class="index-container-grid">
 
     <div>
+
       <div class="card-trip-container">
 
       <h3>Your Next Trip</h3>
-      <h2><%= @trip.routes.first.city.name.delete("*") %>, <%= @trip.routes.first.city.state_province.name.delete("*") %></h2> 
+      <% if @trip.any_routes? %>
+        <h2><%= @trip.routes.first.city.name.delete("*") %>, <%= @trip.routes.first.city.state_province.name.delete("*") %></h2>
+      <% end %>
       <p id="dates-trip-info"><i class="fas fa-edit" data-toggle="modal" data-target="#exampleModal"></i> <%= @trip.start_date.strftime("%B %e") %> to <%= @trip.end_date.strftime("%B %e") %></p>
 
 
@@ -59,8 +62,10 @@
 
         </div>
 
-        <%= link_to "https://www.airbnb.ca/s/all?query=#{@trip.routes.first.city.name}",class: "airbnb-image", target: :_blank  do%>
-          <i class="fas fa-campground"></i>
+        <% if @trip.any_routes? %>
+          <%= link_to "https://www.airbnb.ca/s/all?query=#{@trip.routes.first.city.name}",class: "airbnb-image", target: :_blank  do%>
+            <i class="fas fa-campground"></i>
+          <% end %>
         <% end %>
 
       </div>
@@ -116,7 +121,7 @@
       <br>
         <% if @user == @trip.user %>
           <button class="button-green" id="validate-trip">Save</button>
-          <%= link_to "/profile/#{current_user.id}?profile=true", class: "hidden", id: "save-link" do %>
+          <%= link_to trip_path(@trip, { trip: { state: "done" }}), method: :patch, class: "hidden", id: "save-link" do %>
         <% end %>
       <% end %>
     </div>
