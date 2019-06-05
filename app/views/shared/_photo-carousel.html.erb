@@ -1,0 +1,20 @@
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+          <% @routes.each_with_index do |route, index| %>
+            <div class="carousel-item <%= "active" if index.zero? %>" style="background-image: url('<%= route.photos.first.photo_url %>');">
+            </div>
+          <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
