@@ -1,6 +1,7 @@
 #index-container{
   max-width: 1000px;
   margin: 24px auto;
+  min-height: calc(100vh - 56px - 80px - 48px);
   @media (min-width: 576px) {
     margin: 24px;
   }
@@ -36,18 +37,6 @@
 .index-container-grid a:hover{
   text-decoration: none;
 }
-.full-height {
-  display: flex;
-  align-items: center;
-}
-
-.calendar {
-  margin-top: 10px;
-}
-#trip-confirmation {
-  border-radius: 10px;
-}
-
 .pagination-container{
   max-width: 300px;
   padding: 24px;
@@ -69,12 +58,31 @@
     text-align: center;
   }
 }
+
+#show-container{
+ margin: 0 auto;
+}
+
 #review-form{
   margin-top: 24px;
   .button-green{
     padding: 1px 30px;
     font-weight: normal;
   }
+}
+
+
+
+.full-height {
+  display: flex;
+  align-items: center;
+}
+
+.calendar {
+  margin-top: 10px;
+}
+#trip-confirmation {
+  border-radius: 10px;
 }
 
 
