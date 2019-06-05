@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :received_reviews, through: :routes, source: :reviews
 
   has_many :photos, as: :imageable
-  has_many :trips
+  has_many :trips, dependent: :destroy
   has_many :joint_user_trips
 
   def next_trip
