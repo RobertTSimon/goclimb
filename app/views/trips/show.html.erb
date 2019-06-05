@@ -4,44 +4,70 @@
   <div class="index-container">
 
     <div>
-      <h3>YOUR NEXT TRIP</h3>
-      <h2><%= @trip.routes.first.city.name.delete("*") %>, <%= @trip.routes.first.city.state_province.name.delete("*") %> </h2>
-      <div id="dates-trip-info">
-        <h6><%= @trip.start_date.strftime(" %B %e") %> to <%= @trip.end_date.strftime("%B %e") %></h6>
-        <i class="fas fa-edit" data-toggle="modal" data-target="#exampleModal"></i>
-      </div>
-          <h6>Average_level of your trip :  <%= @average_level %></h6>
-      <div id="trip-info">
+      <div class="card-trip-container">
 
-        <div id="weather"
-        class="container"
-        data-markers="<%= @markers.to_json %>"
-        ></div>
-        <% unless @trip.routes.first.nil? %>
-          <div class="dates">
-              <% if @user == @trip.user%>
+      <h3>Your Next Trip</h3>
+      <h2><%= @trip.routes.first.city.name.delete("*") %>, <%= @trip.routes.first.city.state_province.name.delete("*") %></h2> 
+      <p id="dates-trip-info"><i class="fas fa-edit" data-toggle="modal" data-target="#exampleModal"></i> <%= @trip.start_date.strftime("%B %e") %> to <%= @trip.end_date.strftime("%B %e") %></p>
+
+
+
+        <div id="trip-info">
+
+          <div id="weather"
+          data-markers="<%= @markers.to_json %>"
+          ></div>
+          <% unless @trip.routes.first.nil? %>
+            <div class="dates">
+
+            </div>
+            <div id="distance_site" data-site="<%= @site_loc.to_json %>">
+            </div>
+          <% end %>
+        </div>
+        <div class="calendar" id="set-dates-for-trip">
+          <% if @user == @trip.user%>
+          <%= render 'shared/trip-modal-calendar' %>
+          <% elsif (@user != @trip.user && !JointUserTrip.where(trip: @trip).where(user: @user).empty?) %>
+            <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
+              <%= simple_form_for [jut.trip, jut] do |f| %>
+                <%= f.submit "Accept", class:"btn btn-outline-success" %>
+                <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
               <% end %>
-          </div>
-          <div id="distance_site" data-site="<%= @site_loc.to_json %>">
-          </div>
-          <div class="airbnb-image">
-            <h6 class="m-0">
-            <%= link_to image_tag("https://res.cloudinary.com/dts9y3u9o/image/upload/v1559324820/airbnb_horizontal_lockup_white_print_dpe4zi.jpg"), "https://www.airbnb.ca/s/all?query=#{@trip.routes.first.city.name}", target: :_blank %></h6>
-          </div>
-        <% end %>
-      </div>
-      <div class="calendar" id="set-dates-for-trip">
-        <% if @user == @trip.user%>
-        <%= render 'shared/trip-modal-calendar' %>
-        <% elsif (@user != @trip.user && !JointUserTrip.where(trip: @trip).where(user: @user).empty?) %>
-          <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
-            <%= simple_form_for [jut.trip, jut] do |f| %>
-              <%= f.submit "Accept", class:"btn btn-outline-success" %>
-              <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
             <% end %>
           <% end %>
+        </div>
+
+        <div class="container" id="trip-friends">
+          <h6>Invited</h6>
+
+          <div class="trip-friends-card">
+            <% @trip.joint_user_trips.each do |jut| %>
+              <% if jut.status == "accepted" %>
+              <div class="trip-friend">
+                <%= link_to profile_path(jut.user) do  %>
+                  <%= cl_image_tag jut.user.avatar_photo, class: "avatar" %>
+                <% end %>
+                <div class="trip-friend-info">
+                  <p class="friend-name"><%= jut.user.username %></p>
+                  <p class="invite-status"><%= jut.status %></p>
+                </div>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+
+        </div>
+
+        <%= link_to "https://www.airbnb.ca/s/all?query=#{@trip.routes.first.city.name}",class: "airbnb-image", target: :_blank  do%>
+          <i class="fas fa-campground"></i>
         <% end %>
+
       </div>
+      <!-- end of .card-trip-container -->
+
+
+
 
 
 
@@ -51,8 +77,8 @@
         style="width: 100%;
         height: 50vh;"
         data-markers="<%= @markers.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-      ></div>
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
     </div>
 
     <div class="tab-content">
@@ -94,35 +120,4 @@
         <% end %>
       <% end %>
 
-      <h2>Images</h2>
-
-      <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
-        <div class="carousel-inner">
-          <% @routes.each_with_index do |route, index| %>
-            <div class="carousel-item <%= "active" if index.zero? %>" style="background-image: url('<%= route.photos.first.photo_url %>');">
-            </div>
-          <% end %>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="container">
-  <% @trip.joint_user_trips.each do |jut| %>
-    <div class="card">
-      <%= jut.status %>
-      <%=  jut.user.username %>
-    </div>
-  <% end %>
-</div>
 
