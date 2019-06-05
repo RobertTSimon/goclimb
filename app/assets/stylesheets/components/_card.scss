@@ -102,12 +102,19 @@
   transform: scale(1.05);
 }
 
+
 .card-route-show{
   display: grid;
   grid-template-columns: 2fr 600px;
   grid-gap: 8px;
   margin-bottom: 40px;
   height: 600px;
+  @media (min-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 992px) {
+    grid-template-columns: 2fr 600px;
+  }
 
   .image-show{
     display: flex;
