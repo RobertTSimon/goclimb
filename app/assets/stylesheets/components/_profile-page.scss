@@ -11,6 +11,7 @@
 }
 .form-card h2 {
   text-align: center;
+  color: $medium-gray;
 }
 .form-card .btn{
   border-radius: 20px;
@@ -48,9 +49,15 @@
   padding: 24px;
   border-radius: 5px;
   align-self: start;
-   img {
-    border-radius: 50%;
-   }
+  img {
+   border-radius: 50%;
+  }
+  h3{
+    color: $medium-gray;
+  }
+  p {
+   color: $medium-gray;
+  }
 }
 .add-route {
   .button-green {
@@ -63,6 +70,19 @@
   display: grid;
   grid-template-columns: auto 50%;
 }
+
+.followers {
+  display: flex;
+
+  h6 {
+    color: $medium-gray;
+    margin-top: 18px;
+  }
+  img {
+    margin: 0px 12px;
+  }
+}
+
 // .profile-form {
 //   width: 100%;
 // }
