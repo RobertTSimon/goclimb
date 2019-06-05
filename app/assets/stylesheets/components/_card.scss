@@ -1,17 +1,29 @@
 .cards{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 24px;
+}
+@media (min-width: 750px){
+  .cards{
+    grid-template-columns: 1fr 1fr ;
+  }
+}
+
+@media (min-width: 992px){
+  .cards{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 .cards a:hover{
   text-decoration: none;
 }
 .card-route {
+  height: 100%;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   transition: 0.5s;
-      margin: 10px 0;
+  //margin: 10px 0;
 
   &.next-trip:first-child {
     margin-top: 20px;
@@ -35,12 +47,7 @@
   width: 100%;
   object-fit: cover;
 }
-.card-route h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-  color: black;
-}
+
 .card-route p {
   font-size: 12px;
   opacity: .7;
@@ -51,7 +58,6 @@
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   position: relative;
 
   .edit_joint_user_trip {
@@ -73,7 +79,7 @@
     object-fit: cover;
   }
   h2{
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     margin: 0;
     color: black;

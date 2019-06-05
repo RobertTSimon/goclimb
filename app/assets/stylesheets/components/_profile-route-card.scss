@@ -21,6 +21,12 @@
   font-weight: bold;
   margin: 0;
   color: black;
+  @media (min-width: 576px){
+    font-size: 26px;
+  }
+  @media (min-width: 992px){
+    font-size: 16px;
+  }
 }
 .card-route p {
   font-size: 12px;
