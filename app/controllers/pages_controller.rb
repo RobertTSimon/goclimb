@@ -15,7 +15,7 @@ class PagesController < ApplicationController
     @trips << @user.trips
     @trips << @user.joint_user_trips.map { |jut| jut.trip }
     @trips = @trips.flatten
-    
+
     @load_trips = params[:trip] == "true"
     sort_trips
   end
@@ -44,7 +44,7 @@ class PagesController < ApplicationController
 
   def sort_trips
     @next_trip = Trip.where(state: "next").where(user: @user)
-    @old_trips = Trip.where(state: "archived").where(user: @user)
+    @old_trips = Trip.where(state: "done").where(user: @user)
     @trips = @next_trip + @old_trips
   end
 
