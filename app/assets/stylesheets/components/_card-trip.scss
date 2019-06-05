@@ -1,0 +1,111 @@
+.card-trip-container {
+	background: white;
+	padding: 16px;
+	position: relative;
+	margin-bottom: 32px;
+
+
+	h3 {
+		color: $light-gray;
+		font-size: 1.25rem;
+		text-transform: uppercase;
+		font-weight: 300;
+	}
+
+	h2 {
+		font-size: 1.75rem;
+	}
+}
+
+
+#trip-info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	h6 {
+		margin: 0;
+		color: $light-gray;
+	}
+}
+
+#dates-trip-info {
+	color: $light-gray;
+}
+
+#weather-temp {
+  margin-left: 54px;
+  margin-top: -24px;	
+}
+
+
+.trip-friends-card {
+
+	.trip-friend{
+		display: flex;
+		align-items: center;
+		margin-bottom: 8px;
+	}
+
+	.friend-name {
+		color: $medium-gray;
+	}
+
+	.invite-status {
+		text-transform: uppercase;
+		font-size: 10px;
+		color: $light-gray;
+	}
+
+	.trip-friend-info {
+		padding-left: 16px;
+	}
+
+	.trip-friend p {
+		margin-bottom: 0
+	}
+
+}
+
+
+#distance_site {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 0 1 28%;
+
+	i {
+		font-size: 32px;
+		margin-right: 8px;
+	}
+// margin-top: 24px;
+// h6 {
+// 	margin-top: 12px;
+// 	margin-left: 12px;
+//   }
+}
+
+.airbnb-image {
+	position: absolute;
+	bottom: -16px;
+	right: 16px;
+	background: $dark-gray;
+	border-radius: 50%;
+	width: 48px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	i {
+		font-size: 26px;
+		color: white;
+	}
+}
+
+// .m-0 {
+// 	img {
+//   margin-top: 18px;
+// 	margin-left: 54px;	
+// 	}
+// }

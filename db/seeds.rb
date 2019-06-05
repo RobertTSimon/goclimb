@@ -138,10 +138,10 @@ sites.each do |site|
     	state = StateProvince.create!(name: route["location"][0])
     end
 
-    route["location"][1].delete("*")
     city = City.find_by(name: route["location"][1])
     if city.nil?
     	city = City.create!(name: route["location"][1], state_province: state)
+      city.name.delete!("*")
     end
 
     site = Site.find_by(name: route["location"][2])
@@ -190,8 +190,9 @@ styles = [
 "crimpy", "pumpy", "bouldery", "overhang", "sloppy", "technical", "balanced"
 ]
 
-
-
+City.all.each do |city|
+  city.name.delete!("*")
+end
 
 Route.all.each do |route|
   route.description = descriptions[rand(0..descriptions.length)]

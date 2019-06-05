@@ -20,5 +20,9 @@ class Trip < ApplicationRecord
       )
     end
   end
+
+  def any_routes?
+    routes.any?
+  end
 end
 

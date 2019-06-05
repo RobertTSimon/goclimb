@@ -4,8 +4,8 @@
       <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil? %>
       <div class="card-route-index-info">
         <h2><%= route.name %></h2>
-        <p>Site :   <%= route.city&.name %></p>
-        <p>Level :    <%= route.level %></p>
+        <p>Site : <%= route.city&.name.delete("*") %></p>
+        <p>Level : <%= route.level %></p>
         <%= link_to profile_path(route.user) do %>
           <div class="photo-suggestions-div">
             <p><%= image_tag route.user.avatar_photo, id: "avatar-photo-suggestions" %> <%= route.user.username %></p>
@@ -19,21 +19,21 @@
 <div class="pagination-container">
   <div class = "pagination">
     <% if @current_page == 0 && @list_routes.count < 5%>
-      <a data-remote="true" id="current-page" href="<%= @current_page_link %>"><%= @current_page %></a>
+      <a data-remote="true" id="current-page" href="<%= @current_page_link %>"><%= @current_page + 1 %></a>
     <% elsif @current_page == 0%>
       <a data-remote="true" href="<% @current_page_link %>"> < </a>
-      <a data-remote="true" href="<%= @current_page_link %>" id="current-page"><%= @current_page %></a>
+      <a data-remote="true" href="<%= @current_page_link %>" id="current-page"><%= @current_page + 1 %></a>
       <% unless @the_end %>
-        <a data-remote="true" href="<%= @next_page %>"><%= @current_page + 1 %></a>
-        <a data-remote="true" href="<%= @current_page_plus2 %>"><%= @current_page + 2 %></a>
+        <a data-remote="true" href="<%= @next_page %>"><%= @current_page + 2 %></a>
+        <a data-remote="true" href="<%= @current_page_plus2 %>"><%= @current_page + 3 %></a>
         <a data-remote="true" href="<%= @next_page %>"> > </a>
       <% end %>
     <% else %>
       <a data-remote="true" href="<%= @previous_page  %>"> < </a>
-        <a data-remote="true" href="<%= @previous_page  %>"><%= @current_page - 1 %></a>
-        <a data-remote="true" href="<%= @current_page_link %>" id="current-page"><%= @current_page %></a>
+        <a data-remote="true" href="<%= @previous_page  %>"><%= @current_page  %></a>
+        <a data-remote="true" href="<%= @current_page_link %>" id="current-page"><%= @current_page + 1 %></a>
       <% unless @the_end %>
-        <a data-remote="true" href="<%= @next_page %>"><%= @current_page + 1 %></a>
+        <a data-remote="true" href="<%= @next_page %>"><%= @current_page + 2 %></a>
         <a data-remote="true" href="<%= @next_page %>"> > </a>
       <% end %>
     <% end %>

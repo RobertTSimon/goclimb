@@ -1,8 +1,11 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  height: 56px;
 }
-
+.logo-navbar{
+  height: 40px;
+}
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
