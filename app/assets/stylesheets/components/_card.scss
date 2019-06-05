@@ -5,6 +5,7 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 4px;
+  margin-bottom: 16px;
   h2 {
     font-size: 16px;
     font-weight: bold;
@@ -44,11 +45,13 @@
   display: flex;
   justify-content: space-between;
   position: relative;
+  color: $medium-gray;
 
   .edit_joint_user_trip {
     margin-bottom: 15px;
   }
 }
+
 
 .form-card-route-setter {
   color: $medium-gray;
@@ -206,14 +209,21 @@
   }
 }
 
+#photo-card-route-setter {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
 
 .avatar_photo_card{
   display: flex;
   margin-top: 8px;
+
   p {
   margin-left: 8px;
   }
 }
+
 .map-card{
   border-radius: 5px;
 }
@@ -236,3 +246,7 @@
   color: $medium-gray;
 }
 
+.route-info {
+  display: flex;
+  justify-content: space-between;
+}
