@@ -3,23 +3,20 @@ class RoutesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+    create_references_levels # reference levels in @references and
     @routes = policy_scope(Route).order(created_at: :desc) # policy for routes
     set_index_pages1 # pages for routes cf private, begin of index
 
-    @routes = @routes.uniq # supress double routes <!> can cause a bug with the seeds
-
+    sort_by_level_for_user if user_signed_in?
     # Only suggest the same site of the routes of your next trip
     # if user_signed_in? && !current_user.trips.first.routes.first.nil?
     #   @routes = @routes.select do |route|
     #     route.site == current_user.trips.first.routes.first.site
     #   end
     # end
-
-    create_references_levels # reference levels in @references and
-    sort_by_level_for_user if user_signed_in?
+    set_index_pages2 # pages for routes, end of index
 
     mark_routes_index # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
-    set_index_pages2 # pages for routes, end of index
   end
 
   def new
