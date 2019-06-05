@@ -4,55 +4,73 @@
   <div class="index-container">
 
     <div>
-      <h3>Your Next Trip :</h3>
-      <h2><%= @trip.routes.first.city.name %>, <%= @trip.routes.first.city.state_province.name %> </h2> 
-      <div id="dates-trip-info">
-        <h6><%= @trip.start_date.strftime(" %B %e") %> to <%= @trip.end_date.strftime("%B %e") %></h6>
-        <i class="fas fa-edit" data-toggle="modal" data-target="#exampleModal"></i>
-      </div>
-      <div id="trip-info">
-        
-        <div id="weather"
-        class="container"
-        data-markers="<%= @markers.to_json %>"
-        ></div>
-        <% unless @trip.routes.first.nil? %>
-          <div class="dates">
-              <% if @user == @trip.user%>
-              <% end %>
-          </div>
-          <div id="distance_site" data-site="<%= @site_loc.to_json %>">
-          </div>
-          <div class="airbnb-image">
-            <h6 class="m-0">
-            <%= link_to image_tag("https://res.cloudinary.com/dts9y3u9o/image/upload/v1559324820/airbnb_horizontal_lockup_white_print_dpe4zi.jpg"), "https://www.airbnb.ca/s/all?query=#{@trip.routes.first.city.name}", target: :_blank %></h6>
-          </div>
-        <% end %>
-      </div>
-      <div class="calendar" id="set-dates-for-trip">
-        <% if @user == @trip.user%>
-        <%= render 'shared/trip-modal-calendar' %>
-        <% elsif (@user != @trip.user && !JointUserTrip.where(trip: @trip).where(user: @user).empty?) %>
-          <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
-            <%= simple_form_for [jut.trip, jut] do |f| %>
-              <%= f.submit "Accept", class:"btn btn-outline-success" %>
-              <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
+      <div class="card-trip-container">
 
-      <div class="container">
-        <h6> Climbers in this trip: <%= cl_image_tag current_user.avatar_photo, class: "avatar" %>
-          <% @trip.joint_user_trips.each do |jut| %>
-            <% if jut.status == "accepted" %>
-              <%= link_to profile_path(jut.user) do  %>
-                <%= cl_image_tag jut.user.avatar_photo, class: "avatar" %>
+      <h3>Your Next Trip</h3>
+      <h2><%= @trip.routes.first.city.name.delete("*") %>, <%= @trip.routes.first.city.state_province.name.delete("*") %></h2> 
+      <p id="dates-trip-info"><i class="fas fa-edit" data-toggle="modal" data-target="#exampleModal"></i> <%= @trip.start_date.strftime("%B %e") %> to <%= @trip.end_date.strftime("%B %e") %></p>
+
+
+
+        <div id="trip-info">
+
+          <div id="weather"
+          data-markers="<%= @markers.to_json %>"
+          ></div>
+          <% unless @trip.routes.first.nil? %>
+            <div class="dates">
+
+            </div>
+            <div id="distance_site" data-site="<%= @site_loc.to_json %>">
+            </div>
+          <% end %>
+        </div>
+        <div class="calendar" id="set-dates-for-trip">
+          <% if @user == @trip.user%>
+          <%= render 'shared/trip-modal-calendar' %>
+          <% elsif (@user != @trip.user && !JointUserTrip.where(trip: @trip).where(user: @user).empty?) %>
+            <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
+              <%= simple_form_for [jut.trip, jut] do |f| %>
+                <%= f.submit "Accept", class:"btn btn-outline-success" %>
+                <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
               <% end %>
             <% end %>
           <% end %>
-        </h6>
+        </div>
+
+        <div class="container" id="trip-friends">
+          <h6>Invited</h6>
+
+          <div class="trip-friends-card">
+            <% @trip.joint_user_trips.each do |jut| %>
+              <% if jut.status == "accepted" %>
+              <div class="trip-friend">
+                <%= link_to profile_path(jut.user) do  %>
+                  <%= cl_image_tag jut.user.avatar_photo, class: "avatar" %>
+                <% end %>
+                <div class="trip-friend-info">
+                  <p class="friend-name"><%= jut.user.username %></p>
+                  <p class="invite-status"><%= jut.status %></p>
+                </div>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+
+        </div>
+
+        <%= link_to "https://www.airbnb.ca/s/all?query=#{@trip.routes.first.city.name}",class: "airbnb-image", target: :_blank  do%>
+          <i class="fas fa-campground"></i>
+        <% end %>
+
       </div>
+      <!-- end of .card-trip-container -->
+
+
+
+
+
+
 
       <div class='map-card'
         id="map"
@@ -73,7 +91,7 @@
                 <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil? %>
                 <div class="card-route-index-info">
                   <h2><%= route.name %></h2>
-                  <p><%= route.city.name %></p>
+                  <p><%= route.city.name.delete("*") %></p>
                   <% rt = RouteTrip.all.select do |route_trips|
                     route_trips.route == route && route_trips.trip == @trip
                   end %>
