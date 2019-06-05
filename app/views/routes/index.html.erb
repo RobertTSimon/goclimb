@@ -1,9 +1,10 @@
 <%= render partial: "shared/navBar" %>
-<div class="container">
+
+<div id="index-container">
 
   <h1>Suggestions</h1>
 
-  <div class="index-container">
+  <div class="index-container-grid">
     <div class="tab-content">
       <div id="ajax-cards–container">
         <%= render "cards-container" %>
@@ -13,12 +14,11 @@
     <div>
       <div class='map-card'
         id="map"
-        style="width: 100%;
-        height: 100vh;"
         data-markers="<%= @markers.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
       ></div>
     </div>
   </div>
 </div>
+
 

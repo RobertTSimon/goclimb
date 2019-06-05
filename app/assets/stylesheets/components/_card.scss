@@ -49,6 +49,8 @@
     margin-bottom: 15px;
   }
 }
+
+
 .card-route-index{
   margin-top: 8px;
   overflow: hidden;
@@ -63,13 +65,18 @@
     height: 120px;
     width: 120px;
     object-fit: cover;
-
   }
   h2{
     font-size: 18px;
     font-weight: bold;
     margin: 0;
     color: black;
+    @media (min-width: 576px){
+      font-size: 24px;
+    }
+    @media (min-width: 992px){
+      font-size: 18px;
+    }
   }
   p{
     font-size: 12px;
@@ -78,6 +85,12 @@
     margin-bottom: 0;
     margin-top: 8px;
     color: black;
+    @media (min-width: 576px){
+      font-size: 18px;
+    }
+    @media (min-width: 992px){
+      font-size: 12px;
+    }
   }
   .photo-suggestions-div {
     position: absolute;
