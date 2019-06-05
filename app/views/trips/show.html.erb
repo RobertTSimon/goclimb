@@ -4,19 +4,34 @@
   <div class="index-container">
 
     <div>
-      <div id="weather"
-      class="container"
-      data-markers="<%= @markers.to_json %>"
-      ></div>
+      <h3>YOUR NEXT TRIP</h3>
+      <h2><%= @trip.routes.first.city.name %>, <%= @trip.routes.first.city.state_province.name %> </h2> 
+      <div id="dates-trip-info">
+        <h6><%= @trip.start_date.strftime(" %B %e") %> to <%= @trip.end_date.strftime("%B %e") %></h6>
+        <i class="fas fa-edit" data-toggle="modal" data-target="#exampleModal"></i>
+      </div>
+      <div id="trip-info">
+        
+        <div id="weather"
+        class="container"
+        data-markers="<%= @markers.to_json %>"
+        ></div>
+        <% unless @trip.routes.first.nil? %>
+          <div class="dates">
+              <% if @user == @trip.user%>
+              <% end %>
+          </div>
+          <div id="distance_site" data-site="<%= @site_loc.to_json %>">
+          </div>
+          <div class="airbnb-image">
+            <h6 class="m-0">
+            <%= link_to image_tag("https://res.cloudinary.com/dts9y3u9o/image/upload/v1559324820/airbnb_horizontal_lockup_white_print_dpe4zi.jpg"), "https://www.airbnb.ca/s/all?query=#{@trip.routes.first.city.name}", target: :_blank %></h6>
+          </div>
+        <% end %>
+      </div>
       <div class="calendar" id="set-dates-for-trip">
         <% if @user == @trip.user%>
-          <%= simple_form_for @trip do |f| %>
-            <div class="form-row">
-              <%= f.input :start_date, html5: true, wrapper_html: { class: "col" }, label: false %>
-              <%= f.input :end_date, html5: true, wrapper_html: { class: "col" }, label: false %>
-            </div>
-            <%= f.submit "Confirm", class: "btn btn-outline-success btn-block"%>
-          <% end %>
+        <%= render 'shared/trip-modal-calendar' %>
         <% elsif (@user != @trip.user && !JointUserTrip.where(trip: @trip).where(user: @user).empty?) %>
           <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
             <%= simple_form_for [jut.trip, jut] do |f| %>
@@ -27,16 +42,7 @@
         <% end %>
       </div>
 
-      <div id="distance_site"
-      data-site="<%= @site_loc.to_json %>"
-      ></div>
 
-      <% unless @trip.routes.first.nil? %>
-      <div class="airbnb-image">
-        <p class="m-0"><strong>Accomodation near your trip:</strong></p>
-        <%= link_to image_tag("https://res.cloudinary.com/dts9y3u9o/image/upload/v1559324820/airbnb_horizontal_lockup_white_print_dpe4zi.jpg"), "https://www.airbnb.ca/s/all?query=#{@trip.routes.first.city.name}", target: :_blank %>
-      </div>
-      <% end %>
 
 
       <div class='map-card'

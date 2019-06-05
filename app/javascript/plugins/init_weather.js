@@ -4,12 +4,9 @@ const weatherElement = document.querySelector('#weather')
  const display = (name, temp, description, icon) => {
   if (weatherElement) {
      weatherElement.innerHTML = `
-       <h2>Weather in ${name}</h2>
-       <p>${description}</p>
        <div class="weather">
-         <img src='http://openweathermap.org/img/w/${icon}.png' alt='icon'>
-         <h5>${temp}ºC</h5>
-       </div>
+         <h6><img src='http://openweathermap.org/img/w/${icon}.png' alt='icon'> ${description} , ${temp} ºC</h6>
+       </div> 
      `;
     }
   };
