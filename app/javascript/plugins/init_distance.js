@@ -1,6 +1,7 @@
 const mapElement = document.getElementById('map');
 const routeElement = document.getElementById('distance');
 
+console.log('ok')
 
 const calculDistance = (marker, geoloc) => {
     const lat1 = geoloc.latitude*2*3.14/360
@@ -15,7 +16,7 @@ const calculDistance = (marker, geoloc) => {
      routeElement.innerHTML = routeElement.innerHTML + `<p>DISTANCE FROM YOU: ${Math.trunc(distance)} km</p>`;
     }
   };
-
+ 
 
 const initDistance = () => {
   if (routeElement) {

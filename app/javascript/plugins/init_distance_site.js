@@ -1,4 +1,4 @@
-const siteElement = document.getElementById('distance_site');
+const siteElement = document.querySelector('#distance_site');
 
 
 const calculDistanceSite = (marker, geoloc) => {
@@ -11,14 +11,16 @@ const calculDistanceSite = (marker, geoloc) => {
 
  const displaySite = (distance) => {
   if (siteElement) {
-    console.log(Math.trunc(distance))
-     siteElement.innerHTML = `<p>DISTANCE FROM YOU: ${Math.trunc(distance)} km</p>`;
+     siteElement.innerHTML = `<i class="fas fa-car"></i> <h6>${Math.trunc(distance)} km</h6>`;
+
+   a
     }
   };
 const initDistanceSite = () => {
   if (siteElement) {
     const site_loc = JSON.parse(siteElement.dataset.site);
     navigator.geolocation.getCurrentPosition((data) => {
+      console.log("siteElement")
       const geoloc = data.coords
       const distance = calculDistanceSite(site_loc, geoloc)
       displaySite(distance)
