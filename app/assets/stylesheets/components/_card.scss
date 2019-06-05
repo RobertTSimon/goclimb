@@ -22,6 +22,12 @@
     opacity: .7;
     margin: 0;
     color: black;
+    @media (min-width: 576px){
+      font-size: 20px;
+    }
+    @media (min-width: 992px){
+      font-size: 12px;
+    }
   }
   img{
     height: 200px;
@@ -33,12 +39,6 @@
   transform: scale(1.05);
 }
 
-.card-route p {
-  font-size: 12px;
-  opacity: .7;
-  margin: 0;
-  color: black;
-}
 .card-route .card-route-info {
   padding: 16px;
   display: flex;
