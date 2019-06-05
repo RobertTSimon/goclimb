@@ -6,9 +6,11 @@
         <h2><%= route.name %></h2>
         <p>Site :   <%= route.city&.name %></p>
         <p>Level :    <%= route.level %></p>
-        <div class="photo-suggestions-div">
-          <p><a><%= image_tag route.user.avatar_photo, id: "avatar-photo-suggestions" %> <%= route.user.username %></a></p>  
-        </div>
+        <%= link_to profile_path(route.user) do %>
+          <div class="photo-suggestions-div">
+            <p><%= image_tag route.user.avatar_photo, id: "avatar-photo-suggestions" %> <%= route.user.username %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>

@@ -18,12 +18,10 @@ class TripsController < ApplicationController
     @user = current_user
     @routes = @trip.routes
     add_markers_and_site_geoloc # add the markers and the @site_loc. Reject routes without localisation.
-    
     @trips = []
     @trips << @user.trips
     @trips << @user.joint_user_trips.map { |jut| jut.trip }
     @trips = @trips.flatten
-
   end
 
   def destroy
