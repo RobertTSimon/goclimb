@@ -1,6 +1,6 @@
-<div class="container" id= "home-container">
+<div id= "home-container">
   <h1>Around you</h1>
-  <div class="cards">
+  <div class="cards-home">
     <% @routes.take(9).each do |route|%>
       <%= link_to route_path(route) do %>
         <div class="card-route">
@@ -9,10 +9,11 @@
           <div class="card-route-info">
             <div>
               <h2><%= route.name %></h2>
-              <p><%= route.site.name %></p>
-              <p><%= route.city.name %></p>
-              <p><%= route.city.state_province.name %></p>
+              <p><%= route.site.name %> - <%= route.city.name %></p>
+              <!-- <p><%= route.city.name %></p> -->
+              <p><em><%= route.city.state_province.name %></em></p>
             </div>
+            <%= image_tag route.user.avatar_photo, id: "avatar-photo-show-route" %>
           </div>
         </div>
       <% end %>

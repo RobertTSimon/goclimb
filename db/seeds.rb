@@ -134,25 +134,25 @@ sites.each do |site|
   puts "creating routes for #{site}..."
   routes["routes"].each do |route|
     state = StateProvince.find_by(name: route["location"][0])
-    	if state.nil?
-    		state = StateProvince.create!(name: route["location"][0])
-    	end
+    if state.nil?
+    	state = StateProvince.create!(name: route["location"][0])
+    end
 
+    route["location"][1].delete("*")
     city = City.find_by(name: route["location"][1])
-    	if city.nil?
-    		city = City.create!(name: route["location"][1], state_province: state)
-    	end
+    if city.nil?
+    	city = City.create!(name: route["location"][1], state_province: state)
+    end
 
     site = Site.find_by(name: route["location"][2])
-      if site.nil?
-      	site = Site.create!(name: route["location"][2], city: city)
-      end
+    if site.nil?
+    	site = Site.create!(name: route["location"][2], city: city)
+    end
 
-      next if route["imgMedium"].nil?
+    next if route["imgMedium"].nil?
 
     new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: (route["stars"] - 4) *100, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
     Photo.create!(imageable: new_route, remote_photo_url: route["imgMedium"])
-    # puts "--- #{new_route.name} created"
 
     new_route.save!
   end
@@ -238,6 +238,11 @@ User.all.each do |user|
     user.save!
   end
 end
+
+Route.all.each do |route|
+  route.destroy! if Route.all.where(name: route.name).count >= 2
+end
+
 
 Route.clear_index!
 Route.reindex!

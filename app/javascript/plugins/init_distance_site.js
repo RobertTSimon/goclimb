@@ -12,6 +12,8 @@ const calculDistanceSite = (marker, geoloc) => {
  const displaySite = (distance) => {
   if (siteElement) {
      siteElement.innerHTML = `<i class="fas fa-car"></i> <h6>${Math.trunc(distance)} km</h6>`;
+
+   a
     }
   };
 const initDistanceSite = () => {
