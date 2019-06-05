@@ -53,7 +53,7 @@
 .form-card-route-setter {
   color: $medium-gray;
 }
-  
+
 
 .card-route-index{
   margin-top: 8px;
@@ -180,30 +180,83 @@
 }
 
 .card-review{
-  margin: 8px 0;
-  padding: 7px 34px;
-  display: flex;
-  align-items: center;
-  background-color: #EAEAEA;
-  overflow: scroll;
-  color: #6C6C6C;
-  position: relative;
-  p{
-    margin: 0;
-    font-size: 12px;
-    width: 90%;
+  background-color: white;
+  padding: 20px;
+  margin: 10px 0px;
+  border-radius: 4px;
+
+  img {
+    width: 70px;
+    height: 70px;
+    margin-right: 16px;
+    margin-right: 16px;
+    box-shadow: 1px 1px 10px #00000014;
   }
-  img{
-    position: absolute;
-    left: 3px;
+
+  .review-user {
+    p:first-child {
+      margin-bottom: 0;
+    }
+
+    p:last-child {
+      color: rgb(148, 148, 148);
+    }
   }
-  a{
-    position: absolute;
-    right: 15px;
+
+  .dropdown {
+    i {
+      padding: 10px;
+      color: #a5a5a5;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    a {
+      color: #404040;
+      padding: 0 20px;
+    }
   }
-  a:hover {
-    color: red;
+
+  span {
+    font-size: 24px;
+    color: #ffeb41;
   }
+
+  .review-description {
+    margin-top: 20px;
+
+    p {
+      color: #7b7b7b;
+      font-weight: 300;
+      margin: 0px;
+    }
+  }
+
+
+  // margin: 8px 0;
+  // padding: 7px 34px;
+  // display: flex;
+  // align-items: center;
+  // background-color: #EAEAEA;
+  // overflow: scroll;
+  // color: #6C6C6C;
+  // position: relative;
+  // p{
+  //   margin: 0;
+  //   font-size: 12px;
+  //   width: 90%;
+  // }
+  // img{
+  //   position: absolute;
+  //   left: 3px;
+  // }
+  // a{
+  //   position: absolute;
+  //   right: 15px;
+  // }
+  // a:hover {
+  //   color: red;
+  // }
 }
 
 
