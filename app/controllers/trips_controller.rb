@@ -22,6 +22,7 @@ class TripsController < ApplicationController
     @trips << @user.trips
     @trips << @user.joint_user_trips.map { |jut| jut.trip }
     @trips = @trips.flatten
+    set_average_level
   end
 
   def destroy
@@ -89,6 +90,15 @@ class TripsController < ApplicationController
       site_long += route_marked.longitude
     end
     @site_loc = { lat: site_lat / @routes.count.to_f, long: site_long / @routes.count.to_f }
+  end
+
+  def set_average_level
+    sum = 0
+    create_references_levels
+    @routes.each do |route|
+      sum += @references[route.level]
+    end
+    @average_level = @references.key(sum / @routes.count)
   end
 
   def optimization_way_by_distance
