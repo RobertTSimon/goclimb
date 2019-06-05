@@ -102,6 +102,7 @@
   transform: scale(1.05);
 }
 
+
 .card-route-show{
   display: grid;
   grid-template-columns: 2fr 600px;
@@ -114,7 +115,6 @@
   @media (min-width: 992px) {
     grid-template-columns: 2fr 600px;
   }
-
 
   .image-show{
     display: flex;
