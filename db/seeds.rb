@@ -211,7 +211,7 @@ User.all.each do |user|
     RouteTrip.create!(route: route, trip: trip)
   end
   rand(1..2).times do
-    trip = Trip.create!(user: user, start_date: t, end_date: t, state: 'archived')
+    trip = Trip.create!(user: user, start_date: t, end_date: t, state: 'done')
     Route.all.sample(rand(1..5)).each do |route|
       RouteTrip.create!(route: route, trip: trip)
     end

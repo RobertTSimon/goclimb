@@ -1,6 +1,6 @@
 class JointUserTripsController < ApplicationController
   before_action :set_trip, only: [:show, :destroy, :create]
-  
+
   def index
     @joint_user_trip = policy_scope(Joint_user_trip).order(created_at: :desc)
     @trips = trip.all

@@ -1,7 +1,5 @@
 class TripsController < ApplicationController
   before_action :set_trip_by_id, only: [:show, :edit, :destroy]
-  before_action :set_route_by_id, only: [:update]
-  before_action :set_trip_by_next, only: [:update]
 
   def new
     @trip = Trip.new
@@ -9,6 +7,7 @@ class TripsController < ApplicationController
   end
 
   def create
+    @trip = Trip.new(trip_params)
     authorize @trip
   end
 
@@ -18,11 +17,11 @@ class TripsController < ApplicationController
     @user = current_user
     @routes = @trip.routes
     add_markers_and_site_geoloc # add the markers and the @site_loc. Reject routes without localisation.
+
     @trips = []
     @trips << @user.trips
     @trips << @user.joint_user_trips.map { |jut| jut.trip }
     @trips = @trips.flatten
-    set_average_level
   end
 
   def destroy
@@ -66,7 +65,7 @@ class TripsController < ApplicationController
 
 
   def trip_params
-    params.require(:trip).permit(:start_date, :end_date)
+    params.require(:trip).permit(:start_date, :end_date, :state)
   end
 
   def add_markers_and_site_geoloc
@@ -90,15 +89,6 @@ class TripsController < ApplicationController
       site_long += route_marked.longitude
     end
     @site_loc = { lat: site_lat / @routes.count.to_f, long: site_long / @routes.count.to_f }
-  end
-
-  def set_average_level
-    sum = 0
-    create_references_levels
-    @routes.each do |route|
-      sum += @references[route.level]
-    end
-    @average_level = @references.key(sum / @routes.count)
   end
 
   def optimization_way_by_distance
