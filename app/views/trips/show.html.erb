@@ -5,13 +5,13 @@
 
     <div>
       <h3>YOUR NEXT TRIP</h3>
-      <h2><%= @trip.routes.first.city.name %>, <%= @trip.routes.first.city.state_province.name %> </h2> 
+      <h2><%= @trip.routes.first.city.name.delete("*") %>, <%= @trip.routes.first.city.state_province.name.delete("*") %> </h2>
       <div id="dates-trip-info">
         <h6><%= @trip.start_date.strftime(" %B %e") %> to <%= @trip.end_date.strftime("%B %e") %></h6>
         <i class="fas fa-edit" data-toggle="modal" data-target="#exampleModal"></i>
       </div>
       <div id="trip-info">
-        
+
         <div id="weather"
         class="container"
         data-markers="<%= @markers.to_json %>"
@@ -64,7 +64,7 @@
                 <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil? %>
                 <div class="card-route-index-info">
                   <h2><%= route.name %></h2>
-                  <p><%= route.city.name %></p>
+                  <p><%= route.city.name.delete("*") %></p>
                   <% rt = RouteTrip.all.select do |route_trips|
                     route_trips.route == route && route_trips.trip == @trip
                   end %>
