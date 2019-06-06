@@ -76,7 +76,7 @@
       <% end %>
 
       <% @next_trip.each do |trip|%>
-          <h4>Your Next Trips</h4>
+          <h4>Next Trips</h4>
           <%= link_to trip_path(trip) do %>
             <div class="card-route trip next-trip">
               <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
