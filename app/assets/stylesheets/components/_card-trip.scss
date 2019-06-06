@@ -33,8 +33,17 @@
   .weather{
     h6{
       font-size: 28px;
+      font-weight: normal;
       @media (min-width: 992px) {
         font-size: 16px;
+      }
+      img{
+        height: 90px;
+        width: 90px;
+        @media (min-width: 992px) {
+          height: 50px;
+          width: 50px;
+        }
       }
     }
   }
@@ -72,12 +81,19 @@
 
 	.friend-name {
 		color: $medium-gray;
+    font-size: 24px;
+    @media (min-width: 992px) {
+      font-size: 17px;
+    }
 	}
 
 	.invite-status {
 		text-transform: uppercase;
-		font-size: 10px;
+		font-size: 20px;
 		color: $light-gray;
+    @media (min-width: 992px) {
+      font-size: 10px;
+    }
 	}
 
 	.trip-friend-info {
