@@ -62,9 +62,15 @@
   }
 }
 
-#show-container{
- margin: 0 auto;
+.route-info-show-container{
+  display: block;
+
+   @media (min-width: 992px) {
+    height: 600px;
+
+   }
 }
+
 
 #review-form{
   margin-top: 24px;
@@ -87,5 +93,4 @@
 #trip-confirmation {
   border-radius: 10px;
 }
-
 

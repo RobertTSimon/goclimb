@@ -75,8 +75,11 @@
             <div class="card-route trip next-trip">
               <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
               <div class="card-route-info">
-                <div>
-                  <h2><%= trip.start_date.strftime("%B %e, %Y") %> - <%= trip.end_date.strftime("%B %e, %Y") %></h2>
+                <div class="route-info">
+                  <h6> <%= trip.routes.first.city.name.delete("*") %>, <%= trip.routes.first.city.state_province.name.delete("*") %>
+                  </h6>
+                  <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
+                  </p>
                 </div>
               </div>
             </div>
@@ -88,8 +91,11 @@
           <div class="card-route trip">
             <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
             <div class="card-route-info">
-              <div>
-                <h2><%= trip.start_date.strftime("%B %e, %Y") %> - <%= trip.end_date.strftime("%B %e, %Y") %></h2>
+              <div class="route-info">
+                <h6> <%= trip.routes.first.city.name.delete("*") %>, <%= trip.routes.first.city.state_province.name.delete("*") %>
+                </h6>
+                <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
+                </p>
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@
       <%= image_tag @route.photos.first.photo_url unless @route.photos.first.nil? || @route.photos.first.photo_url.nil? %>
       <%= link_to "ADD TO YOUR NEXT TRIP", route_route_trips_path(@route), method: :post, class: "button-green" %>
     </div>
-    <div class="route-info">
+    <div class="route-info-show-container">
       <h1><%= @route.name %></h1>
       <h3><%= @route.city.state_province.name unless @route.site_id.nil? %></h3>
       <div class="container">
@@ -54,10 +54,8 @@
       </div>
     </div>
   </div>
-
   <br>
-
-  <div class="map-card"
+  <div class="map-card-show"
     id="map"
     style="width: 100%;
     height: 600px;"

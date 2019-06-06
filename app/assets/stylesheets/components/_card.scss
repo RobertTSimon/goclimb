@@ -5,6 +5,7 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 4px;
+  margin-bottom: 16px;
   h2 {
     font-size: 16px;
     font-weight: bold;
@@ -44,16 +45,18 @@
   display: flex;
   justify-content: space-between;
   position: relative;
+  color: $medium-gray;
 
   .edit_joint_user_trip {
     margin-bottom: 15px;
   }
 }
 
+
 .form-card-route-setter {
   color: $medium-gray;
 }
-  
+
 
 .card-route-index{
   margin-top: 8px;
@@ -112,11 +115,11 @@
   grid-template-columns: 2fr 600px;
   grid-gap: 8px;
   margin-bottom: 40px;
-  height: 600px;
   @media (min-width: 576px) {
     grid-template-columns: 1fr;
   }
   @media (min-width: 992px) {
+    height: 600px;
     grid-template-columns: 2fr 600px;
   }
 
@@ -180,40 +183,74 @@
 }
 
 .card-review{
-  margin: 8px 0;
-  padding: 7px 34px;
-  display: flex;
-  align-items: center;
-  background-color: #EAEAEA;
-  overflow: scroll;
-  color: #6C6C6C;
-  position: relative;
-  p{
-    margin: 0;
-    font-size: 12px;
-    width: 90%;
+  background-color: white;
+  padding: 20px;
+  margin: 10px 0px;
+  border-radius: 4px;
+
+  img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+    margin-right: 16px;
+    box-shadow: 1px 1px 10px #00000014;
   }
-  img{
-    position: absolute;
-    left: 3px;
+
+  .review-user {
+    p:first-child {
+      margin-bottom: 0;
+    }
+
+    p:last-child {
+      color: rgb(148, 148, 148);
+    }
   }
-  a{
-    position: absolute;
-    right: 15px;
+
+  .dropdown {
+    i {
+      padding: 10px;
+      color: #a5a5a5;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    a {
+      color: #404040;
+      padding: 0 20px;
+    }
   }
-  a:hover {
-    color: red;
+
+  span {
+    font-size: 24px;
+    color: #ffeb41;
+  }
+
+  .review-description {
+    margin-top: 10px;
+
+    p {
+      color: #7b7b7b;
+      font-weight: 300;
+      margin: 0px;
+    }
   }
 }
 
+#photo-card-route-setter {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
 
 .avatar_photo_card{
   display: flex;
   margin-top: 8px;
+
   p {
   margin-left: 8px;
   }
 }
+
 .map-card{
   border-radius: 5px;
 }
@@ -234,5 +271,17 @@
 
 .profile-card {
   color: $medium-gray;
+}
+
+
+.center-tech-detail {
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+.route-info {
+  display: flex;
+  justify-content: space-between;
 }
 
