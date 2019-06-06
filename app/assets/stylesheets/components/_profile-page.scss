@@ -68,7 +68,13 @@
 }
 #profile-page {
   display: grid;
-  grid-template-columns: auto 50%;
+  grid-template-columns: 1fr 1fr;
+  @media (min-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .followers {
