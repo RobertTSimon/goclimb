@@ -27,10 +27,6 @@ class ReviewPolicy < ApplicationPolicy
     user_is_owner?
   end
 
-  def mark_as_fixed?
-    record.route.user == user
-  end
-
   private
 
   def user_is_owner?

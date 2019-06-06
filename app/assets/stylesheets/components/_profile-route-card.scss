@@ -5,7 +5,7 @@
   border-radius: 4px;
   flex-grow: 1;
   a {
-  
+
     &:hover {
       text-decoration: none;
     }
@@ -80,10 +80,6 @@
   flex-direction: column;
   align-items: center;
   float: center;
-  position: sticky;
-  top: 0;
-  height: 56vh;
-
 }
 .route-setter-page {
   padding: 0;
