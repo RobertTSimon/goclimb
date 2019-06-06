@@ -39,7 +39,6 @@
 }
 .card-route:hover{
   transform: scale(1.05);
-
 }
 
 .card-route .card-route-info {
@@ -48,23 +47,11 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  align-items: center;
-  h6 {
-    color: $medium-gray;
-  }
-  
-  h2 {
-    color: $medium-gray;
-  }
+  color: $medium-gray;
 
   .edit_joint_user_trip {
     margin-bottom: 15px;
   }
-  
-  .button-green {
-
-    padding: 8px 16px;
-  } 
 }
 
 
@@ -331,3 +318,7 @@
   justify-content: space-between;
 }
 
+#card-route-setter-page{
+  box-shadow: 2px 2px 6px $light-gray;
+  margin: 18px 0;
+}
