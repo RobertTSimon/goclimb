@@ -5,7 +5,7 @@
   border-radius: 4px;
   flex-grow: 1;
   a {
-    color: initial;
+  
     &:hover {
       text-decoration: none;
     }
@@ -83,6 +83,7 @@
   position: sticky;
   top: 0;
   height: 56vh;
+
 }
 .route-setter-page {
   padding: 0;
