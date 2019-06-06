@@ -92,11 +92,10 @@ end
 puts "creating sites, cities and states/provinces..."
 
 
-sites = ["Rumney", "Montreal", "Kamouraska", "Alabama", "Arizona", "California", "Boulder","Connecticut", "Idaho", "Kentucky", "Illinois", "Nevada", "Montana", "New Mexico", "New York", "North Carolina", "North Carolina", "Tennessee", "Utah", "Vermont", "Squamish", "Quebec"]
+sites = ["Rumney", "Montreal", "Alabama", "Alaska", "Arizona", "California", "Boulder","Connecticut", "Idaho", "Kentucky", "Illinois", "Nevada", "Montana", "New Mexico", "New York", "North Carolina", "North Carolina", "Tennessee", "Utah", "Vermont", "Squamish"]
 
 sites_url = { "Rumney" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=43.8053486&lon=-71.8125811&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
  "Montreal" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=45.50884&lon=-73.58781&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Kamouraska" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=47.5661&lon=-69.866&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
  "Alabama" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=34.18&lon=-85.817&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
  "Alaska" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=61.058&lon=-149.798&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
  "Arizona" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=32.447&lon=-110.791&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
@@ -117,7 +116,6 @@ sites_url = { "Rumney" => "https://www.mountainproject.com/data/get-routes-for-l
  "Utah" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=40.562&lon=-111.687&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
  "Vermont" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=44.226&lon=-72.587&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
  "Squamish" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=49.68&lon=-116.168&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Quebec" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=46.028&lon=-74.2&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
 }
 
 if default == false
