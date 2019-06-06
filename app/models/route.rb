@@ -33,5 +33,13 @@ class Route < ApplicationRecord
     site_id.nil? ? nil : city.name
   end
 
+  def in_need_of_attention?
+    alerts.any?
+  end
+
+  def alerts
+    reviews.where(fixed: false).where.not(alert: "Nothing to report")
+  end
+
   ALERTS = [ "Nothing to report", "Weeds on the wall (needs cleaning)", "Missing bolts", "Dangerous approach", "falling rocks", "Other (see reviews)"]
 end

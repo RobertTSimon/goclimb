@@ -47,14 +47,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def mark_as_fixed
-    @review = Review.find(params[:id])
-    @review.fixed = true
-    @review.save!
-
-    authorize @review
-  end
-
   private
 
   def set_route

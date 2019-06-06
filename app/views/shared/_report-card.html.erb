@@ -1,0 +1,19 @@
+<% @user.routes.each do |route| %>
+  <% if route.in_need_of_attention? %>
+    <div class="report-card text-white fade show" role="alert" data-route-id="<%= route.id %>">
+      <div id="route-title">
+        <h3><%= link_to route.name, route_path(route)%> needs your attention!</h3>
+        <div id="report-description">
+          <ul>
+            <% route.alerts.each do |review| %>
+              <li><%= review.user.username %> has reported <strong><%= review.alert %></strong></li>
+            <% end %>
+          </ul>
+        </div>
+        <%= link_to mark_as_fixed_route_path(route), class: "button-green", method: :patch, remote: true do %>
+          <span aria-hidden="true">Mark as done</span>
+        <% end %>
+      </div>
+    </div>
+ <% end %>
+<% end %>

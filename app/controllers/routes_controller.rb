@@ -76,6 +76,13 @@ class RoutesController < ApplicationController
     end
   end
 
+  def mark_as_fixed
+    @route = Route.find(params[:id])
+    authorize @route
+
+    @route.reviews.update(fixed: true)
+  end
+
   private
 
   def sort_by_level_for_user
