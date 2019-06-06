@@ -7,17 +7,14 @@ class RoutesController < ApplicationController
     @routes = policy_scope(Route).order(created_at: :desc) # policy for routes
     set_index_pages1 # pages for routes cf private, begin of index
 
-    sort_by_level_for_user if user_signed_in?
-    # Only suggest the same site of the routes of your next trip
-    # if user_signed_in? && !current_user.trips.first.routes.first.nil?
-    #   @routes = @routes.select do |route|
-    #     route.site == current_user.trips.first.routes.first.site
-    #   end
-    # end
-    set_loc_site if user_signed_in? && !current_user.next_trip.routes.first.nil?
-    sort_distance if user_signed_in? && !current_user.next_trip.routes.first.nil?
-    set_index_pages2 # pages for routes, end of index
+    if user_signed_in? && current_user.next_trip.routes.first.nil?
+      sort_by_level_for_user
+    elsif user_signed_in? && !current_user.next_trip.routes.first.nil?
+      set_loc_site
+      sort_punderated
+    end
 
+    set_index_pages2 # pages for routes, end of index
 
     unless request.format.to_s == "text/javascript"
       mark_routes_index # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
@@ -107,6 +104,10 @@ class RoutesController < ApplicationController
 
   def sort_distance
     @routes = @routes.sort_by { |route| dist(route, current_user.next_trip) }
+  end
+
+  def sort_punderated
+    @routes = @routes.sort_by { |route| dist(route, current_user.next_trip) + (@references[route.level] + 2000 * @references[current_user.current_level]).abs }
   end
 
   def sort_levels
