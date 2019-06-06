@@ -16,14 +16,16 @@
   width: 60px;
 }
 .nav-div-landing-page {
-  color: white;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  width: 250px;
-  float: right;
-  /* border: 1px solid red; */
-  justify-content: space-evenly;
+  display: none;
+  @media (min-width: 992px) {
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    float: right;
+    justify-content: space-evenly;
+  }
 }
 
 
@@ -38,6 +40,13 @@
 .dropdown-item i {
   color: black;
 }
+.dropdown-item {
+  font-size: 30px;
+  @media (min-width: 992px) {
+    font-size: 18px;
+  }
+}
+
 
 .navbar {
   color: white;
