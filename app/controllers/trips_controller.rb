@@ -82,13 +82,14 @@ class TripsController < ApplicationController
       }
       @markers << marker
     end
-    site_lat = 0
-    site_long = 0
+    route_lat = 0
+    route_long = 0
     @routes.each do |route_marked|
-      site_lat += route_marked.latitude
-      site_long += route_marked.longitude
+      route_lat += route_marked.latitude
+      route_long += route_marked.longitude
     end
-    @site_loc = { lat: site_lat / @routes.count.to_f, long: site_long / @routes.count.to_f }
+    @trip.latitude = route_lat / @routes.count.to_f
+    @trip.longitude = route_long / @routes.count.to_f
   end
 
   def optimization_way_by_distance

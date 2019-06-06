@@ -14,9 +14,10 @@ class RoutesController < ApplicationController
     #     route.site == current_user.trips.first.routes.first.site
     #   end
     # end
-
-
+    set_loc_site if user_signed_in? && !current_user.next_trip.routes.first.nil?
+    sort_distance if user_signed_in? && !current_user.next_trip.routes.first.nil?
     set_index_pages2 # pages for routes, end of index
+
 
     unless request.format.to_s == "text/javascript"
       mark_routes_index # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
@@ -89,8 +90,23 @@ class RoutesController < ApplicationController
 
   private
 
+  def set_loc_site
+    trip_lat = 0
+    trip_long = 0
+    current_user.next_trip.routes.each do |route_marked|
+      trip_lat += route_marked.latitude
+      trip_long += route_marked.longitude
+    end
+    current_user.next_trip.update(latitude: trip_lat / current_user.next_trip.routes.count)
+    current_user.next_trip.update(longitude: trip_long / current_user.next_trip.routes.count)
+  end
+
   def sort_by_level_for_user
     @routes = @routes.sort_by { |route| (@references[route.level] - @references[current_user.current_level]).abs }
+  end
+
+  def sort_distance
+    @routes = @routes.sort_by { |route| dist(route, current_user.next_trip) }
   end
 
   def sort_levels
@@ -151,6 +167,10 @@ class RoutesController < ApplicationController
     else
       @routes = Route.all
     end
+  end
+
+  def dist(route1, route2)
+    Math.acos(Math.sin(route1.latitude) * Math.sin(route2.latitude) + Math.cos(route1.latitude) * Math.cos(route2.latitude) * Math.cos(route2.longitude - route1.longitude)) * 6371
   end
 
   def set_index_pages2
