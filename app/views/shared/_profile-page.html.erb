@@ -11,13 +11,13 @@
       <!-- <p><strong>Following:    </strong></p> -->
       <!-- <p><strong>Followed By:    </strong></p> -->
       <% if (@user.id != current_user.id && !@user.followed_by.include?(current_user.id))%>
-        <%= link_to "Follow", add_follower_path(@user), class: "btn btn-primary" %>
+        <%= link_to "Follow", add_follower_path(@user), class: "btn btn-outline-success" %>
       <% elsif (@user.id != current_user.id && @user.followed_by.include?(current_user.id)) %>
-        <%= link_to "Unfollow", delete_follower_path(@user), class: "btn btn-primary" %>
+        <%= link_to "Unfollow", delete_follower_path(@user), class: "btn btn-outline-warning" %>
       <% end %>
 
       <% if @user.id != current_user.id %>
-        <%= link_to "Invite to next trip", "/trips/#{current_user.trips.order(id: :asc).first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-primary" %>
+        <%= link_to "Invite to next trip", "/trips/#{current_user.trips.order(id: :asc).first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-success" %>
       <% end %>
 
       <div class="followers">
