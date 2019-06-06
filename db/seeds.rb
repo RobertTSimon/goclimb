@@ -139,7 +139,7 @@ sites.each do |site|
 
       city = City.find_by(name: route["location"][1])
       if city.nil?
-      	city = City.create!(name: route["location"][1], state_province: state)
+      	city = City.create!(name: route["location"][1].gsub("*",''), state_province: state)
         city.name.delete!("*")
       end
 
@@ -203,6 +203,10 @@ Route.all.each do |route|
   route.save
 end
 
+
+
+
+
 puts "You have #{Route.count} routes"
 
 puts "creating random trips for everyone.."
@@ -250,6 +254,83 @@ end
 
 Route.clear_index!
 Route.reindex!
+
+reviews = [
+  {
+      title: "Great time",
+      description: "Amazing route,with a fantastic view at the top. Very nice and clean!",
+      rating: 4
+
+  },
+  {
+      title: "Insane route",
+      description: "Fantastic, nice and clean!",
+      rating: 3
+
+  },
+  {
+      title: "Beautiful place",
+      description: "Very beautiful scenary, would definitely recommend to anyone!",
+      rating: 3
+
+  },
+
+]
+
+rev_arr_end = reviews.count - 1
+
+user = User.find_by(email: "stephane@email.com")
+javier = User.find_by(email: "javier@email.com")
+user_pool = User.where("id != ? AND id != ?", user.id, javier.id)
+
+user.routes.each do |route|
+  review = reviews[rand(0..rev_arr_end)]
+  users = user_pool.sample(2)
+  user1 = users[0]
+  user2 = users[1]
+
+  Review.create!(
+      user_id: user1.id,
+      title: review[:title],
+      description: review[:description],
+      rating: review[:rating],
+      route_id: route.id
+    )
+
+  review2 = reviews[rand(0..rev_arr_end)]
+
+  while review == review2 do
+    review2 = reviews[rand(0..rev_arr_end)]
+  end
+
+  Review.create!(
+      user_id: user2.id,
+      title: review2[:title],
+      description: review2[:description],
+      rating: review2[:rating],
+      route_id: route.id
+    )
+
+end
+
+rumney_sites = City.find_by(name: "Rumney").sites
+rumney_routes = []
+
+rumney_sites.each do |site|
+  rumney_routes << site.routes
+end
+
+rumney_routes = rumney_routes.flatten
+
+half_rumney_routes = rumney_routes.sample(rumney_routes.count / 2)
+half_rumney_routes.each do |route|
+  route.update(user: user)
+end
+
+
+
+
+
 
 
 puts "seeds done!"
