@@ -42,9 +42,16 @@
         </div>
 
         <div class="container" id="trip-friends">
-          <h6>Invited</h6>
+          <h6>Who's coming ?</h6>
 
           <div class="trip-friends-card">
+            <div class="trip-friend">
+              <%= cl_image_tag @trip.user.avatar_photo, class: "avatar" %>
+              <div class="trip-friend-info">
+                  <p class="friend-name"><%= @trip.user.username %></p>
+                  <p class="invite-status"> organizer </p>
+                </div>
+            </div>
             <% @trip.joint_user_trips.each do |jut| %>
               <% if jut.status == "accepted" %>
               <div class="trip-friend">
