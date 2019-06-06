@@ -76,7 +76,7 @@
               <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
               <div class="card-route-info">
                 <div class="route-info">
-                  <h6> <%= trip.routes.first.city.name.delete("*") %>, <%= trip.routes.first.city.state_province.name.delete("*") %>
+                <h6> <%= trip.routes.first.site.city.name.delete("*") %>, <%= trip.routes.first.site.city.state_province.name.delete("*") %>
                   </h6>
                   <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
                   </p>

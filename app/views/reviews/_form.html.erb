@@ -1,6 +1,6 @@
 <%= simple_form_for([ route, review ], remote: true) do |form| %>
   <div id="review-form">
-    <%= form.input :description, as: :text, label: false, placeholder: 'Write your own review' %>
+    <%= form.input :description, as: :text, label: false, placeholder: 'Write about your ascent' %>
     <div class="form-end-line">
       <%= form.select :alert, Route::ALERTS %>
       <div class="rating">
