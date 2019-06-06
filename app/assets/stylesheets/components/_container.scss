@@ -22,6 +22,12 @@
       height: 100vh;
     }
   }
+  h1{
+    font-size: 3.5rem;
+    @media (min-width: 992px) {
+      font-size: 2.5rem;
+    }
+  }
 }
 
 
@@ -42,10 +48,13 @@
 }
 .pagination-container{
   max-width: 300px;
-  padding: 24px;
+  padding: 15px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  @media (min-width: 992px) {
+    padding: 24px;
+  }
 }
 .pagination{
   margin-top: 8px;
@@ -59,6 +68,10 @@
     color: black;
     border-radius: 4px;
     text-align: center;
+    font-size: 28px;
+    @media (min-width: 992px) {
+      font-size: 18px;
+    }
   }
 }
 

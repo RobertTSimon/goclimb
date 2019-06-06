@@ -24,7 +24,6 @@
     align-items: center;
     width: 250px;
     float: right;
-    /* border: 1px solid red; */
     justify-content: space-evenly;
   }
 }
@@ -42,7 +41,7 @@
   color: black;
 }
 .dropdown-item {
-  font-size: 24px;
+  font-size: 30px;
   @media (min-width: 992px) {
     font-size: 18px;
   }

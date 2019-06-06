@@ -1,10 +1,16 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-  height: 56px;
+  height: 88px;
+  @media (min-width: 992px) {
+    height: 56px;
+  }
 }
 .logo-navbar{
-  height: 40px;
+  height: 56px;
+  @media (min-width: 992px) {
+    height: 40px;
+  }
 }
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;

@@ -72,23 +72,23 @@
   border-radius: 5px;
   img{
     height: 120px;
-    width: 120px;
+    width: 220px;
     object-fit: cover;
+    @media (min-width: 992px) {
+      width: 120px;
+    }
   }
   h2{
-    font-size: 18px;
+    font-size: 28px;
     font-weight: bold;
     margin: 0;
     color: black;
-    @media (min-width: 576px){
-      font-size: 24px;
-    }
     @media (min-width: 992px){
       font-size: 18px;
     }
   }
   p{
-    font-size: 18px;
+    font-size: 22px;
     line-height: 1.4;
     opacity: .7;
     margin-bottom: 0;
