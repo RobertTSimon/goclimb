@@ -43,11 +43,11 @@
   <div class="d-flex profile route-setter-page">
 
     <div id="sport-cards-index">
-      
-      <h4>Your Invites</h4>
-    
+
+
       <% if current_user.id == @user.id %>
         <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
+          <h4>You've been invited to</h4>
           <div style="position:relative;">
 
             <%= link_to trip_path(jut.trip) do %>

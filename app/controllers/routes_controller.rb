@@ -14,9 +14,13 @@ class RoutesController < ApplicationController
     #     route.site == current_user.trips.first.routes.first.site
     #   end
     # end
+
+
     set_index_pages2 # pages for routes, end of index
 
-    mark_routes_index # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
+    unless request.format.to_s == "text/javascript"
+      mark_routes_index # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
+    end
   end
 
   def new
