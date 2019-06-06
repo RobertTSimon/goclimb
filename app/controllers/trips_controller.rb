@@ -81,6 +81,7 @@ class TripsController < ApplicationController
         infowindow: render_to_string(partial: "infowindow", locals: { route: route_marked, index: i })
       }
       @markers << marker
+      @markers_trip = @markers
     end
     route_lat = 0
     route_long = 0

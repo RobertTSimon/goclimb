@@ -47,6 +47,7 @@ class RoutesController < ApplicationController
   def show
     set_route
     @markers = [{ lat: @route.latitude, lng: @route.longitude }] unless @route.latitude.nil? || @route.longitude.nil?
+    @markers_trip = @markers
     @review = Review.new
     authorize @route
     create_references_levels
@@ -140,6 +141,19 @@ class RoutesController < ApplicationController
         infowindow: render_to_string(partial: "infowindow", locals: { route: route_marked, pag: (i.to_f / 5.0).floor })
       }
       @markers << marker
+    end
+    if user_signed_in? && !current_user.next_trip.routes.first.nil?
+      @markers_trip = []
+      current_user.next_trip.routes.each_with_index do |route_marked, i| # add the markers_trip
+        marker = {
+          lat: route_marked.latitude,
+          lng: route_marked.longitude,
+          infowindow: render_to_string(partial: "infowindow", locals: { route: route_marked, pag: (i.to_f / 5.0).floor })
+        }
+        @markers_trip << marker
+      end
+    else
+      @markers_trip = @markers
     end
   end
 
