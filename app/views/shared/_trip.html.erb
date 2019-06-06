@@ -9,7 +9,7 @@
         <%= link_to trip_path(trip) do %>
 
           <div class="card-route" id="card-route-setter-page">
-            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
+            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
             <div class="card-route-info">
               <div>
                 <h2>Start date :<%= trip.start_date %> -- End date: <%= trip.end_date %></h2>
@@ -23,7 +23,7 @@
         <% route = trip.routes.first %>
         <%= link_to trip_path(trip) do %>
           <div class="card-route" id="card-route-setter-page">
-            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
+            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
             <div class="card-route-info">
               <div>
                 <h2>Start date :<%= trip.start_date %> -- End date: <%= trip.end_date %></h2>

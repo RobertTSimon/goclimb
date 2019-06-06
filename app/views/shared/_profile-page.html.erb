@@ -79,7 +79,7 @@
           <h4>Next Trips</h4>
           <%= link_to trip_path(trip) do %>
             <div class="card-route trip next-trip">
-              <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
+              <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
               <div class="card-route-info">
                 <div class="route-info">
                 <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
@@ -94,7 +94,7 @@
         <% @old_trips.each do |trip|%>
         <%= link_to trip_path(trip) do %>
           <div class="card-route trip">
-            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
+            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
             <div class="card-route-info">
               <div class="route-info">
                 <h6> <%= trip.routes.first.city.name.delete("*") %>, <%= trip.routes.first.city.state_province.name.delete("*") %>
