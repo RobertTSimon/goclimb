@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   # before_action :set_user, only: [:follow, :unfollow]
 
   def home
+    ensure_trip if user_signed_in?
     @routes = Route.all
   end
 
@@ -15,7 +16,6 @@ class PagesController < ApplicationController
     @trips << @user.trips
     @trips << @user.joint_user_trips.map { |jut| jut.trip }
     @trips = @trips.flatten
-
     @load_trips = params[:trip] == "true"
     sort_trips
   end
@@ -41,6 +41,17 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def ensure_trip
+    if current_user.next_trip.nil?
+      Trip.create(
+        user: current_user,
+        state: "next",
+        start_date: Date.today + 1.month,
+        end_date: Date.today + 1.month + 1.day
+      )
+    end
+  end
 
   def sort_trips
     @next_trip = Trip.where(state: "next").where(user: @user)
