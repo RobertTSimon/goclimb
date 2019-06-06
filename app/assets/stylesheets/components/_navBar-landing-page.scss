@@ -16,15 +16,16 @@
   width: 60px;
 }
 .nav-div-landing-page {
-  display: none;
+  font-size: 24px;
+  color: white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 250px;
+  float: right;
+  justify-content: space-evenly;
   @media (min-width: 992px) {
-    color: white;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    width: 250px;
-    float: right;
-    justify-content: space-evenly;
+    font-size: 16px;
   }
 }
 
@@ -41,7 +42,7 @@
   color: black;
 }
 .dropdown-item {
-  font-size: 30px;
+  font-size: 48px;
   @media (min-width: 992px) {
     font-size: 18px;
   }
@@ -52,6 +53,10 @@
   color: white;
   .nav-link {
     margin-bottom: 0;
+    font-size: 24px;
+    @media (min-width: 992px) {
+      font-size: 16px;
+    }
   }
 }
 
@@ -61,7 +66,6 @@
   align-items: center;
   width: 250px;
   float: right;
-  /* border: 1px solid red; */
   justify-content: space-evenly;
 }
 

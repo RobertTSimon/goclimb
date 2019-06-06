@@ -1,6 +1,6 @@
 .avatar {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   @media (min-width: 992px) {
     width: 40px;
@@ -36,8 +36,11 @@
 }
 
 #avatar-photo-suggestions {
-  width: 20px;
-  height: 20px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-
+  @media (min-width: 992px) {
+    width: 20px;
+    height: 20px;
+  }
 }
