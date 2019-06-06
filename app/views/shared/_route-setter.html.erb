@@ -5,9 +5,9 @@
     <div class="user-info">
       <span class="d-flex add-route">
         <h3>Hi <%= @user.username %>!</h3>
-        <%= link_to "Add a new route", new_route_path(current_user), class: "button-green" %>
       </span>
       <p><strong>Routes Set:   </strong><%= @user.routes.count %></p>
+        <%= link_to "Add a new route", new_route_path(current_user), class: "button-green" %>
       <% @user.received_reviews.each do |review| %>
         <% unless review.fixed || review.alert == 'Nothing to report' %>
           <p><strong>This routes need your attention: </strong></p>
