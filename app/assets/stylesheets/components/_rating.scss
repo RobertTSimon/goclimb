@@ -2,10 +2,19 @@
   display:flex;
   justify-content: space-between;
   height: 31px;
+  @media (min-width: 992px) {
+    height: 50px;
+  }
+  #review-alert{
+    font-size: 18px;
+  }
 }
 .rating {
   position: relative;
-  font-size: 18px;
+  font-size: 24px;
+  @media (min-width: 992px) {
+    font-size: 18px;
+  }
 }
 .rating label {
   position: absolute;

@@ -84,6 +84,22 @@
    }
 }
 
+#show-container{
+  h1{
+    font-size: 3.5rem;
+    color: $medium-gray;
+    @media (min-width: 992px) {
+      font-size: 2.5rem;
+    }
+  }
+  h3{
+    color: $medium-gray;
+    font-size: 2.75rem;
+    @media screen {
+      font-size: 1.75rem;
+    }
+  }
+}
 
 #review-form{
   margin-top: 24px;
@@ -92,7 +108,6 @@
     font-weight: normal;
   }
 }
-
 
 
 .full-height {

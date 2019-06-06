@@ -131,6 +131,7 @@
     }
     .button-green{
       margin-top: -25px;
+      font-size: 24px;
     }
   }
   .subNavbar{
@@ -139,31 +140,48 @@
   .subnavbar-show{
     width: 100%
   }
+  .subnavbar-show li{
+    a {
+      font-size: 22px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
+    }
+  }
   #description{
     margin-top: 24px;
-    color: #6C6C6C;
+    color: $medium-gray;
     max-height: 100%;
     overflow-y: scroll;
     p {
-      font-size: 18px;
+      font-size: 26px;
+      @media (min-width: 992px) {
+        font-size: 18px;
+      }
     }
     h5 {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 28px;
       margin-bottom: 20px;
+      @media (min-width: 992px) {
+        font-size: 20px;
+      }
     }
   }
   #technical-details{
     margin-top: 24px;
-    color: #6C6C6C;
+    color: $medium-gray;
     max-height: 100%;
     overflow-y: scroll;
     p {
-      font-size: 18px;
+      font-size: 26px;
       font-weight: bold;
+      @media (min-width: 992px) {
+        font-size: 18px;
+      }
     }
     a{
-      color: #6C6C6C;
+      color: $medium-gray;
     }
     a:hover{
       text-decoration: none;
@@ -195,10 +213,18 @@
   .review-user {
     p:first-child {
       margin-bottom: 0;
+      font-size: 26px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
     }
 
     p:last-child {
       color: rgb(148, 148, 148);
+      font-size: 26px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
     }
   }
 
@@ -207,12 +233,19 @@
       padding: 10px;
       color: #a5a5a5;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 34px;
+      @media (min-width: 992px) {
+        font-size: 20px;
+      }
     }
 
     a {
       color: #404040;
       padding: 0 20px;
+      font-size: 26px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
     }
   }
 
@@ -228,6 +261,10 @@
       color: #7b7b7b;
       font-weight: 300;
       margin: 0px;
+      font-size: 28px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
     }
   }
 }
