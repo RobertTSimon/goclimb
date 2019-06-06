@@ -1,0 +1,19 @@
+.report-card {
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #F9A602;
+  h3 {
+    color: white;
+    a {
+      color: black;
+    }
+  }
+  li {
+    font-size: 14px;
+    font-weight: lighter;
+  }
+  .button-green {
+    font-weight: 500;
+  }
+}

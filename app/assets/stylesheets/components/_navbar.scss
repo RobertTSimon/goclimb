@@ -12,6 +12,7 @@
     height: 40px;
   }
 }
+
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
@@ -21,5 +22,9 @@
   width: 350px;
 }
 .navbar-light .navbar-nav .nav-link {
-  color: black;
+  color: $medium-gray;
+}
+
+.dropdown-item {
+	color: $medium-gray;
 }

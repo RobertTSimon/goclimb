@@ -85,38 +85,37 @@ if number_users == 27
   User.create!(username: "Alex", email: "alex@email.com", password: "123456", location: "Greenfield Park, QC", bio: "My parents didn't want me to climb the house up to the rooftop, and that's why I started!", favorite_styles: "bouldery, short", current_level: "5.10a", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144152/Students%20photos/alex-tang_kdcenl.jpg")
   User.create!(username: "Aaron", email: "aaron@email.com", password: "123456", location: "Montreal, QC", bio: "I was a meme guy but then I found climbing and loved so much that I only do climbing memes", favorite_styles: "chill, belaying", current_level: "5.7+", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559144152/Students%20photos/aaron-feldman_k0pywe.jpg")
   User.create!(username: "Stephane", email: "stephane@email.com", password: "123456", route_setter: true, location: "Laval, QC", bio: "I love to climb outdoors but I mostly enjoy setting routes so others can enjoy!", favorite_styles: "crimpy, bouldery", current_level: "5.12a", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559148091/Students%20photos/stephane_g3asa7.jpg")
+  User.create!(username: "Camille", email: "camille@email.com", password: "123456", route_setter: true, location: "Rosemont, QC", bio: "I love going outdoors withmy climber friends and I ended up doing some routes. Always up for as nice trip ", favorite_styles: "balanced, pumpy", current_level: "5.8", avatar_photo: "https://res.cloudinary.com/jmadridvaquero/image/upload/v1559833658/Students%20photos/camille-villard_yjnnys.jpg")
 end
 
 
 puts "creating sites, cities and states/provinces..."
 
 
-sites = ["Rumney", "Montreal", "Kamouraska", "Alabama", "Arizona", "California", "Boulder","Connecticut", "Idaho", "Kentucky", "Illinois", "Nevada", "Montana", "New Mexico", "New York", "North Carolina", "North Carolina", "Tennessee", "Utah", "Vermont", "Squamish", "Quebec"]
+sites = ["Rumney", "Montreal", "Alabama", "Alaska", "Arizona", "California", "Boulder","Connecticut", "Idaho", "Kentucky", "Illinois", "Nevada", "Montana", "New Mexico", "New York", "North Carolina", "North Carolina", "Tennessee", "Utah", "Vermont", "Squamish"]
 
-sites_url = { "Rumney" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=43.8053486&lon=-71.8125811&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Montreal" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=45.50884&lon=-73.58781&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Kamouraska" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=47.5661&lon=-69.866&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Alabama" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=34.18&lon=-85.817&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Alaska" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=61.058&lon=-149.798&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Arizona" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=32.447&lon=-110.791&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "California" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=34.012&lon=-116.168&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Boulder" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=40.002&lon=-105.41&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Colorado" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=39.081&lon=-108.522&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Connecticut" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=41.348&lon=-73.256&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Idaho" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=42.078&lon=-113.724&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Kentucky" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=37.784&lon=-83.682&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Illinois" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=37.507&lon=-88.682&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Nevada" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=36.131&lon=-115.425&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Montana" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=45.407&lon=-111.225&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "New Mexico" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=36.406&lon=-36.406&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "New York" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=41.682&lon=-74.221&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "North Carolina" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=35.449&lon=-82.214&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "South Dakota" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=44.458&lon=-103.859&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Tennessee" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=35.072&lon=-85.403&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Utah" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=40.562&lon=-111.687&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Vermont" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=44.226&lon=-72.587&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Squamish" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=49.68&lon=-116.168&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
- "Quebec" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=46.028&lon=-74.2&maxDistance=200&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+sites_url = { "Rumney" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=43.8053486&lon=-71.8125811&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Montreal" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=45.50884&lon=-73.58781&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Alabama" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=34.18&lon=-85.817&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Alaska" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=61.058&lon=-149.798&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Arizona" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=32.447&lon=-110.791&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "California" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=34.012&lon=-116.168&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Boulder" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=40.002&lon=-105.41&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Colorado" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=39.081&lon=-108.522&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Connecticut" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=41.348&lon=-73.256&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Idaho" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=42.078&lon=-113.724&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Kentucky" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=37.784&lon=-83.682&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Illinois" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=37.507&lon=-88.682&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Nevada" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=36.131&lon=-115.425&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Montana" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=45.407&lon=-111.225&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "New Mexico" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=36.406&lon=-36.406&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "New York" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=41.682&lon=-74.221&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "North Carolina" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=35.449&lon=-82.214&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "South Dakota" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=44.458&lon=-103.859&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Tennessee" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=35.072&lon=-85.403&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Utah" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=40.562&lon=-111.687&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Vermont" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=44.226&lon=-72.587&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
+ "Squamish" => "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=49.68&lon=-116.168&maxDistance=100&minDiff=5.6&maxDiff=5.14&maxResults=25&key=200477633-18e31fe418ce3dd71aa4b54df54fa7e0",
 }
 
 if default == false
@@ -128,35 +127,39 @@ if default == false
 end
 
 sites.each do |site|
+  begin
+    response = RestClient.get sites_url[site]
+    routes = JSON.parse(response)
+    puts "creating routes for #{site}..."
+    routes["routes"].each do |route|
+      state = StateProvince.find_by(name: route["location"][0])
+      if state.nil?
+      	state = StateProvince.create!(name: route["location"][0])
+      end
 
-  response = RestClient.get sites_url[site]
-  routes = JSON.parse(response)
-  puts "creating routes for #{site}..."
-  routes["routes"].each do |route|
-    state = StateProvince.find_by(name: route["location"][0])
-    if state.nil?
-    	state = StateProvince.create!(name: route["location"][0])
+      city = City.find_by(name: route["location"][1])
+      if city.nil?
+      	city = City.create!(name: route["location"][1], state_province: state)
+        city.name.delete!("*")
+      end
+
+      site = Site.find_by(name: route["location"][2])
+      if site.nil?
+      	site = Site.create!(name: route["location"][2], city: city)
+      end
+
+      next if route["imgMedium"].nil?
+
+      new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: (route["stars"] - 4) *100, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
+      Photo.create!(imageable: new_route, remote_photo_url: route["imgMedium"])
+
+      new_route.save!
     end
-
-    city = City.find_by(name: route["location"][1])
-    if city.nil?
-    	city = City.create!(name: route["location"][1], state_province: state)
-      city.name.delete!("*")
-    end
-
-    site = Site.find_by(name: route["location"][2])
-    if site.nil?
-    	site = Site.create!(name: route["location"][2], city: city)
-    end
-
-    next if route["imgMedium"].nil?
-
-    new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: (route["stars"] - 4) *100, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
-    Photo.create!(imageable: new_route, remote_photo_url: route["imgMedium"])
-
-    new_route.save!
+    sleep 2
+  rescue StandardError => e
+    puts e.message
+    puts e.backtrace.inspect
   end
-  sleep 2
 end
 
 descriptions = [

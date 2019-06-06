@@ -27,6 +27,10 @@ class RoutePolicy < ApplicationPolicy
     user_is_owner?
   end
 
+  def mark_as_fixed?
+    user_is_owner?
+  end
+
   private
 
   def user_is_owner?
