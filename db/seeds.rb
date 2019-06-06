@@ -129,35 +129,39 @@ if default == false
 end
 
 sites.each do |site|
+  begin
+    response = RestClient.get sites_url[site]
+    routes = JSON.parse(response)
+    puts "creating routes for #{site}..."
+    routes["routes"].each do |route|
+      state = StateProvince.find_by(name: route["location"][0])
+      if state.nil?
+      	state = StateProvince.create!(name: route["location"][0])
+      end
 
-  response = RestClient.get sites_url[site]
-  routes = JSON.parse(response)
-  puts "creating routes for #{site}..."
-  routes["routes"].each do |route|
-    state = StateProvince.find_by(name: route["location"][0])
-    if state.nil?
-    	state = StateProvince.create!(name: route["location"][0])
+      city = City.find_by(name: route["location"][1])
+      if city.nil?
+      	city = City.create!(name: route["location"][1], state_province: state)
+        city.name.delete!("*")
+      end
+
+      site = Site.find_by(name: route["location"][2])
+      if site.nil?
+      	site = Site.create!(name: route["location"][2], city: city)
+      end
+
+      next if route["imgMedium"].nil?
+
+      new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: (route["stars"] - 4) *100, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
+      Photo.create!(imageable: new_route, remote_photo_url: route["imgMedium"])
+
+      new_route.save!
     end
-
-    city = City.find_by(name: route["location"][1])
-    if city.nil?
-    	city = City.create!(name: route["location"][1], state_province: state)
-      city.name.delete!("*")
-    end
-
-    site = Site.find_by(name: route["location"][2])
-    if site.nil?
-    	site = Site.create!(name: route["location"][2], city: city)
-    end
-
-    next if route["imgMedium"].nil?
-
-    new_route = Route.create!(user: User.all.sample, name: route["name"], site: site, type_of: route["type"], level: route["rating"], rating: (route["stars"] - 4) *100, longitude: route["longitude"].to_f, latitude: route["latitude"].to_f)
-    Photo.create!(imageable: new_route, remote_photo_url: route["imgMedium"])
-
-    new_route.save!
+    sleep 2
+  rescue StandardError => e
+    puts e.message
+    puts e.backtrace.inspect
   end
-  sleep 2
 end
 
 descriptions = [
