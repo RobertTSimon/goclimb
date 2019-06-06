@@ -117,11 +117,11 @@ class RoutesController < ApplicationController
 
   def test_level_of_the_route_for_the_user
     @relative_level = @references[@route.level] - @references[current_user.current_level]
-    @relative_statut = "easy for you, good warm-up" if @relative_level < -3
-    @relative_statut = "perfect for you" if @relative_level == 0
-    @relative_statut = "too hard for now" if  @relative_level > 3
-    @relative_statut = "quite easy, do it for training" if @relative_level <= 3 && @relative_level.positive?
-    @relative_statut = "a bit hard, good for progression" if @relative_level >= -3 && @relative_level.negative?
+    @relative_statut = "Easy for you, ideal as a good warm-up to start off" if @relative_level < -3
+    @relative_statut = "Suits your skills, keep it cool" if @relative_level == 0
+    @relative_statut = "This route might be too hard for you right now. You might want to improve your skills first" if  @relative_level > 3
+    @relative_statut = "Easy ascent, good workout" if @relative_level <= 3 && @relative_level.positive?
+    @relative_statut = "Challenging route, it should help you in getting better!" if @relative_level >= -3 && @relative_level.negative?
   end
 
   def set_index_pages1

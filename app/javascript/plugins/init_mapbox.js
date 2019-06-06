@@ -1,5 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
+// import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.js'
+// import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
 
 const mapElement = document.getElementById('map');
 
@@ -11,15 +13,40 @@ const buildMap = () => {
   });
 };
 
+  // const direction = () => {
+  //   const directions = new MapboxDirections({
+  //     accessToken: mapElement.dataset.mapboxApiKey,
+  //     unit: 'metric',
+  //     profile: 'mapbox/walking',
+  //     controls: {
+  //     inputs: false,
+  //     instructions: false,
+  //     profileSwitcher: false
+  //     },
+  //     flyTo: false
+  //    });
+  //   directions.setOrigin([37.6173, 55.7558])
+  //   directions.setDestination([pharmacyData[0].lng, pharmacyData[0].lat])
+  //   map.addControl(directions);
+  // };
+
+
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
     const popup = new mapboxgl.Popup().setHTML(marker.infowindow); // add this
-    new mapboxgl.Marker()
+    const this_marker = new mapboxgl.Marker()
       .setPopup(popup) // add this
       .setLngLat([ marker.lng, marker.lat ])
       .addTo(map);
+    setMarkerColor(this_marker, "#0cb25f")
   });
 };
+
+function setMarkerColor(marker, color) {
+    var $elem = jQuery(marker.getElement());
+    $elem.find('svg g[fill="' + marker._color + '"]').attr('fill', color);
+    marker._color = color;
+}
 
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
