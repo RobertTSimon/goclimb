@@ -9,14 +9,35 @@
 
 	h3 {
 		color: $light-gray;
-		font-size: 1.25rem;
+		font-size: 36px;
 		text-transform: uppercase;
 		font-weight: 300;
+    @media (min-width: 992px) {
+      font-size: 1.25rem;
+    }
 	}
 
 	h2 {
-		font-size: 1.75rem;
+		font-size: 34px;
+    @media (min-width: 992px) {
+      font-size: 1.75rem;
+    }
 	}
+
+  p{
+    font-size: 28px;
+    @media (min-width: 992px) {
+      font-size: 16px;
+    }
+  }
+  .weather{
+    h6{
+      font-size: 28px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
+    }
+  }
 }
 
 

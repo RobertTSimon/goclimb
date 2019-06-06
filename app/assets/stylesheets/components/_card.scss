@@ -61,25 +61,30 @@
 
 
 .card-route-index{
-  margin-top: 8px;
+  margin-top: 16px;
   overflow: hidden;
-  height: 120px;
+  height: 175px;
   background: white;
   display: flex;
   align-items: center;
   transition: 0.7s;
   position: relative;
   border-radius: 5px;
-  img{
+  @media (min-width: 992px) {
     height: 120px;
+    margin-top: 8px;
+  }
+  img{
+    height: 175px;
     width: 220px;
     object-fit: cover;
     @media (min-width: 992px) {
       width: 120px;
+      height: 120px;
     }
   }
   h2{
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     margin: 0;
     color: black;
@@ -88,7 +93,7 @@
     }
   }
   p{
-    font-size: 22px;
+    font-size: 28px;
     line-height: 1.4;
     opacity: .7;
     margin-bottom: 0;
@@ -142,7 +147,7 @@
   }
   .subnavbar-show li{
     a {
-      font-size: 22px;
+      font-size: 26px;
       @media (min-width: 992px) {
         font-size: 16px;
       }
@@ -154,14 +159,14 @@
     max-height: 100%;
     overflow-y: scroll;
     p {
-      font-size: 26px;
+      font-size: 30px;
       @media (min-width: 992px) {
         font-size: 18px;
       }
     }
     h5 {
       font-weight: bold;
-      font-size: 28px;
+      font-size: 32px;
       margin-bottom: 20px;
       @media (min-width: 992px) {
         font-size: 20px;
@@ -174,8 +179,7 @@
     max-height: 100%;
     overflow-y: scroll;
     p {
-      font-size: 26px;
-      font-weight: bold;
+      font-size: 30px;
       @media (min-width: 992px) {
         font-size: 18px;
       }

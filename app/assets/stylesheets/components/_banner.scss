@@ -43,9 +43,11 @@
   background: rgba(255, 255, 255, 0.5);
   width: 450px;
   margin: 40px auto 0;
+  font-size: 28px;
 
   @media (min-width: 992px){
     margin-top: 40px;
+    font-size: 16px;
   }
 }
 
