@@ -119,15 +119,15 @@
       <%= link_to routes_path do %>
       <%  route = Route.all.sample(1).first %>
         <div class="card-route-index">
-          <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil?%>
-          <div class="card-route-index-info">
-            <h2> Add a new route ! </h2>
+          <div class="card-add-route">
+            <i class="fas fa-plus"></i>
+            <h2>Add a new route</h2>
           </div>
         </div>
       <% end %>
       <br>
         <% if @user == @trip.user %>
-          <button class="button-green" id="validate-trip">Save</button>
+          <button class="button-green" id="validate-trip">This trip is complete</button>
           <%= link_to trip_path(@trip, { trip: { state: "done" }}), method: :patch, class: "hidden", id: "save-link" do %>
         <% end %>
       <% end %>

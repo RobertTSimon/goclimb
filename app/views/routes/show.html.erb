@@ -1,15 +1,27 @@
 <%= render partial: "shared/navBar" %>
 <div class="container" id="show-container">
-  <br>
   <div class="card-route-show">
     <div class="image-show">
-      <%= image_tag @route.photos.first.photo_url unless @route.photos.first.nil? || @route.photos.first.photo_url.nil? %>
+        <div class="map-card-show"
+          id="map"
+          style="width: 100%;
+          height: 600px;"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+        ></div>
       <%= link_to "ADD TO YOUR NEXT TRIP", route_route_trips_path(@route), method: :post, class: "button-green" %>
     </div>
     <div class="route-info-show-container">
-      <h1><%= @route.name %></h1>
-      <h3><%= @route.city.state_province.name unless @route.site_id.nil? %></h3>
-      <div class="container">
+      <div class='d-flex  justify-content-between'>
+        <%# image_tag @route.photos.first.photo_url, width: 80 unless @route.photos.first.nil? || @route.photos.first.photo_url.nil? %>
+        <div> 
+          <h1><%= @route.name %></h1>
+          <h3><%= @route.city.state_province.name unless @route.site_id.nil? %></h3>
+        </div>
+        <a href="<%= profile_path(@route.user) %>" class='d-flex align-items-center flex-column'><%= image_tag @route.user.avatar_photo, id: "avatar-photo-show-route" %> 
+          <p>Set by <%= @route.user.username %></p></a>
+      </div>
+      <div class="">
         <div class="subNavbar">
           <div class="subNavbar-links subnavbar-show">
             <ul class="nav subNavbar-links subnavbar-show" id="myTab" role="tablist">
@@ -20,7 +32,7 @@
                 <a class="subNavbarLink" data-toggle="tab" href="#technical-details" role="tab">Technical Details</a>
               </li>
               <li>
-                <a class="subNavbarLink" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
+                <a class="subNavbarLink" data-toggle="tab" href="#reviewstab" role="tab">Reviews</a>
               </li>
             </ul>
           </div>
@@ -29,38 +41,32 @@
         <div class="full-height-profile">
           <div class="tab-content" id="myTabContent">
             <div id="description" class="tab-pane fade show active" role="tabpanel">
-              <h5>Description</h5>
+              <!-- <h5>Description</h5> -->
               <p><%= @route.description %></p>
             </div>
             <div id="technical-details" class="tab-pane fade show" role="tabpanel">
-              <p>Level: <%= @route.level %></p>
-              <p>Style: <%= @route.style %></p>
-              <p>Type: <%= @route.type_of %></p>
-              <p>Set by: <a href="<%= profile_path(@route.user) %>"><%= image_tag @route.user.avatar_photo, id: "avatar-photo-show-route" %> <%= @route.user.username %></a></p>
+              <p><strong>Level:</strong> <%= @route.level %></p>
+              <p><strong>Style:</strong>  <%= @route.style %></p>
+              <p><strong>Type:</strong> <%= @route.type_of %></p>
               <div id="distance"></div>
-              <p>City: <%= @route.city.name unless @route.site_id.nil? %></p>
-              <p>Rating: <%= (@route.rating / 100.0) + 4 unless @route.rating.nil? %></p>
-              <p> Advices from GoClimb : </p>
+              <p><strong>City:</strong> <%= @route.city.name unless @route.site_id.nil? %></p>
+              <p><strong>Rating:</strong> <%= (@route.rating / 100.0) + 4 unless @route.rating.nil? %></p>
+              <p> <strong>Advices from GoClimb :</strong> </p>
               <p> <%= @relative_statut %></p>
             </div>
-            <div id="reviews" class="tab-pane fade show" role="tabpanel">
+            <div id="reviewstab" class="tab-pane fade show" role="tabpanel">
+            <%= render 'reviews/form', route: @route, review: @review %>
+            <div id="reviews">
               <% @route.reviews.each do |review| %>
                 <%= render 'reviews/show', review: review %>
               <% end %>
-              <%= render 'reviews/form', route: @route, review: @review %>
+            </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <br>
-  <div class="map-card-show"
-    id="map"
-    style="width: 100%;
-    height: 600px;"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-  ></div>
+
 </div>
 

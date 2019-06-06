@@ -61,7 +61,7 @@
 
 
 .card-route-index{
-  margin-top: 8px;
+  margin-bottom: 8px;
   overflow: hidden;
   height: 120px;
   background: white;
@@ -95,13 +95,14 @@
     margin-top: 8px;
     color: black;
     @media (min-width: 992px){
-      font-size: 12px;
+      font-size: 14px;
     }
   }
   .photo-suggestions-div {
     position: absolute;
     top: 20px;
     right: 20px;
+    text-align: center;
   }
 }
 .card-route-index:hover{
@@ -117,9 +118,11 @@
   @media (min-width: 992px) {
     height: 600px;
     grid-template-columns: 2fr 600px;
+    margin: 30px 0 50px 0;
   }
 
   .image-show{
+    height: 550px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,6 +135,7 @@
     .button-green{
       margin-top: -25px;
       font-size: 24px;
+      z-index: 100;
     }
   }
   .subNavbar{
@@ -152,7 +156,6 @@
     margin-top: 24px;
     color: $medium-gray;
     max-height: 100%;
-    overflow-y: scroll;
     p {
       font-size: 26px;
       @media (min-width: 992px) {
@@ -172,10 +175,8 @@
     margin-top: 24px;
     color: $medium-gray;
     max-height: 100%;
-    overflow-y: scroll;
     p {
       font-size: 26px;
-      font-weight: bold;
       @media (min-width: 992px) {
         font-size: 18px;
       }
@@ -190,9 +191,7 @@
   }
   #reviews{
     max-height: 438px;
-    overflow-y: scroll;
     word-break: break-all;
-    overflow-x: hidden;
   }
 }
 
@@ -284,6 +283,10 @@
   }
 }
 
+.full-height-profile{
+  //overflow-y: scroll;
+}
+
 .map-card{
   border-radius: 5px;
 }
@@ -320,5 +323,30 @@
 
 #card-route-setter-page{
   box-shadow: 2px 2px 6px $light-gray;
-  margin: 18px 0;
+  margin: 10px;
+}
+
+.rating:not(:hover) label input:checked ~ .icon, .rating:hover label:hover input ~ .icon{
+  color: #ffeb41 !important;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #000;
+    text-shadow: 0 0 5px #ffeb41 !important;
+}
+
+.card-add-route{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+
+  i{
+    color: black;
+    margin-right: 15px;
+  }
+  h2{
+    font-size: 20px;
+  }
 }

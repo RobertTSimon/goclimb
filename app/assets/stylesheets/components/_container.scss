@@ -77,24 +77,29 @@
 
 .route-info-show-container{
   display: block;
+  margin-left: 25px;
 
    @media (min-width: 992px) {
     height: 600px;
 
    }
+   a{
+    color: $medium-gray;
+  }
 }
 
 #show-container{
   h1{
     font-size: 3.5rem;
-    color: $medium-gray;
+    font-weight: bold;
+    //color: $medium-gray;
     @media (min-width: 992px) {
       font-size: 2.5rem;
     }
   }
   h3{
     color: $medium-gray;
-    font-size: 2.75rem;
+    font-size: 2.5rem;
     @media screen {
       font-size: 1.75rem;
     }

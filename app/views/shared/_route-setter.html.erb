@@ -1,24 +1,26 @@
 <div class="route-setter-page">
-  <div class="form-card-route-setter" id="profile-routes-set">
-    <h2>Profile</h2>
-    <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
-    <div class="user-info">
-      <span class="d-flex add-route">
+  <div class="form-card-route-setter">
+    
+    <div class="user-info d-flex align-items-center">
+      <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
+      <span class="add-route">
         <h3>Hi <%= @user.username %>!</h3>
+        <p><strong>Routes Set:   </strong><%= @user.routes.count %></p>
       </span>
-      <p><strong>Routes Set:   </strong><%= @user.routes.count %></p>
-      <%= link_to "Add route", new_route_path, class: "button-green"  %>
       <%= render partial: "shared/report-card" %>
     </div>
+
+    <%= link_to "Add route", new_route_path, class: "button-green"  %>
   </div>
-    <div class="cards-route" id="sport-cards-index">
+    <div class="row" id="">
 
       <% @routes.each do |route|%>
-        <div class="card-route" id="card-route-setter-page">
-          <%= link_to route_path(route) do %>
+        <div class="col-12 col-md-6">
+          <div class="card-route" id="card-route-setter-page">
+            <%= link_to route_path(route) do %>
             <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil?%>
-          <% end %>
-          <div class="card-route-info">
+            <% end %>
+            <div class="card-route-info">
             <div>
               <h2><%= route.name %></h2>
               <div class="avatar_photo_card">
@@ -28,6 +30,7 @@
             </div>
             <div>
               <%= link_to "Edit", edit_route_path(route), class: "button-green" %>
+            </div>
             </div>
           </div>
         </div>

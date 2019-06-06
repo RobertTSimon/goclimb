@@ -11,7 +11,7 @@ function addReview(reviewHTML) {
 
 <% if @review.errors.any? %>
   refreshForm('<%= j render "reviews/form", route: @route, review: @review %>');
-<% else %>
+<% else %>  
+	refreshForm('<%= j render "reviews/form", route: @route, review: Review.new() %>');
   addReview('<%= j render "reviews/show", review: @review %>');
-  refreshForm('<%= j render "reviews/form", route: @route, review: Review.new() %>');
 <% end %>
