@@ -52,7 +52,7 @@ class TripsController < ApplicationController
   private
 
   def set_trip_by_next
-    @trip = Trip.where(state: "next").first
+    @trip = current_user.trips.where(state: "next").first
   end
 
   def set_route_by_id
