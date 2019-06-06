@@ -1,13 +1,13 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-  height: 88px;
+  height: 112px;
   @media (min-width: 992px) {
     height: 70px;
   }
 }
 .logo-navbar{
-  height: 56px;
+  height: 85px;
   @media (min-width: 992px) {
     height: 60px;
   }
@@ -19,7 +19,13 @@
 
 .form-control {
   border-radius: 4px;
-  //width: 350px;
+
+  margin-left: 24px;
+  font-size: 31px;
+  @media (min-width: 992px) {
+    font-size: 16px;
+    margin-left: 0;
+  }
 }
 .navbar-light .navbar-nav .nav-link {
   color: $medium-gray;

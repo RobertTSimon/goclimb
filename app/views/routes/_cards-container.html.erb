@@ -6,12 +6,10 @@
         <h2><%= route.name %></h2>
         <p>Site : <%= route.city&.name.delete("*") %></p>
         <p>Level : <%= route.level %></p>
-        <%= link_to profile_path(route.user) do %>
-          <div class="photo-suggestions-div">
-            <%= image_tag route.user.avatar_photo, id: "avatar-photo-suggestions" %> 
-            <p><%= route.user.username %></p>
-          </div>
-        <% end %>
+        <div class="photo-suggestions-div">
+          <%= image_tag route.user.avatar_photo, id: "avatar-photo-suggestions" %> 
+          <p><%= route.user.username %></p>
+        </div>
       </div>
     </div>
   <% end %>
