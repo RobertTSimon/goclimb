@@ -7,6 +7,7 @@
         <h3>Hi <%= @user.username %>!</h3>
       </span>
       <p><strong>Routes Set:   </strong><%= @user.routes.count %></p>
+      <%= link_to "Add route", new_route_path, class: "button-green"  %>
       <%= render partial: "shared/report-card" %>
     </div>
   </div>

@@ -1,68 +1,57 @@
 .card-route {
   overflow: hidden;
-  height: 100%;
+  height: 500px;
   transition: 0.5s;
   background: white;
   border-radius: 4px;
-  margin-bottom: 16px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @media (min-width: 992px) {
+    height: 380px;
+  }
   h2 {
-    font-size: 16px;
+    font-size: 40px;
     font-weight: bold;
     margin: 0;
     color: black;
-    @media (min-width: 576px){
-      font-size: 26px;
-    }
     @media (min-width: 992px){
       font-size: 16px;
     }
   }
   p {
-    font-size: 12px;
+    font-size: 32px;
     opacity: .7;
     margin: 0;
     color: black;
-    @media (min-width: 576px){
-      font-size: 20px;
-    }
     @media (min-width: 992px){
-      font-size: 12px;
+      font-size: 16px;
     }
   }
   img{
-    height: 200px;
+    height: 320px;
     width: 100%;
     object-fit: cover;
+    @media (min-width: 992px) {
+      height: 280px;
+    }
   }
 }
 .card-route:hover{
   transform: scale(1.05);
-
 }
 
 .card-route .card-route-info {
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  position: relative;
   align-items: center;
-  h6 {
-    color: $medium-gray;
-  }
-  
-  h2 {
-    color: $medium-gray;
-  }
+  position: relative;
+  color: $medium-gray;
 
   .edit_joint_user_trip {
     margin-bottom: 15px;
   }
-  
-  .button-green {
-
-    padding: 8px 16px;
-  } 
 }
 
 
@@ -83,31 +72,28 @@
   border-radius: 5px;
   img{
     height: 120px;
-    width: 120px;
+    width: 220px;
     object-fit: cover;
+    @media (min-width: 992px) {
+      width: 120px;
+    }
   }
   h2{
-    font-size: 18px;
+    font-size: 28px;
     font-weight: bold;
     margin: 0;
     color: black;
-    @media (min-width: 576px){
-      font-size: 24px;
-    }
     @media (min-width: 992px){
       font-size: 18px;
     }
   }
   p{
-    font-size: 12px;
+    font-size: 22px;
     line-height: 1.4;
     opacity: .7;
     margin-bottom: 0;
     margin-top: 8px;
     color: black;
-    @media (min-width: 576px){
-      font-size: 18px;
-    }
     @media (min-width: 992px){
       font-size: 12px;
     }
@@ -125,12 +111,9 @@
 
 .card-route-show{
   display: grid;
-  grid-template-columns: 2fr 600px;
+  grid-template-columns: 1fr;
   grid-gap: 8px;
   margin-bottom: 40px;
-  @media (min-width: 576px) {
-    grid-template-columns: 1fr;
-  }
   @media (min-width: 992px) {
     height: 600px;
     grid-template-columns: 2fr 600px;
@@ -148,6 +131,7 @@
     }
     .button-green{
       margin-top: -25px;
+      font-size: 24px;
     }
   }
   .subNavbar{
@@ -156,31 +140,48 @@
   .subnavbar-show{
     width: 100%
   }
+  .subnavbar-show li{
+    a {
+      font-size: 22px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
+    }
+  }
   #description{
     margin-top: 24px;
-    color: #6C6C6C;
+    color: $medium-gray;
     max-height: 100%;
     overflow-y: scroll;
     p {
-      font-size: 18px;
+      font-size: 26px;
+      @media (min-width: 992px) {
+        font-size: 18px;
+      }
     }
     h5 {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 28px;
       margin-bottom: 20px;
+      @media (min-width: 992px) {
+        font-size: 20px;
+      }
     }
   }
   #technical-details{
     margin-top: 24px;
-    color: #6C6C6C;
+    color: $medium-gray;
     max-height: 100%;
     overflow-y: scroll;
     p {
-      font-size: 18px;
+      font-size: 26px;
       font-weight: bold;
+      @media (min-width: 992px) {
+        font-size: 18px;
+      }
     }
     a{
-      color: #6C6C6C;
+      color: $medium-gray;
     }
     a:hover{
       text-decoration: none;
@@ -212,10 +213,18 @@
   .review-user {
     p:first-child {
       margin-bottom: 0;
+      font-size: 26px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
     }
 
     p:last-child {
       color: rgb(148, 148, 148);
+      font-size: 26px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
     }
   }
 
@@ -224,12 +233,19 @@
       padding: 10px;
       color: #a5a5a5;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 34px;
+      @media (min-width: 992px) {
+        font-size: 20px;
+      }
     }
 
     a {
       color: #404040;
       padding: 0 20px;
+      font-size: 26px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
     }
   }
 
@@ -245,6 +261,10 @@
       color: #7b7b7b;
       font-weight: 300;
       margin: 0px;
+      font-size: 28px;
+      @media (min-width: 992px) {
+        font-size: 16px;
+      }
     }
   }
 }
@@ -298,3 +318,7 @@
   justify-content: space-between;
 }
 
+#card-route-setter-page{
+  box-shadow: 2px 2px 6px $light-gray;
+  margin: 18px 0;
+}

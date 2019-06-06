@@ -16,9 +16,13 @@
         <%= link_to "Unfollow", delete_follower_path(@user), class: "btn btn-outline-warning" %>
       <% end %>
 
+    <% user_next_trips = current_user.trips.where(state: "next") %>
+
+    <% unless user_next_trips.length == 0 %>
       <% if @user.id != current_user.id %>
-        <%= link_to "Invite to next trip", "/trips/#{current_user.trips.order(id: :asc).first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-success" %>
+        <%= link_to "Invite to next trip", "/trips/#{user_next_trips.first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-success" %>
       <% end %>
+    <% end %>
 
       <div class="followers">
       <h6>Following:</h3>
@@ -43,11 +47,11 @@
   <div class="d-flex profile route-setter-page">
 
     <div id="sport-cards-index">
-      
-      <h4>Your Invites</h4>
-    
+
+
       <% if current_user.id == @user.id %>
         <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
+          <h4>You've been invited to</h4>
           <div style="position:relative;">
 
             <%= link_to trip_path(jut.trip) do %>
@@ -72,7 +76,7 @@
       <% end %>
 
       <% @next_trip.each do |trip|%>
-          <h4>Your Next Trip</h4>
+          <h4>Next Trips</h4>
           <%= link_to trip_path(trip) do %>
             <div class="card-route trip next-trip">
               <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>

@@ -4,8 +4,8 @@
      <%= image_tag "https://res.cloudinary.com/dts9y3u9o/image/upload/v1559328456/GoClimb---final-logo_copy_copy_copy_copy_copy_kvhjzx.png", id: "banner-logo" %>
     </div>
 
-    <h2 class="">Curated roots for your climbing journey!</h2>
-    <div class="" id="search-box">
+    <h2>Curated roots for your climbing journey!</h2>
+    <div id="search-box">
       <%= form_tag(routes_path, method: :get) do %>
         <%= text_field_tag :query, params[:query], :placeholder => "Search Rumney , 5.10b , crimpy, overhang...", class: "form-control", id: "landing-page-search-form" %>
       <% end %>

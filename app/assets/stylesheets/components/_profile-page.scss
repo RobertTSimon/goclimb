@@ -38,6 +38,7 @@
   border: none;
   width: 100%;
 }
+
 #profile-avatar {
   display: flex;
   flex-direction: column;
@@ -48,8 +49,9 @@
   border-radius: 5px;
   align-self: start;
   @media (min-width: 992px) {
-    top: 20px;
-    position: sticky;
+      top: 20px;
+      position: sticky;
+
   }
   img {
    border-radius: 50%;
@@ -61,6 +63,14 @@
    color: $medium-gray;
   }
 }
+
+
+
+
+
+
+
+
 .add-route {
   .button-green {
     margin-left: 5px;
@@ -70,10 +80,10 @@
 }
 #profile-page {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  @media (min-width: 576px) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: 1fr;
+  // @media (min-width: 576px) {
+  //   grid-template-columns: 1fr;
+  // }
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1fr;
   }

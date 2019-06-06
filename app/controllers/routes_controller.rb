@@ -17,7 +17,11 @@ class RoutesController < ApplicationController
     set_loc_site if user_signed_in? && !current_user.next_trip.routes.first.nil?
     sort_distance if user_signed_in? && !current_user.next_trip.routes.first.nil?
     set_index_pages2 # pages for routes, end of index
-    mark_routes_index # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
+
+
+    unless request.format.to_s == "text/javascript"
+      mark_routes_index # mark the routes with @markers. Put it at the end, jut before set index 2 please. Simon.
+    end
   end
 
   def new
