@@ -16,7 +16,7 @@ class TripsController < ApplicationController
     authorize @trip
     @user = current_user
     @routes = @trip.routes
-    add_markers_and_site_geoloc # add the markers and the @site_loc. Reject routes without localisation.
+    add_markers_and_site_geoloc if !@routes.first.nil? # add the markers and the @site_loc. Reject routes without localisation.
 
     @trips = []
     @trips << @user.trips
