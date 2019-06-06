@@ -35,7 +35,7 @@
             <% @user.followed_by.each do |user_id| %>
               <a href="<%= profile_path(user_id) %>"><%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %></a>
             <% end %>
-        <% end %>  
+        <% end %>
       </div>
 
     </div>
@@ -76,8 +76,7 @@
               <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? %>
               <div class="card-route-info">
                 <div class="route-info">
-                <h6> <%= trip.routes.first.site.city.name.delete("*") %>, <%= trip.routes.first.site.city.state_province.name.delete("*") %>
-                  </h6>
+                <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
                   <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
                   </p>
                 </div>
