@@ -7,7 +7,8 @@
         <p>Site : <%= route.city&.name.delete("*") %></p>
         <p>Level : <%= route.level %></p>
         <div class="photo-suggestions-div">
-          <p><%= image_tag route.user.avatar_photo, id: "avatar-photo-suggestions" %> <%= route.user.username %></p>
+          <%= image_tag route.user.avatar_photo, id: "avatar-photo-suggestions" %> 
+          <p><%= route.user.username %></p>
         </div>
       </div>
     </div>

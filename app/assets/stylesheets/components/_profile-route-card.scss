@@ -53,6 +53,17 @@
   padding: 24px;
   border-radius: 5px;
   float: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  .user-info{
+    margin-left: 30px;
+  }
+  .add-route {
+  
+  margin-left: 15px;
+}
 }
 .form-card-route-setter h1{
   text-align: center;
@@ -86,14 +97,14 @@
 .route-setter-page {
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  
   @media (min-width: 576px) {
-    grid-template-columns: 1fr;
+    //grid-template-columns: 1fr;
     padding: 0;
     margin-top: 16px;
   }
   @media (min-width: 992px) {
-    grid-template-columns: 1fr 1fr;
+    //grid-template-columns: 1fr 1fr;
     padding: 24px;
     margin-top: 0;
   }
