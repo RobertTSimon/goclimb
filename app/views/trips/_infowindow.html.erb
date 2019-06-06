@@ -1,2 +1,4 @@
-<%= index + 1%>: <%= route.name %>
-
+<div class="infowindow_trip" style= "height: 100px; background-color: black">
+  <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil? %>
+  <%= route.name %>
+</div>
