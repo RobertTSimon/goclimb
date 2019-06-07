@@ -1,5 +1,5 @@
-<div class="full-height page-profile" id="profile-page">
-  <div class="profile-card" id="profile-avatar">
+<div class="full-height page-profile" id="profile-page" style="<%= 'grid-template-columns: 1fr; max-width: 900px; margin-left: auto; margin-right: auto;' if @user.id != current_user.id %>">
+  <div class="profile-card" id="profile-avatar" >
     <h2>Profile</h2>
     <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
     <div class="user-info">
@@ -44,9 +44,10 @@
 
     </div>
   </div>
-  <div class="d-flex profile route-setter-page">
     <% if current_user == @user%>
-      <div id="sport-cards-index">
+
+    <div class="d-flex profile route-setter-page">
+        <div id="sport-cards-index">
 
 
         <% if current_user.id == @user.id %>
@@ -107,9 +108,9 @@
           <% end %>
         <% end %>
       </div>
-    <% end %>
 
-  </div>
+     </div>
+    <% end %>
 </div>
 
 
