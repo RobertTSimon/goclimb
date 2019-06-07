@@ -53,7 +53,7 @@
                 </div>
             </div>
             <% @trip.joint_user_trips.each do |jut| %>
-              <% if jut.status == "accepted" %>
+              <% if jut.status == "accepted" || "pending" %>
               <div class="trip-friend">
                 <%= link_to profile_path(jut.user) do  %>
                   <%= cl_image_tag jut.user.avatar_photo, class: "avatar" %>
