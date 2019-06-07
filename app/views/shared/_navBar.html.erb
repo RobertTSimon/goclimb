@@ -16,7 +16,7 @@
       <li class="nav-item active">
         <%if user_signed_in? %>
           <div class="nav-div">
-            <p class="nav-link">Welcome, <%= current_user.username %>!</p>
+            <p class="nav-link">Welcome, <%= current_user.username %></p>
             <span class="nav-link">Level: <%= current_user.current_level %></span>
           </div>
         <% else %>
