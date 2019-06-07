@@ -76,6 +76,7 @@
             <% end %>
           <% end %>
 
+
           <% @next_trip.each do |trip|%>
               <h4>Next Trips</h4>
               <%= link_to trip_path(trip) do %>
@@ -83,8 +84,13 @@
                   <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
                   <div class="card-route-info">
                     <div class="route-info">
-                    <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
-                      <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
+                      <% if trip.routes.first.nil? %>
+                        <h5>Add a route to your trip!</h5>
+                        <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
+                      <% else %>
+                        <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%> <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
+                        <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
+                      <% end %>
                       </p>
                     </div>
                   </div>
