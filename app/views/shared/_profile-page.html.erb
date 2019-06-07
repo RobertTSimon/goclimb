@@ -114,9 +114,13 @@
               <div class="next-trip">
                 <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
                 <div class="card-route-info">
-                  <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
+                  <% if trip.routes.first.nil? %>
+                    <h6 id="trip-add-a-route"><i class="fas fa-plus" id= 'profile-plus-add'></i>Add a route to your trip!</h6>
+                  <% else %>
+                    <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
                     <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
                     </p>
+                  <% end %>
                 </div>
 
               </div>
