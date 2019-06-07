@@ -64,10 +64,19 @@
 
 #profile-page .profile-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-top: 24px;
 }
+
+.profile-header.my-profile {
+    justify-content: space-between;
+}
+
+.profile-header.other-profile {
+    justify-content: center;
+}
+
+
 
 .add-route {
   .button-green {
@@ -178,7 +187,8 @@ h4.subtitle {
 
 .next-trip {
   height: 340px;
-    transition: 0.5s;
+  transition: 0.5s;
+  margin-bottom: 16px;
   background: white;
   border-radius: 4px;
 
