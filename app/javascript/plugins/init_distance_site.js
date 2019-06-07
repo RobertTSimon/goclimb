@@ -1,5 +1,4 @@
 const siteElement = document.querySelector('#distance_site');
-console.log(siteElement);
 
 const calculDistanceSite = (marker, geoloc) => {
   // console.log("calculating distance to site")
@@ -27,10 +26,9 @@ const calculDistanceSite = (marker, geoloc) => {
   };
 const initDistanceSite = () => {
   if (siteElement) {
+    console.log(siteElement.dataset)
     const site_loc = JSON.parse(siteElement.dataset.site);
     navigator.geolocation.getCurrentPosition((data) => {
-      // console.log("fetched geo loc of browser")
-      // console.log(data)
       const geoloc = data.coords
       const distance = calculDistanceSite(site_loc, geoloc)
       displaySite(distance)

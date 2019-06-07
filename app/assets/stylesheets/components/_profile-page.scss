@@ -43,15 +43,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 24px;
   background-color: white;
   padding: 24px;
   border-radius: 5px;
-  align-self: start;
+  align-self: stretch;
   @media (min-width: 992px) {
-      top: 20px;
-      position: sticky;
-
+      // top: 20px;
+      // position: sticky;
   }
   img {
    border-radius: 50%;
@@ -64,6 +62,13 @@
   }
 }
 
+#profile-page .profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 24px;
+}
+
 .add-route {
   .button-green {
     margin-left: 5px;
@@ -71,16 +76,25 @@
     padding: 8px;
   }
 }
+
 #profile-page {
-  display: grid;
-  grid-template-columns: 1fr;
+  // display: grid;
+  // grid-template-columns: 1fr;
   // @media (min-width: 576px) {
   //   grid-template-columns: 1fr;
   // }
   @media (min-width: 992px) {
-    grid-template-columns: 1fr 1fr;
+    // grid-template-columns: 1fr 1fr;
   }
 }
+
+
+.profile-card {
+  color: $medium-gray;
+  flex: 0 0 45%;
+  align-self: stretch;
+}
+
 
 .followers {
   display: flex;
@@ -102,4 +116,123 @@ background-color: #dc4d4d;
 // .profile-form {
 //   width: 100%;
 // }
+
+h4.subtitle {
+  text-transform: uppercase;
+  color: #bababa;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+
+// INVITE TRIPS CARDS
+
+.profile-invites-trips {
+  margin-bottom: 24px;
+  a {
+    color: $medium-gray;
+  }
+  a:hover {
+    text-decoration: none !important;
+  }
+}
+
+.invite-trip-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    width: 30%;
+    max-height: 150px;
+    object-fit:cover;
+    flex: 0 0 25%;
+  }
+
+  .invite-trip-info {
+    flex: 1 0 auto;
+    padding-left: 16px;
+  }
+
+  h4 {
+    font-size: 22px;
+    color: $medium-gray;
+  }
+}
+
+
+// NEXT TRIPS CARDS
+
+.next-trips {
+  margin-left: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+}
+
+.next-trip-card {
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.next-trip {
+  height: 340px;
+    transition: 0.5s;
+  background: white;
+  border-radius: 4px;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+  img {
+    height: 290px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .card-route-info {
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h6, p {
+    margin: 0;
+    color:#757575;
+  }
+}
+
+
+// PAST TRIPS
+
+.past-trips-container {
+  margin-top: 32px;
+  background: none;
+  h4 {
+    color: $medium-gray;
+    text-align: center
+  }
+
+}
+
+#past-trip-cards-index {
+  padding: 24px;
+  text-align: center;
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.past-trip-card {
+  flex: 0 0 45%;
+}
+
 

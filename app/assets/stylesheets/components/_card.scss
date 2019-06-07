@@ -38,7 +38,7 @@
   }
 }
 .card-route:hover{
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .card-route .card-route-info {
@@ -207,6 +207,31 @@
   }
 }
 
+
+#review-form{
+  margin-top: 24px;
+
+  .form-end-line {
+    align-items: center;
+  }
+
+  .rating{
+    display: flex;
+    align-items: center;
+  }
+
+  .rating label {
+    margin-bottom: 0;
+  }
+  .button-green{
+    padding: 1px 30px;
+    font-weight: normal;
+    border: 0px;
+  }
+
+
+}
+
 .card-review{
   background-color: white;
   padding: 20px;
@@ -320,11 +345,6 @@
       color: #42433e;
     }
 }
-
-.profile-card {
-  color: $medium-gray;
-}
-
 
 .center-tech-detail {
   padding-left: 10px;

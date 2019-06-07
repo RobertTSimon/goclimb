@@ -1,124 +1,149 @@
-<div class="full-height page-profile" id="profile-page" style="<%= 'grid-template-columns: 1fr; max-width: 900px; margin-left: auto; margin-right: auto;' if @user.id != current_user.id %>">
-  <div class="profile-card" id="profile-avatar" >
-    <h2>Profile</h2>
-    <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
-    <div class="user-info">
-      <p><strong>Name:  </strong><%= @user.username %></p>
-      <p><strong>Bio:  </strong>"<%= @user.bio %>"</p>
-      <p><strong>Location:   </strong><%= @user.location %></p>
-      <p><strong>Level:   </strong><%= @user.current_level %></p>
-      <p><strong>Favourite Styles:   </strong>"<%= @user.favorite_styles %>"</p>
-      <!-- <p><strong>Following:    </strong></p> -->
-      <!-- <p><strong>Followed By:    </strong></p> -->
-      <% if (@user.id != current_user.id && !@user.followed_by.include?(current_user.id))%>
-        <%= link_to "Follow", add_follower_path(@user), class: "btn btn-outline-success" %>
-      <% elsif (@user.id != current_user.id && @user.followed_by.include?(current_user.id)) %>
-        <%= link_to "Unfollow", delete_follower_path(@user), class: "btn btn-outline-warning" %>
-      <% end %>
+<div class="page-profile" id="profile-page">
 
-    <% user_next_trips = current_user.trips.where(state: "next") %>
+  <div class="profile-header">
 
-    <% unless user_next_trips.length == 0 %>
-      <% if @user.id != current_user.id %>
-        <%= link_to "Invite to next trip", "/trips/#{user_next_trips.first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-success" %>
-      <% end %>
-    <% end %>
-
-      <div class="followers">
-      <h6>Following:</h3>
-        <% if @user.following.present? %>
-            <% @user.following.each do |follower_id| %>
-              <a href="<%= profile_path(follower_id) %>"><%= image_tag User.find(follower_id).avatar_photo, width: 50, height: 50 %></a>
-            <% end %>
+    <div class="profile-card" id="profile-avatar">
+      <h2>Hi, <%= @user.username %> </h2>
+      <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
+      <div class="user-info">
+        <p><strong>Name:  </strong><%= @user.username %></p>
+        <p><strong>Bio:  </strong>"<%= @user.bio %>"</p>
+        <p><strong>Location:   </strong><%= @user.location %></p>
+        <p><strong>Level:   </strong><%= @user.current_level %></p>
+        <p><strong>Favourite Styles:   </strong>"<%= @user.favorite_styles %>"</p>
+        <!-- <p><strong>Following:    </strong></p> -->
+        <!-- <p><strong>Followed By:    </strong></p> -->
+        <% if (@user.id != current_user.id && !@user.followed_by.include?(current_user.id))%>
+          <%= link_to "Follow", add_follower_path(@user), class: "btn btn-outline-success" %>
+        <% elsif (@user.id != current_user.id && @user.followed_by.include?(current_user.id)) %>
+          <%= link_to "Unfollow", delete_follower_path(@user), class: "btn btn-outline-warning" %>
         <% end %>
-      </div>
 
-      <div class="followers">
-        <h6>Followers:</h3>
-        <% if @user.followed_by.present? %>
-            <% @user.followed_by.each do |user_id| %>
-              <a href="<%= profile_path(user_id) %>"><%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %></a>
-            <% end %>
-        <% end %>
-      </div>
+        <% user_next_trips = current_user.trips.where(state: "next") %>
 
-    </div>
-  </div>
-    <% if current_user == @user%>
-
-      <div class="d-flex profile route-setter-page">
-          <div id="sport-cards-index">
-
-
-          <% if current_user.id == @user.id %>
-            <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
-              <h4>You've been invited to</h4>
-              <div style="position:relative;">
-
-                <%= link_to trip_path(jut.trip) do %>
-                  <div class="card-route trip" id="card-route-setter-page">
-                    <%= @site_loc %>
-                    <%= image_tag jut.trip.routes.first.photos.first.photo_url unless jut.trip.routes.first.nil? %>
-                    <div class="card-route-info">
-                      <div>
-                        <h4><%= jut.trip.user.username %> has invited you!</h4>
-
-                        <%= simple_form_for [jut.trip, jut] do |f| %>
-                          <%= f.submit "Accept", class:"btn btn-outline-success" %>
-                          <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
-                        <% end %>
-                        <h2><%= jut.trip.start_date.strftime("%B %e, %Y") %> - <%= jut.trip.end_date.strftime("%B %e, %Y") %></h2>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
+        <% unless user_next_trips.length == 0 %>
+          <% if @user.id != current_user.id %>
+            <%= link_to "Invite to next trip", "/trips/#{user_next_trips.first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-success" %>
           <% end %>
+        <% end %>
+
+        <div class="followers">
+          <h6>Following:</h3>
+          <% if @user.following.present? %>
+              <% @user.following.each do |follower_id| %>
+                <a href="<%= profile_path(follower_id) %>"><%= image_tag User.find(follower_id).avatar_photo, width: 50, height: 50 %></a>
+              <% end %>
+          <% end %>
+        </div>
+        <!-- end of followers -->
+
+        <div class="followers">
+          <h6>Followers:</h3>
+          <% if @user.followed_by.present? %>
+              <% @user.followed_by.each do |user_id| %>
+                <a href="<%= profile_path(user_id) %>"><%= image_tag User.find(user_id).avatar_photo, width: 50, height: 50 %></a>
+              <% end %>
+          <% end %>
+        </div>
+        <!-- end of followers -->
+
+      </div>
+    </div>
+    <!-- end of profile-card -->
 
 
-          <% @next_trip.each do |trip|%>
-              <h4>Next Trips</h4>
-              <%= link_to trip_path(trip) do %>
-                <div class="card-route trip next-trip">
-                  <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
-                  <div class="card-route-info">
-                    <div class="route-info">
-                      <% if trip.routes.first.nil? %>
-                        <h5>Add a route to your trip!</h5>
-                        <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
-                      <% else %>
-                        <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%> <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
-                        <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
-                      <% end %>
-                      </p>
-                    </div>
+    <div class="next-trips">
+      <div class="profile-invites-trips">
+        <% if current_user.id == @user.id %>
+          <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
+            <h4 class="subtitle">You've been invited to</h4>
+            <div style="position:relative;">
+
+              <%= link_to trip_path(jut.trip) do %>
+                <div class="invite-trip-card">
+                <!-- <div class="invite-trip-card card-route trip" id="card-route-setter-page"> -->
+                  <%= image_tag jut.trip.routes.first.photos.first.photo_url unless jut.trip.routes.first.nil? %>
+                  <!-- <div class="invite-trip-info card-route-info"> -->
+
+                  <div class="invite-trip-info">
+                    <%= @site_loc %>
+                    <h4 class="subtitle"><%= jut.trip.user.username %> has invited you!</h4>
+
+                    <p><%= jut.trip.start_date.strftime("%B %e, %Y") %> - <%= jut.trip.end_date.strftime("%B %e, %Y") %></p>
+                    <%= simple_form_for [jut.trip, jut] do |f| %>
+                      <%= f.submit "Accept", class:"btn btn-outline-success" %>
+                      <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
+                    <% end %>
                   </div>
                 </div>
               <% end %>
-            <% end %>
-            <h4>Past Trips</h4>
-            <% @old_trips.each do |trip|%>
-            <%= link_to trip_path(trip) do %>
-              <div class="card-route trip">
-                <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
-                <div class="card-route-info">
-                  <div class="route-info">
-                      <h6> <%= trip.routes.first.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.city.state_province.name.delete("*") unless trip.routes.first.nil? %>
-                    </h6>
-                    <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+            </div>
           <% end %>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+      <!-- end of .profile-invites-trips -->
+      <h4 class="subtitle">Next Trips</h4>
+
+      <% @next_trip.each do |trip|%>
+      <div class="next-trip-card">
+        
+        <%= link_to trip_path(trip) do %>
+          <!-- <div class="card-route trip next-trip"> -->
+          <div class="next-trip">
+            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
+            <div class="card-route-info">
+              <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
+                <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
+                </p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+        
+      </div>
+      
+    </div>
+    <!-- end of .next-trip-card -->
+
+  </div>
+  <!-- end of .profile-header -->
+
+  <div class="past-trips-container">
+
+    <h4 class="subtitle">Your past trips</h4>
+    
+    <div id="past-trip-cards-index">
+
+      <% @old_trips.each do |trip|%>
+      <div class="past-trip-card">
+        
+        <%= link_to trip_path(trip) do %>
+          <div class="card-route trip">
+            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
+            <div class="card-route-info">
+              <div class="route-info">
+                <h6> <%= trip.routes.first.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.city.state_province.name.delete("*") unless trip.routes.first.nil? %>
+                </h6>
+                <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
+                </p>
+              </div>
+            </div>
+            <!-- end of card-route-info -->
+          </div>
+        <% end %>
+
+      </div>
+      <!-- end of .past-trip-card -->
+      <% end %>
+      <!-- end of iteration on the past trips -->
+
+
+
+   </div>
+   <!-- end of #past-trip-cards-index -->
+
+ </div>
+ <!-- end of .past-trips-container -->
+
 </div>
-
-
-
-
-
+<!-- ewnd of #profile-page -->

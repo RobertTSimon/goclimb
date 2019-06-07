@@ -89,6 +89,7 @@
 }
 
 #show-container{
+  min-height: calc(100vh - 56px - 80px);
   h1{
     font-size: 3.5rem;
     font-weight: bold;
@@ -106,13 +107,7 @@
   }
 }
 
-#review-form{
-  margin-top: 24px;
-  .button-green{
-    padding: 1px 30px;
-    font-weight: normal;
-  }
-}
+
 
 
 .full-height {
