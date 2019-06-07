@@ -1,6 +1,6 @@
 <div class="route-setter-page">
   <div class="form-card-route-setter">
-    
+
     <div class="user-info d-flex align-items-center">
       <%= image_tag @user.avatar_photo, width: 100, height: 100, crop: :fill, radius: "max", id: "profile-settings-avatar"%>
       <span class="add-route">
@@ -9,8 +9,7 @@
       </span>
       <%= render partial: "shared/report-card" %>
     </div>
-
-    <%= link_to "Add route", new_route_path, class: "button-green"  %>
+    <%= link_to "Add route", new_route_path, class: "button-green" if @user == current_user%>
   </div>
     <div class="row" id="">
 
@@ -29,7 +28,7 @@
               </div>
             </div>
             <div>
-              <%= link_to "Edit", edit_route_path(route), class: "button-green" %>
+              <%= link_to "Edit", edit_route_path(route), class: "button-green" if @user == current_user%>
             </div>
             </div>
           </div>
