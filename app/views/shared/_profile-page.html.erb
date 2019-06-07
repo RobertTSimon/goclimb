@@ -1,6 +1,6 @@
 <div class="page-profile" id="profile-page">
 
-  <div class="profile-header">
+  <div class="profile-header <%= current_user == @user ? 'my-profile' : 'other-profile' %>">
 
     <div class="profile-card" id="profile-avatar">
       <h2>Hi, <%= @user.username %> </h2>
@@ -51,19 +51,24 @@
     </div>
     <!-- end of profile-card -->
 
+    <!-- check if it´s the current user profile to hide trips from others -->
+    <% if current_user == @user %>
 
-    <div class="next-trips">
-      <div class="profile-invites-trips">
-        <% if current_user.id == @user.id %>
+
+
+      <!-- OK -->
+      <div class="next-trips">
+
+        <!-- OK -->
+        <div class="profile-invites-trips ">
           <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
             <h4 class="subtitle">You've been invited to</h4>
-            <div style="position:relative;">
+
+            <!-- <div class="test"> -->
 
               <%= link_to trip_path(jut.trip) do %>
                 <div class="invite-trip-card">
-                <!-- <div class="invite-trip-card card-route trip" id="card-route-setter-page"> -->
                   <%= image_tag jut.trip.routes.first.photos.first.photo_url unless jut.trip.routes.first.nil? %>
-                  <!-- <div class="invite-trip-info card-route-info"> -->
 
                   <div class="invite-trip-info">
                     <%= @site_loc %>
@@ -75,75 +80,102 @@
                       <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
                     <% end %>
                   </div>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-      <!-- end of .profile-invites-trips -->
-      <h4 class="subtitle">Next Trips</h4>
+                  <!-- end of .invite-trip-info -->
 
-      <% @next_trip.each do |trip|%>
-      <div class="next-trip-card">
-        
-        <%= link_to trip_path(trip) do %>
-          <!-- <div class="card-route trip next-trip"> -->
-          <div class="next-trip">
-            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
-            <div class="card-route-info">
-              <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
-                <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
-                </p>
-            </div>
+                </div>
+                <!-- end of .invite-trip-card -->
+
+              <% end %>
+              <!-- end of link_to -->
+
+            <!-- </div> -->
+            <!-- end of .test -->
+
+          <% end %>
+          <!-- end of iteration over invitations for trips -->
+        </div>
+        <!-- end of .profile-invites-trips -->
+
+
+
+        <h4 class="subtitle">Next Trips</h4>
+
+
+
+        <!-- OK  -->
+        <% @next_trip.each do |trip|%>
+          <div class="next-trip-card">
+            <%= link_to trip_path(trip) do %>
+              <!-- <div class="card-route trip next-trip"> -->
+              <div class="next-trip">
+                <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
+                <div class="card-route-info">
+                  <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
+                    <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
+                    </p>
+                </div>
+
+              </div>
+              <!-- end of .next-trip -->
+            <% end %>
+            <!-- end of link_to -->
           </div>
+          <!-- end of .next-trip-card -->
         <% end %>
-      <% end %>
-        
+        <!-- end of next_trip.each -->
+
+
       </div>
-      
-    </div>
-    <!-- end of .next-trip-card -->
+      <!-- end of .next-trips -->
+
+
+
+     <% end %>
+     <!-- end of if statement to check if it's the current user logged in -->
 
   </div>
   <!-- end of .profile-header -->
 
-  <div class="past-trips-container">
+  <!-- check if it´s the current user profile to hide trips from others -->
+  <% if current_user == @user %>
 
-    <h4 class="subtitle">Your past trips</h4>
-    
-    <div id="past-trip-cards-index">
+    <div class="past-trips-container">
 
-      <% @old_trips.each do |trip|%>
-      <div class="past-trip-card">
-        
-        <%= link_to trip_path(trip) do %>
-          <div class="card-route trip">
-            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
-            <div class="card-route-info">
-              <div class="route-info">
-                <h6> <%= trip.routes.first.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.city.state_province.name.delete("*") unless trip.routes.first.nil? %>
-                </h6>
-                <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
-                </p>
+      <h4 class="subtitle">Your past trips</h4>
+
+      <div id="past-trip-cards-index">
+
+        <% @old_trips.each do |trip|%>
+          <div class="past-trip-card">
+
+            <%= link_to trip_path(trip) do %>
+              <div class="card-route trip">
+                <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
+                <div class="card-route-info">
+                  <div class="route-info">
+                    <h6> <%= trip.routes.first.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.city.state_province.name.delete("*") unless trip.routes.first.nil? %>
+                    </h6>
+                    <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
+                    </p>
+                  </div>
+                </div>
+                <!-- end of card-route-info -->
               </div>
-            </div>
-            <!-- end of card-route-info -->
+            <% end %>
+
           </div>
+          <!-- end of .past-trip-card -->
         <% end %>
+        <!-- end of iteration on the past trips -->
 
-      </div>
-      <!-- end of .past-trip-card -->
-      <% end %>
-      <!-- end of iteration on the past trips -->
+       </div>
+       <!-- end of #past-trip-cards-index -->
 
+    </div>
+    <!-- end of .past-trips-container -->
 
-
-   </div>
-   <!-- end of #past-trip-cards-index -->
-
- </div>
- <!-- end of .past-trips-container -->
+  <% end %>
+  <!-- end of if statement to check if it's the current user logged in -->
 
 </div>
-<!-- ewnd of #profile-page -->
+<!-- end of #profile-page -->
