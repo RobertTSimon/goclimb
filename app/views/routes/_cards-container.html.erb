@@ -4,10 +4,10 @@
       <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil? %>
       <div class="card-route-index-info">
         <h2><%= route.name %></h2>
-        <p>Site : <%= route.city&.name.delete("*") %></p>
+        <p>Site : <%= route.city&.name.delete("*") unless route.city.nil? %></p>
         <p>Level : <%= route.level %></p>
         <div class="photo-suggestions-div">
-          <%= image_tag route.user.avatar_photo, id: "avatar-photo-suggestions" %> 
+          <%= image_tag route.user.avatar_photo, id: "avatar-photo-suggestions" %>
           <p><%= route.user.username %></p>
         </div>
       </div>
