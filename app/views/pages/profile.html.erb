@@ -4,16 +4,16 @@
 <div class="subNavbar">
   <div class="subNavbar-links">
     <ul class="nav subNavbar-links" id="myTab" role="tablist">
+      <li>
+        <a class="subNavbarLink <%= 'active' if @load_trips == false %>" id="home1-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="home1" aria-selected="true">Profile</a>
+      </li>
+      <li>
+        <a class="subNavbarLink" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home2" aria-selected="false">Route Setter</a>
+      </li>
       <% if @user == current_user %>
 
         <li>
-          <a class="subNavbarLink <%= 'active' if @load_trips == false %>" id="home1-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="home1" aria-selected="true">Profile</a>
-        </li>
-        <li>
           <a class="subNavbarLink" id="settings-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
-        </li>
-        <li>
-          <a class="subNavbarLink" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home2" aria-selected="false">Route Setter</a>
         </li>
 
       <% end %>
@@ -30,16 +30,16 @@
         <%= render partial: "shared/profile-page", object: @routes %>
       </div>
 
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <%= render partial: "shared/route-setter", object: @user %>
+        <%# render partial: "shared/profile-page-cards", object: @route%>
+      </div>
       <% if @user == current_user %>
 
         <div class="tab-pane fade show" id="home2" role="tabpanel" aria-labelledby="home2-tab">
           <%= render partial: "shared/profile-settings", object: @user %>
         </div>
 
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          <%= render partial: "shared/route-setter", object: @user %>
-          <%# render partial: "shared/profile-page-cards", object: @route%>
-        </div>
 
       <% end %>
     </div>
