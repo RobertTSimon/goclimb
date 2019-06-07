@@ -62,6 +62,10 @@
   }
 }
 
+#profile-page {
+  min-height: calc(100vh - 220px);
+}
+
 #profile-page .profile-header {
   display: flex;
   align-items: flex-start;
