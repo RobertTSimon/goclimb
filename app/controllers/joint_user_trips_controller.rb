@@ -32,7 +32,7 @@ class JointUserTripsController < ApplicationController
     authorize @joint_user_trip
     @joint_user_trip.status = 'pending'
     if @joint_user_trip.save!
-      redirect_to profile_path(current_user.id)
+      redirect_to profile_path(params[:user_id])
     else
       render :new
     end

@@ -23,7 +23,11 @@
 
         <% unless user_next_trips.length == 0 %>
           <% if @user.id != current_user.id %>
-            <%= link_to "Invite to next trip", "/trips/#{user_next_trips.first.id}/joint_user_trips?user_id=#{@user.id}", method: :post, class: "btn btn-success" %>
+            <% if JointUserTrip.exists?(trip: user_next_trips.first, user: @user) %>
+              <button class="btn btn-success" disabled>Invitation Sent</button>
+            <% else %>
+              <%= link_to "Invite to next trip", trip_joint_user_trips_path(user_next_trips.first, user_id: @user.id), method: :post, class: "btn btn-success" %>
+            <% end %>
           <% end %>
         <% end %>
 
