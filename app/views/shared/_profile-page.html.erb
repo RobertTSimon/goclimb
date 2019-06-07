@@ -45,44 +45,60 @@
     </div>
   </div>
   <div class="d-flex profile route-setter-page">
+    <% if current_user == @user%>
+      <div id="sport-cards-index">
 
-    <div id="sport-cards-index">
 
+        <% if current_user.id == @user.id %>
+          <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
+            <h4>You've been invited to</h4>
+            <div style="position:relative;">
 
-      <% if current_user.id == @user.id %>
-        <% current_user.joint_user_trips.where(status: 'pending').each do |jut| %>
-          <h4>You've been invited to</h4>
-          <div style="position:relative;">
+              <%= link_to trip_path(jut.trip) do %>
+                <div class="card-route trip" id="card-route-setter-page">
+                  <%= @site_loc %>
+                  <%= image_tag jut.trip.routes.first.photos.first.photo_url unless jut.trip.routes.first.nil? %>
+                  <div class="card-route-info">
+                    <div>
+                      <h4><%= jut.trip.user.username %> has invited you!</h4>
 
-            <%= link_to trip_path(jut.trip) do %>
-              <div class="card-route trip" id="card-route-setter-page">
-                <%= @site_loc %>
-                <%= image_tag jut.trip.routes.first.photos.first.photo_url unless jut.trip.routes.first.nil? %>
+                      <%= simple_form_for [jut.trip, jut] do |f| %>
+                        <%= f.submit "Accept", class:"btn btn-outline-success" %>
+                        <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
+                      <% end %>
+                      <h2><%= jut.trip.start_date.strftime("%B %e, %Y") %> - <%= jut.trip.end_date.strftime("%B %e, %Y") %></h2>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <% @next_trip.each do |trip|%>
+            <h4>Next Trips</h4>
+            <%= link_to trip_path(trip) do %>
+              <div class="card-route trip next-trip">
+                <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
                 <div class="card-route-info">
-                  <div>
-                    <h4><%= jut.trip.user.username %> has invited you!</h4>
-
-                    <%= simple_form_for [jut.trip, jut] do |f| %>
-                      <%= f.submit "Accept", class:"btn btn-outline-success" %>
-                      <%= f.submit "Refuse", class:"btn btn-outline-danger" %>
-                    <% end %>
-                    <h2><%= jut.trip.start_date.strftime("%B %e, %Y") %> - <%= jut.trip.end_date.strftime("%B %e, %Y") %></h2>
+                  <div class="route-info">
+                  <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
+                    <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
+                    </p>
                   </div>
                 </div>
               </div>
             <% end %>
-          </div>
-        <% end %>
-      <% end %>
-
-      <% @next_trip.each do |trip|%>
-          <h4>Next Trips</h4>
+          <% end %>
+          <h4>Past Trips</h4>
+          <% @old_trips.each do |trip|%>
           <%= link_to trip_path(trip) do %>
-            <div class="card-route trip next-trip">
+            <div class="card-route trip">
               <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
               <div class="card-route-info">
                 <div class="route-info">
-                <h6> <%= trip.routes.first.site.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.site.city.state_province.name.delete("*") unless trip.routes.first.nil? %> </h6>
+                    <h6> <%= trip.routes.first.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.city.state_province.name.delete("*") unless trip.routes.first.nil? %>
+                  </h6>
                   <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
                   </p>
                 </div>
@@ -90,24 +106,10 @@
             </div>
           <% end %>
         <% end %>
-        <h4>Past Trips</h4>
-        <% @old_trips.each do |trip|%>
-        <%= link_to trip_path(trip) do %>
-          <div class="card-route trip">
-            <%= image_tag trip.routes.first.photos.first.photo_url unless trip.routes.first.nil? || trip.routes.first.photos.first.photo_url.nil? %>
-            <div class="card-route-info">
-              <div class="route-info">
-                  <h6> <%= trip.routes.first.city.name.delete("*") unless trip.routes.first.nil?%>, <%= trip.routes.first.city.state_province.name.delete("*") unless trip.routes.first.nil? %>
-                </h6>
-                <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %>
-                </p>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-   </div>
- </div>
+      </div>
+    <% end %>
+
+  </div>
 </div>
 
 
