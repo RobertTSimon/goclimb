@@ -203,6 +203,31 @@
   }
 }
 
+
+#review-form{
+  margin-top: 24px;
+
+  .form-end-line {
+    align-items: center;
+  }
+
+  .rating{
+    display: flex;
+    align-items: center;
+  }
+
+  .rating label {
+    margin-bottom: 0;
+  }
+  .button-green{
+    padding: 1px 30px;
+    font-weight: normal;
+    border: 0px;
+  }
+
+
+}
+
 .card-review{
   background-color: white;
   padding: 20px;

@@ -13,6 +13,7 @@ class TripsController < ApplicationController
 
   # I refactorized this show method, sorry. Simon
   def show
+    # raise
     authorize @trip
     @user = current_user
     @routes = @trip.routes
