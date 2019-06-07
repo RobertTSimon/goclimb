@@ -33,12 +33,24 @@ const buildMap = () => {
 
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
-    const popup = new mapboxgl.Popup().setHTML(marker.infowindow); // add this
-    const this_marker = new mapboxgl.Marker()
-      .setPopup(popup) // add this
-      .setLngLat([ marker.lng, marker.lat ])
-      .addTo(map);
-    setMarkerColor(this_marker, "#0cb25f")
+    // console.log("popup null check")
+    // console.log(marker.infowindow === undefined)
+    // console.log(marker.infowindow)
+    if (marker.infowindow === undefined) {
+      const this_marker = new mapboxgl.Marker()
+        .setLngLat([ marker.lng, marker.lat ])
+        .addTo(map);
+      setMarkerColor(this_marker, "#0cb25f")
+    } else {
+      const popup = new mapboxgl.Popup().setHTML(marker.infowindow); // add this
+
+      const this_marker = new mapboxgl.Marker()
+        .setPopup(popup) // add this
+        .setLngLat([ marker.lng, marker.lat ])
+        .addTo(map);
+      setMarkerColor(this_marker, "#0cb25f")
+    }
+
   });
 };
 

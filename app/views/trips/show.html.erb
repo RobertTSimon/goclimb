@@ -24,7 +24,8 @@
             <div class="dates">
 
             </div>
-            <div id="distance_site" data-site="<%= @site_loc.to_json %>">
+
+            <div id="distance_site" data-site="<%= { latitude: @trip.latitude, longitude: @trip.longitude }.to_json %>">
             </div>
           <% end %>
         </div>

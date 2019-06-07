@@ -16,11 +16,13 @@ const calculDistance = (marker, geoloc) => {
      routeElement.innerHTML = routeElement.innerHTML + `<p><strong>Distance:</strong> ${Math.trunc(distance)} km</p>`;
     }
   };
- 
+
 
 const initDistance = () => {
   if (routeElement) {
     navigator.geolocation.getCurrentPosition((data) => {
+      console.log("fetched geo loc of browser")
+      console.log(data)
       const geoloc = data.coords
       const markers = JSON.parse(mapElement.dataset.markers);
       const markers_distances = markers.map((marker) => {
