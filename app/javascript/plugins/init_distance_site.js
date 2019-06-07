@@ -1,7 +1,8 @@
 const siteElement = document.querySelector('#distance_site');
-
+console.log(siteElement);
 
 const calculDistanceSite = (marker, geoloc) => {
+  console.log(marker)
     const lat1 = geoloc.latitude*2*3.14/360
     const lon1 = geoloc.longitude*2*3.14/360
     const lat2 = marker.lat*2*3.14/360
