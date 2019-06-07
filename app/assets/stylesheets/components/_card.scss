@@ -38,7 +38,7 @@
   }
 }
 .card-route:hover{
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .card-route .card-route-info {
@@ -337,11 +337,6 @@
       color: #42433e;
     }
 }
-
-.profile-card {
-  color: $medium-gray;
-}
-
 
 .center-tech-detail {
   padding-left: 10px;
