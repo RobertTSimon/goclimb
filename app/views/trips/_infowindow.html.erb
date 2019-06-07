@@ -1,4 +1,70 @@
-<div class="infowindow_trip" style= "height: 100px; background-color: black">
+<style>
+.infowindow_trip {
+  max-width: 100px;
+  max-height: 100px;
+  /*background-color: black;*/
+  position: relative;
+
+}
+
+.mapboxgl-popup-content {
+  padding: 0px;
+  border-radius: 0.5;
+
+}
+
+.infowindow_trip img {
+  width:100%;
+  height:100%;
+  max-width:100px;
+  max-height:100px;
+
+
+  /*position: absolute;*/
+  opacity: 0.8;
+}
+
+.popup-route-name {
+  position: absolute;
+  top: 40%;
+  width: 100px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  z-index: 101;
+}
+
+.popup-black-filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  top: 0;
+  z-index: 100;
+}
+.mapboxgl-popup-anchor-top.mapboxgl-popup-tip {
+  /*background-color: black;*/
+  /*opacity: 0.5;*/
+  border-bottom-color: black !important;
+  display: none;
+}
+
+.mapboxgl-popup-tip {
+  display: none;
+}
+.center-me {
+}
+</style>
+
+<div class="infowindow_trip" style= "">
   <%= image_tag route.photos.first.photo_url unless route.photos.first.nil? || route.photos.first.photo_url.nil? %>
-  <%= route.name %>
-</div>
+  <%= link_to route_path(route) do %>
+  <div class="popup-black-filter"></div>
+    <strong class="popup-route-name">
+      <div class="center-me">
+      <%= route.name %>
+      </div>
+    </strong>
+  </div>
+  <% end %>

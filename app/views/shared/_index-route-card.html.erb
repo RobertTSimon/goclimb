@@ -9,8 +9,8 @@
           <div class="card-route-info">
             <div>
               <h2><%= route.name %></h2>
-              <p><%= route.site.name %> - <%= route.city.name %></p>
-              <p><em><%= route.city.state_province.name %></em></p>
+              <p><%= route.site.name unless route.site.nil?%> - <%= route.city.name unless route.site.nil? %></p>
+              <p><em><%= route.city.state_province.name unless route.site.nil? %></em></p>
             </div>
             <%= image_tag route.user.avatar_photo, id: "avatar-photo-show-route" %>
           </div>

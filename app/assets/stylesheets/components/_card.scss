@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: space-between;
   @media (min-width: 992px) {
-    height: 380px;
+    height: 393px;
   }
   h2 {
     font-size: 40px;
@@ -198,8 +198,12 @@
     }
   }
   #reviews{
-    max-height: 438px;
+    margin-top: 16px;
     word-break: break-all;
+    @media  (min-width: 992px) {
+      overflow: scroll;
+      max-height: 300px;
+    }
   }
 }
 
@@ -240,6 +244,10 @@
     margin-bottom: 10px;
     margin-right: 16px;
     box-shadow: 1px 1px 10px #00000014;
+    @media (min-width: 992px) {
+      width: 50px;
+      height: 50px;
+    }
   }
 
   .review-user {
@@ -255,7 +263,7 @@
       color: rgb(148, 148, 148);
       font-size: 26px;
       @media (min-width: 992px) {
-        font-size: 16px;
+        font-size: 12px;
       }
     }
   }
@@ -282,7 +290,7 @@
   }
 
   span {
-    font-size: 24px;
+    font-size: 16px;
     color: #ffeb41;
   }
 

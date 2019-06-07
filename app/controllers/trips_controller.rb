@@ -90,8 +90,8 @@ class TripsController < ApplicationController
       route_lat += route_marked.latitude
       route_long += route_marked.longitude
     end
-    # @trip.latitude = route_lat / @routes.count.to_f
-    # @trip.longitude = route_long / @routes.count.to_f
+     @trip.latitude = route_lat / @routes.count.to_f
+     @trip.longitude = route_long / @routes.count.to_f
   end
 
   def optimization_way_by_distance
