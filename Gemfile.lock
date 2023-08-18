@@ -152,6 +152,8 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.14.3-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.14.3-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (0.21.0)
     pry (0.14.2)
@@ -162,7 +164,7 @@ GEM
       pry (>= 0.13, < 0.15)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    puma (6.2.1)
+    puma (6.3.1)
       nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
@@ -268,6 +270,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   algoliasearch-rails
@@ -282,14 +285,12 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 2.0)
   listen (~> 3.0.5)
-  mimemagic (~> 0.3.3)
   pg (~> 0.21)
   pry-byebug
   pry-rails
   puma
   pundit
   rails (= 5.2.3)
-  rake (~> 12.3.3)
   redis
   rest-client
   sassc-rails
